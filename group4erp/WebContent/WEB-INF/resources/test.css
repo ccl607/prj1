@@ -14,8 +14,9 @@ body {
 	border-bottom:1px solid #C0C0C0;
 	border-left:0px;
 	border-right:0px;
-	font-size:11pt;
+	font-size:12pt;
 	font-family: 'Noto Sans KR', sans-serif;
+	/* background-color: white; */
 /* 	font-weight:350; */
 }
 
@@ -23,7 +24,26 @@ body {
 	border-collapse: collapse;
 	border:1px solid #C0C0C0;
 	padding:5px;
-	font-size:11pt;
+	font-size:12pt;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.tab3{
+	border-collapse: collapse;
+	border:0px solid #C0C0C0;
+	border:0;
+	padding:5px;
+	font-size:12pt;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+.logintab{
+	border-collapse: collapse;
+	padding:5px;
+	border-top:1px solid #C0C0C0;
+	border-bottom:1px solid #C0C0C0;
+	border-left:0px;
+	border-right:0px;
+	font-size:12pt;
 	font-family: 'Noto Sans KR', sans-serif;
 }
 

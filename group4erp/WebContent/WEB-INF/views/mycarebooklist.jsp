@@ -33,6 +33,54 @@
    border-width: thin;
 }
 
+.divcss{
+	background-color:#F1F1F1;
+	width:90%;
+	height:100;
+	vertical-align:middle;
+}
+input {
+        vertical-align: middle;
+      }
+input.img-button {
+  background: url( "/group4erp/resources/image/searchA.png" ) no-repeat;
+  border: 1px;
+  width: 10%;
+  height: 20%;
+  cursor: pointer;
+}
+.button {
+    width:auto;
+    height:30;
+    /* background-color: #F0C40F; */
+    /* background-color: white; */
+    background-color: #F0C40F;
+    border: 1px;
+    /* color:#fff; */
+    /* color: gray; */
+    color: black;
+    padding: 3px 3;
+    text-align: center;
+    vertical-align: text-top;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 3;
+    line-height:2;
+    cursor: pointer;
+}
+
+.line{
+	border-collapse: collapse;
+	padding:5px;
+	border-top:0px;
+	border-bottom:5px solid #F1F1F1;
+	border-left:0px;
+	border-right:0px;
+	font-size:11pt;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
 </style>
 <script>
 
@@ -192,17 +240,56 @@
 </head>
 <body>
 	<center>
-	<h1 class="fontBold" style="font-size:15pt">[담당 상품 조회]</h1>
+	<table class="line" width="90%">
+			<tr>
+				<td>&nbsp;&nbsp;<b><font style="font-size:20pt; color:lightgray;">담당 상품 조회</font></b></td>
+			</tr>
+	</table>
+	<table><tr height=3><td></table>
+	<!-- <h1 class="fontBold" style="font-size:15pt">[담당 상품 조회]</h1> -->
    <form name="mycarebooklist" method="post" action="/group4erp/goMyCareBookList.do">
    <!-- <div class="table_layout"> -->
    <input type="hidden" name="emp_no" value="<%=(String)session.getAttribute("emp_id") %>">
-      <table class="tab" border=1 bordercolor="#000000" cellpadding=5 align=center>
+   	  <div class="divcss">
+   	  	<table><tr height=15><td></table>
+   	  	<table class="tab3" border=0 width="100%" bordercolor="#000000" cellpadding=5 align=center>
+   	  		<tr>
+		         <th width="8%"><b>절판 상황</b></th>
+		         <td width="13%" align=left>
+		            <input type="checkbox" name="is_print" value="y">절판
+		            <input type="checkbox" name="is_print" value="n">판매중
+		         <th width="10%"><b>키워드</b>
+		         <td width="40%">
+		            <select name="searchCategory">
+		               <option value="전체">전체
+		               <option value="책번호">책번호
+		               <option value="책이름">책이름
+		               <option value="카테고리">카테고리
+		               <option value="보유지점">보유지점
+		            </select>
+		            <input type="text" name="search_keyword" size=40>
+		         <td width="13%">
+		           <td>
+		           <button class="button"><input type="image" src="/group4erp/resources/image/magnifying-glass.png" width="20" height="20" onclick="goSearchMyWorkList();">검색</button>
+		           <button class="button"><input type="image" src="/group4erp/resources/image/magnifying-glass.png" width="20" height="20" onclick="goAllSearchMyWorkList();">모두검색</button>
+		           <button class="button"><input type="image" src="/group4erp/resources/image/reset.png" width="20" height="20" onclick="goAllReset();">초기화</button>
+		           </td>
+   	  	</table>
+   	  	<br>
+   	  	<!-- <button type="button" id="" class="btn btnEvent">
+		<img src="/group4erp/resources/image/searchA.png" width="10%" height="50%" alt="btnImages" class="btnImages">
+		</button> -->
+	      <!-- <input type="button" value="검색" onclick="goSearchMyWorkList();">&nbsp;&nbsp;
+	      <input type="button" value="모두검색" onclick="goAllSearchMyWorkList();">&nbsp;&nbsp;
+	      <input type="button" value="초기화" onclick="goAllReset();"> -->
+   	  </div>
+      <%-- <table class="tab" border=1 bordercolor="#000000" cellpadding=5 align=center>
          <!-- <colgroup>
             <col width="20%" />
             <col width="*" />
          </colgroup> -->
          
-         <%-- 
+         
          <tr>
          <th bgcolor="gray">분야
          <td align=center>
@@ -235,7 +322,7 @@
                <option value="출판사3">출판사3
                <option value="출판사4">출판사4
                <option value="출판사5">출판사5
-                --> --%>
+                -->
          <tr>
          <th bgcolor="gray">절판 상황
          <td align=left>
@@ -253,13 +340,10 @@
                <option value="보유지점">보유지점
             </select>
             <input type="text" name="search_keyword" size=40>
-      </table>
+      </table> --%>
       <!-- </div> -->
-      <br>
-      <input type="button" value="  검색  " onclick="goSearchMyWorkList();">&nbsp;&nbsp;
-      <input type="button" value="모두검색" onclick="goAllSearchMyWorkList();">&nbsp;&nbsp;
-      <input type="button" value="초기화" onclick="goAllReset();">
-      <table border=0 width=700>
+      
+      <table border=0 width=90%>
          <tr>
             <td align=right>
                총 개수 : ${myWorkListAllCnt}&nbsp;&nbsp;&nbsp;&nbsp;
@@ -276,7 +360,7 @@
       </form>
       
       
-      <table class="mycarebookTable tab" width="80%" border=0 cellspacing=5 cellpadding=5 >
+      <table class="mycarebookTable tab" width="90%" border=0 cellspacing=5 cellpadding=5 style="background-color:white;" >
       	<thead>
          <tr bgcolor="gray">
          	<th width="4%">No

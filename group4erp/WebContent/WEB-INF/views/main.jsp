@@ -7,7 +7,13 @@
 <meta charset="UTF-8">
 <title>IZ Books ERP 메인 페이지</title>
 <style>
-
+body{
+  background: #34495F;
+  color:black;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* background-image: radial-gradient(circle at 0% 0%, #373b52, #252736 51%, #1d1e26); */
+}
 
 </style>
 
@@ -15,10 +21,10 @@
 <%--<header width=95%><%@ include file ="/WEB-INF/views/headerMenu.jsp" %></header> --%>
 <body><center>
 
-<table border="0" cellpadding="0" cellspacing="0" style="background-image : url('/group4erp/resources/image/bookImage.jpg'); 
+<table border="0" cellpadding="0" cellspacing="0" style="background-color:#FFF;"> <!--style="background-color:#34495F;"      style="background-image : url('/group4erp/resources/image/bookImage.jpg'); 
 		background-repeat:no-repeat; 
 		background-size:cover;
-		background-attachment:fixed; " >
+		background-attachment:fixed; "  -->
 	<tr height="40">
 		<td align="center"><%@ include file ="/WEB-INF/views/headerMenu.jsp" %></td>
 	</tr>

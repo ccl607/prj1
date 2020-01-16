@@ -22,6 +22,86 @@
 		box-shadow : 2px 2px 5px #999;	
 	}
 	
+	body{
+	  background: #34495F;
+	  color:black; /* white; */
+	  -webkit-font-smoothing: antialiased;
+	  -moz-osx-font-smoothing: grayscale;
+	  /* background-image: radial-gradient(circle at 0% 0%, #373b52, #252736 51%, #1d1e26); */
+	}
+	
+	
+	* {
+	  box-sizing: border-box;
+	}
+	
+	body {
+	  background: #ddd;
+	  margin: 0;
+	  font-family: 'Roboto', sans-serif;
+	}
+	
+	.container {
+	  max-width: 100%;
+	  margin: 0 auto;
+	  /*background : yellow;*/
+	}
+	
+	nav {
+	  background: #fff;
+	  box-shadow: 0 0 15px 0 rgba(0,0,0,.10)
+	}
+	
+	nav ul {
+	  margin: 0;
+	  padding: 0;
+	  list-style: none;
+	  position: relative;
+	  text-align: left;
+	}
+	
+	nav li {
+	  display: inline-block;
+	}
+	
+	
+	
+	
+	
+	nav a {
+	  color: #444;
+	  text-decoration: none;
+	  display: block;
+	  padding: .75em 1.75em;
+	}
+	
+	nav li:hover {
+	  background: #444;
+	}
+	
+	nav li:hover a {
+	  color: #fff;
+	}
+	
+	.menu-sub {
+		position: absolute;
+		background: #444;
+		width: 100%;
+		/*네비게이션 밑 또 다른 div의 길이 퍼센트 줄일 수 있음*/
+		display: none;
+		/*color: #fff;
+				padding: 2em;
+				left: 0;*/
+	}
+	
+	
+	
+	
+	/*최상단 네비게이션바에 마우스를 가져다 댔을 때 하위 div(mega-menu가 보이게 하기)*/
+	nav li:hover .menu-sub{
+		display: block;
+	}
+	
 
 
 </style>
@@ -330,11 +410,47 @@
 	</script>
 </head>
 <body>
+<!-- <nav>
+	<div class="container" height="100">
+		<table width='100%'>
+			<tr>
+			<td width='15%'><img src="/group4erp/resources/image/IZ books logo.png" align="center" height="5%"></td>
+			<td width='85%'>
+				<ul class="menu-main">
+			
+				<li><a>Activities</a>
+					<div class="menu-sub">
+						<ul>
+							<li><a href="#">Link 01</a></li>
+							<li><a href="#">Link 02</a></li>
+							<li><a href="#">Link 03</a></li>
+							<li><a href="#">Link 04</a></li>
+							<li><a href="#">Link 05</a></li>
+						</ul>
+					</div>
+				</li>
+				
+				
+				<li><a>Parks</a></li>
+				<li><a>Shops</a></li>
+				<li><a>Events</a></li>	
+			</ul>
+			
+			</td>
+			</tr>
+			
+		</table>
+	</div>
+</nav> -->
+
+
 <center><nav class="cl-effect-7">
-	<table class="menuList tab" name="menuList" border="0" cellspacing="0" cellpadding="0" width="100%" style="table-layout:fixed;">
+
+
+	<table class="menuList tab3" name="menuList" border="0" cellspacing="0" cellpadding="0" width="100%" style="table-layout:fixed; background-color:#34495F;">
 		<tr style="border-bottom:1px solid black;">
-			<td align="left"><input type="button" value="메인화면으로" onClick="moveMainPage();"></td>
-			<td width="50">&nbsp;</td>
+			<td width="10" rowspan='2'></td>
+			<td width="100" rowspan=2><img src="/group4erp/resources/image/homeB.png" align="center"  width="30%" height="10%">&nbsp;&nbsp;&nbsp;</td>
 			<th width="100" style="cursor:pointer" onMouseOver="javascript:viewMyWorkMenu();" onClick="myCareBookList();"><span><a href="#">업무관리</a></span></th><td widht="50" onMouseOver="hideSubMenu();">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>	
 			<th width="100" id="menu" style="cursor:pointer" onMouseOver="javascirpt:viewInventoryMenu();" onClick="goBookList();"><a href="#">재고현황</a></th><td widht="50" onMouseOver="hideSubMenu();" onClick="goBookList();">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 			<!-- <th style="cursor:pointer" onMouseOver="javascirpt:viewShippingMenu();">배송관리</th><td widht="100" onMouseOver="hideSubMenu();">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> -->
@@ -343,12 +459,13 @@
 			<th width="100" id="menu" style="cursor:pointer" onMouseOver="javascirpt:viewAccoutingMenu();" onClick="viewTranLog();"><a href="#">회계관리</a></th><td widht="50" onMouseOver="hideSubMenu();">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 			<th width="100" id="menu" style="cursor:pointer" onMouseOver="javascirpt:viewBigDataMenu();" onClick="viewBestKeywdReport();"><a href="#">전략분석</a></th><td widht="50" onMouseOver="hideSubMenu();">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 			<!-- <th style="cursor:pointer" onMouseOver="javascirpt:viewBuyerMenu();">거래처관리</th><td widht="100" onMouseOver="hideSubMenu();">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> -->
+			<td align="left"><input type="button" value="메인화면으로" onClick="moveMainPage();"></td>
 			<td id="menu" align="right" colspan="2"><h5>${emp_name} ${jikup}님 안녕하세요.^^</h5> <input type="button" value="로그아웃" onClick="logout();">
 			</td>
 			
 		</tr>
-		<tr style="border-top:1px solid black;">
-			<td></td><td></td>
+		<tr><!-- style="border-top:1px solid black;" -->
+			<td></td>
 			<!-- <td colspan="16" width="500"> -->
 			<td class="fontNormal" nowrap>&nbsp;<!-- &nbsp;지우지말것!! -->
 				<span id="subMenu1"> <!-- 업무관리 -->
