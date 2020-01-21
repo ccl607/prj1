@@ -235,7 +235,6 @@ public class HrDAOImpl implements HrDAO {
 				mapper_namespace+"getNewEmpInsert"
 				,employeeDTO
 				);
-				
 		return newEmpInsertCnt;
 	}
 	

@@ -1,14 +1,70 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file = "/WEB-INF/views/common.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>급여지급내역(직원별)</title>
-<script>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<meta name="description" content="">
+  	<meta name="author" content="Dashboard">
+  	<meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+  	<meta http-equiv="Conpatible" content="no-cache"/>
+  	
+	<title>급여지급내역(직원별)</title>
+	<link href="${ctRootImg}/favicon.png" rel="icon">
+  	<link href="${ctRootImg}/apple-touch-icon.png" rel="apple-touch-icon">
 
+  	<!-- Bootstrap core CSS -->
+  	<link href="${ctRootlib}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  	<!--external css-->
+  	<link href="${ctRootlib}/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  	<%-- 
+  	<link href="${ctRootlib}/advanced-datatable/css/demo_page.css" rel="stylesheet" />
+  	<link href="${ctRootlib}/advanced-datatable/css/demo_table.css" rel="stylesheet" />
+  	<link rel="stylesheet" href="${ctRootlib}/advanced-datatable/css/DT_bootstrap.css" />
+  	--%>
+  	<!-- Custom styles for this template -->
+  	<link href="${ctRootcss}/style.css" rel="stylesheet">
+  	<link href="${ctRootcss}/style-responsive.css" rel="stylesheet">
+  	<style>
+  		.searchTable{
+   			border-collapse: 1px collapse !important;
+		}
+
+		.searchTable td{
+		   height: 32px;
+		    background-color: #fff !important;
+		    padding-left: 7;
+		}
+		
+		.searchTable th {
+		   height: 32px;
+		    background-color: #fff !important;
+		    padding-right: 7;
+		    
+		}
+		
+		.searchTable-bordered td,
+		.searchTable-bordered th {
+		    border: 1px solid #ddd !important;
+		}
+  	</style>
+  
+
+	<script type="text/javascript"></script>
+	
+	
+	<script type="text/javascript">
 	$(document).ready(function(){
+
+		console.log("ready chart");
+		google.charts.load('current', {'packages' : ['corechart'] } );
+		google.charts.setOnLoadCallback(drawChart);
+		console.log("end chart");
+		
 	
 		headerSort("salListTable", 0);
 
@@ -22,7 +78,8 @@
 			
 		
 	
-		$('[name=rowCntPerPage]').change(function(){
+		$('[name=rowCntPerPageDown]').change(function(){
+			$('[name=rowCntPerPage]').val($(this).val());
 			goSearch();
 		});
 		
@@ -39,7 +96,20 @@
 		inputData('[name=rowCntPerPage]',"${salListSearchDTO.rowCntPerPage}");
 		inputData('[name=selectPageNo]',"${salListSearchDTO.selectPageNo}");
 	});
-
+	
+	function drawChart() {
+		console.log("${sal_chart_data} ", ${sal_chart_data});
+		var data = google.visualization.arrayToDataTable(${sal_chart_data});
+		var options = {
+				title: '직급별 평균 연봉',
+				width :600, 
+				height: 700
+		};
+		
+		var chart = new google.visualization.ColumnChart(document.getElementById('salaryChart'));
+		chart.draw(data, options);
+	}
+	
 	function goSearch() {
 		document.empSalSearchForm.submit();
 	}
@@ -97,43 +167,264 @@
 
 	}
 
+
+
+
+
+	
+		
+
 </script>
 
 </head>
-<body><center>
-	<h1>[${timeDTO.now_year}년도&nbsp;${timeDTO.now_month}월분 급여대장]</h1>
-	
-	지급일 : ${timeDTO.now_year}년 ${timeDTO.now_month}월 5일	
-	
-	<form name="empSalSearchForm" method="post" action="/group4erp/viewSalList.do">
-	<table class="tab">
-		<tr>
-			<td>[검색어]</td><td><input type="text" name="searchKeyword">&nbsp;&nbsp;<input type="button" value="검색" onClick="goSearch();">&nbsp;&nbsp;<input type="button" value="모두검색" onClick="goSearchAll();"></td>
-		</tr>
-	</table>
-
-	 <table border=0>
-	 	<tr>
-	    	<td align=right>
-	        [총원] : ${emp_tot_cnt} 명&nbsp;&nbsp;&nbsp;&nbsp;
-	            <select name="rowCntPerPage">
-	               <option value="10">10</option>
-	               <option value="15">15</option>
-	               <option value="20">20</option>
-	               <option value="25">25</option>
-	               <option value="30">30</option>
-	            </select> 행보기
-			</td>
-		</tr>
+<body>
+<section id="container">
+    <!-- **********************************************************************************************************************************************************
+        TOP BAR CONTENT & NOTIFICATIONS
+        *********************************************************************************************************************************************************** -->
+    <!--header start-->
+    <header class="header black-bg">
+      <div class="sidebar-toggle-box">
+        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+      </div>
+      <!--logo start-->
+      <a href="index.html" class="logo"><b>BOOKST<span>.ERP</span></b></a>
+      <!--logo end-->
+      <div class="nav notify-row" id="top_menu">
+        <!--  notification start -->
+        <ul class="nav top-menu">
+          <!-- settings start -->
+          <!-- notification dropdown end -->
+          <li>
+            <table>
+               <tr>
+                  <td align="left"> <font style="color:#D8E8E4;"><h5><span id="nowTime" align="right"></span> </h5></font></td>
+               </tr>
+            </table>
+          </li>
+        </ul>
+        <!--  notification end -->
+      </div>
+      <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+          <!-- <li>
+            <a class="goBackss" href="javascript:goBack();">뒤로 가기</a>
+          </li> -->
+          <li>
+            <a class="logout" href="login.html">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <!--header end-->
+    <!-- **********************************************************************************************************************************************************
+        MAIN SIDEBAR MENU
+        *********************************************************************************************************************************************************** -->
+    <!--sidebar start-->
+    <aside>
+      <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
+          <p class="centered">
+            <a href="profile.html"><img src="${ctRootImg}/ui-sam.jpg" class="img-circle" width="80"></a>
+          </p>
+          <h5 class="centered">Sam Soffes</h5>
+          <li class="mt">
+            <a href="index.html">
+              <i class="fa fa-dashboard"></i>
+              <span>메인페이지</span>
+              </a>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-desktop"></i>
+              <span>업무 관리</span>
+              </a>
+            <ul class="sub">
+              <li>
+                <a href="/group4erp/goMyCareBookList.do"><i class="fa fa-book"></i>담당 도서 조회</a>
+              </li>
+              <li>
+                <a href="/group4erp/businessTripList.do"><i class="fa fa-briefcase"></i>출장 신청</a>
+              </li>
+              <li>
+                <a href="/group4erp/goMyWorkTime.do"><i class="fa fa-list"></i>근태 조회</a>
+              </li>
+              <li>
+                <a href="/group4erp/viewApprovalList.do"><i class="fa fa-pencil"></i>문서 결재</a>
+              </li>
+              <li>
+                <a href="/group4erp/goEmpDayOffjoin.do"><i class="fa fa-edit"></i>휴가 신청</a>
+              </li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-shopping-cart"></i>
+              <span>재고 관리</span>
+              </a>
+            <ul class="sub">
+              <li>
+                <a href="/group4erp/goBookList.do"><i class="fa fa-info-circle"></i>도서정보조회</a>
+              </li>
+              <li>
+                <a href="/group4erp/goReleaseList.do"><i class="fa fa-list"></i>출고현황조회</a>
+              </li>
+              <li>
+                <a href="/group4erp/goWarehousingList.do"><i class="fa fa-list"></i>입고현황조회</a>
+              </li>
+              <li>
+                <a href="/group4erp/goReturnOrderList.do"><i class="fa fa-list"></i>반품현황조회</a>
+              </li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-calendar"></i>
+              <span>마케팅 관리</span>
+              </a>
+            <ul class="sub">
+              <li>
+                <a href="/group4erp/viewSalesInfoList.do"><i class="fa fa-money"></i>판매현황</a>
+              </li>
+              <li>
+                <a href="/group4erp/viewEventList.do"><i class="fa fa-gift"></i>이벤트행사 현황</a>
+              </li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a class="active" href="javascript:;">
+              <i class="fa fa-users"></i>
+              <span>인사 관리</span>
+              </a>
+            <ul class="sub">
+              <li>
+                <a href="/group4erp/viewEmpList.do"><i class="fa fa-info-circle"></i>직원정보</a>
+              </li>
+              <li class="active">
+                <a href="/group4erp/viewSalList.do"><i class="fa fa-file"></i>급여명세서 조회</a>
+              </li>
+              <li>
+                <a href="/group4erp/viewEmpWorkStateList.do"><i class="fa fa-list"></i>직원별 근무현황</a>
+              </li>
+              <li>
+                <a href="/group4erp/viewEmpDayOffList.do"><i class="fa fa-list"></i>직원별 휴가 현황</a>
+              </li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-krw"></i>
+              <span>회계 관리</span>
+              </a>
+            <ul class="sub">
+              <li class="active">
+                <a href="/group4erp/viewTranSpecIssueList.do"><i class="fa fa-list"></i>거래명세서 조회</a>
+              </li>
+              <li>
+                <a href="/group4erp/viewTranSpecList.do"><i class="fa fa-file-text"></i>사업자 거래내역 조회</a>
+              </li>
+              <li>
+                <a href="/group4erp/viewCorpList.do"><i class="fa fa-link"></i>거래처 현황 조회</a>
+              </li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class=" fa fa-bar-chart-o"></i>
+              <span>전략 분석</span>
+              </a>
+            <ul class="sub">
+              <li>
+                <a href="/group4erp/viewBestKeywdAnalysis.do"><i class="fa fa-search"></i>키워드 검색 자료 조회</a>
+              </li>
+              <li>
+                <a href="/group4erp/viewOurCompanyReport.do"><i class="fa fa-building-o"></i>회사현황</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <!-- sidebar menu end-->
+      </div>
+    </aside>
+    <!--sidebar end-->
+    <!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+    <!--main content start-->
+    <section id="main-content">
+      <section class="wrapper" style="text-align:left;">
+      	<table width=99%>
+         <tr>
+         <td>
+           <h3><i class="fa fa-angle-right"></i> ${timeDTO.now_year}년도&nbsp;${timeDTO.now_month}월분 급여대장</h3>
+          <td align=right>
+          <!-- <button type="button" class="btn btn-default" onclick="goPayCheck();">급여 지급</button> -->
+          <button type="button" class="btn btn-theme04" onclick="goPayCheck();"><i class="fa fa-money"></i> 급여 지급</button>
       </table>
-     <input type="hidden" name="selectPageNo">
-    </form>
-      
-	<!-- 국민연금(4.5%), 건강보험(3.23%), 고용보험(0.8%) -->
-		&nbsp;&nbsp;<h6>단위 [원]</h6>
-	<form name="payListForm" method="post" action="/group4erp/goPayCheck.do">
-		<table class="salListTable tab" name="salListTable" cellpadding="5" cellspacing="5" width="80%">			
-			<tr align="center">
+        
+        <div class="row">
+          <div class="col-md-12">
+            <div class="content-panel">
+              <h4><i class="fa fa-angle-right"></i> 검색</h4>
+              <hr>
+      <form name="empSalSearchForm" method="post" action="/group4erp/viewSalList.do">
+         <!-- <div class="divcss"> -->
+         <table class="searchTable" style="border: 0px;">
+            <tr>
+               <th width="8%" style="text-align:right;"><b>* 키워드&nbsp;</b>
+               <td width="42%"> <input type="text" name="searchKeyword" size=40>
+               <th>
+               <td width="20%">
+               <th>
+               <td width="30%" >
+                  <button  type="button" class="btn btn-default" onclick="goSearch();"><input type="image" src="/group4erp/resources/image/magnifying-glass.png" style="width:13; height:13;" ><font style="font-size:9pt;" >검색</font></button>
+                  &nbsp;
+                  <button type="button" class="btn btn-default" onclick="goSearchAll();"><input type="image" src="/group4erp/resources/image/searchA.png" style="width:13; height:13;"><font style="font-size:9pt;">모두검색</font></button>
+                  &nbsp;
+                  <button type="button" class="btn btn-default" onclick="goAllReset();"><input type="image" src="/group4erp/resources/image/reset.png" style="width:13; height:13;"><font style="font-size:9pt;">초기화</font></button>
+         </table>
+
+         <br>
+         <!-- 
+         <input type="image" src="/group4erp/resources/image/magnifying-glass.png" width="20" height="20" value="검색" onclick="goSearchBookInven();">  
+         <a href="javascript:goSearchBookInven();">검색</a>&nbsp;&nbsp;
+         <input type="button" value="모두검색" onclick="goAllSearchBookInven();">&nbsp;&nbsp;
+         <input type="button" value="초기화" onclick="goAllReset();">
+          -->
+         <!-- </div> -->
+         
+         <input type="hidden" name="selectPageNo">
+         <input type="hidden" name="rowCntPerPage" value='${salListSearchDTO.rowCntPerPage}'> <%-- value="${invenSearchDTO.rowCntPerPage}" --%>
+         <!-- header sort를 하기 위한 hidden Tag -->
+         <input type="hidden" name="sort">
+         </form>
+            </div>
+          </div>
+          <!-- /col-md-12 -->
+          <div class="col-md-12 mt">
+            <div class="content-panel">
+            <div class="adv-table">
+            <table border=0 width=98%>
+               <tr>
+                  <td><h4><i class="fa fa-angle-right"></i> 지급일 : ${timeDTO.now_year}년 ${timeDTO.now_month}월 5일 </h4>
+                  <td align=right>[단위]:원 / [총원] : ${emp_tot_cnt} 명&nbsp;&nbsp;&nbsp;&nbsp;
+                  <select name="rowCntPerPageDown">
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                  </select> 행보기
+         	</table>
+         	<table><tr><td height="10"></td></tr></table>
+         
+         <form name="payListForm" method="post" action="/group4erp/goPayCheck.do">
+			<table class="table table-striped table-advance table-hover table-bordered" name="salListTable" width="100%" border=0 cellspacing=0 cellpadding=5>	
+         
+         
+         <thead>
+				<tr align="center">
 				<th rowspan="2">직책 </th><th rowspan="2">성명</th><th colspan="3">지급내역</th><th colspan="5">공제내역</th><th rowspan="2">실수령액</th>
 			</tr>
 			
@@ -143,7 +434,8 @@
 				<!-- 공제내역 목록-->
 				<td>고용보험</td><td>건강보험</td><td>국민연금</td><td>합계</td>
 			</tr>
-			
+		</thead>
+			<tbody>
 			<c:forEach items='${empSalList}' var="empSal" varStatus="loopTagStatus">
 				<tr style="cursor:pointer" onClick="viewEmpSalInfo(${empSal.emp_no});" align="center">
 				
@@ -161,24 +453,119 @@
 					<td><input type="hidden" name="real_sal" value="${empSal.real_sal}">${empSal.real_sal}</td>
 				</tr>
 			</c:forEach>
-	
-		</table><br><br>
-		
-		<!-- <input type="button" value="결재" onClick="goApproval();"> -->
-		<input type="button" value="급여 지급" onClick="goPayCheck();">
-		<input type="button" value="차트보기" onClick="goChart();">
-	</form>
-		
+			</tbody>
+		</table>
+		<!-- &nbsp;&nbsp;<h6>단위 [원]</h6> -->
 		<br>
-		<div>&nbsp;<span class="pagingNumber"></span>&nbsp;</div><br>
-				
+		<!-- <input type="button" value="신규사원등록" onClick="insertNewEmp();"> -->
+		
+		<div align=center>&nbsp;<span class="pagingNumber"></span>&nbsp;</div>
+		</form>
+    	<div align="center" width='80%'>
+    	<div width='80%'></div>
+    	
+   	 	<!-- <button type="button" class="btn btn-default" onclick="goPayCheck();">급여 지급</button>-->
+   	 	<!-- <button type="button" class="btn btn-default" onclick="goChart();">차트 보기</button>  -->
+		</div>		
 		
 		
 		<form name="salListForm" method="post" action="/group4erp/viewEmpSalInfo.do">
 			<input type="hidden" name="emp_no" value=''>
 		</form>
-			
-</center>
+    	<center>
+         
+         
+         
+         
+         
+         
+         
+            </div>
+          </div>
+          <!-- /col-md-12 -->
+        </div>
+        <br>
+        <!-- /row -->
+        
+      </section>
+      
+        <div class="row">
+          <div class="col-md-12">
+            <div class="content-panel">
+              <h4><i class="fa fa-angle-right"></i> 직급별 평균연봉 차트</h4>
+				<div id="salaryChart" style="width: 100%; height: 700px;"></div>
+            </div>
+          </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </section>
+    
+    	<br>
+    	
+    	
 
+    
+    <!-- /MAIN CONTENT -->
+    <!--main content end-->
+    
+    
+    
+    
+    <!--footer start-->
+    <footer class="site-footer">
+      <div class="text-center">
+        <p>
+         KOSMO 자바&빅데이터 과정 팀프로젝트
+        </p>
+        <div class="credits">
+        <font style="font-size:12pt;">
+        ⓒ Copyrights <strong>조충래, 김태현, 박현우, 이동하, 임남희, 최민지</strong>
+         </font>
+          <!--
+            You are NOT allowed to delete the credit link to TemplateMag with free version.
+            You can delete the credit link only if you bought the pro version.
+            Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
+            Licensing information: https://templatemag.com/license/
+          -->
+        </div>
+        <a href="basic_table.html#" class="go-top">
+          <i class="fa fa-angle-up"></i>
+          </a>
+      </div>
+    </footer>
+    <!--footer end-->
+  </section>
+  <!-- js placed at the end of the document so the pages load faster -->
+  <%-- 
+  <script type="text/javascript" language="javascript" src="${ctRootlib}/advanced-datatable/js/jquery.js"></script>
+  <script type="text/javascript" language="javascript" src="${ctRootlib}/advanced-datatable/js/jquery.dataTables.js"></script>
+  <script type="text/javascript" src="${ctRootlib}/advanced-datatable/js/DT_bootstrap.js"></script> --%>
+  <script src="${ctRootlib}/jquery/jquery.min.js?ver=1"></script>
+  <script src="${ctRootlib}/bootstrap/js/bootstrap.min.js?ver=1"></script>
+  <script class="include" type="text/javascript" src="${ctRootlib}/jquery.dcjqaccordion.2.7.js?ver=1"></script>
+  <script src="${ctRootlib}/jquery.scrollTo.min.js?ver=1"></script>
+  <script src="${ctRootlib}/jquery.nicescroll.js?ver=1" type="text/javascript"></script>
+  <!--common script for all pages-->
+  <script src="${ctRootlib}/common-scripts.js?ver=1"></script>
+  <!--script for this page-->
+  	<script src = "https://www.google.com/jsapi"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	
 </body>
+
 </html>
+
+
+
+

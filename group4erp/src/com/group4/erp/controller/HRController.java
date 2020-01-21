@@ -105,6 +105,27 @@ public class HRController {
 				}
 			}
 			
+			
+			String sal_chart_data = "[";
+			sal_chart_data += "['직급', '평균연봉']";
+		
+			List<SalaryDTO> avgSalInfo = this.hrservice.getAvgSalChart();
+
+			for (int i = 0; i < avgSalInfo.size(); i++) {
+				// System.out.print(salaryList.get(i).get("jikup"));
+				sal_chart_data += ", ['";
+				sal_chart_data += avgSalInfo.get(i).getJikup();
+				sal_chart_data += "', ";
+				sal_chart_data += avgSalInfo.get(i).getAvg_salary();
+				sal_chart_data += "] ";
+			}
+			sal_chart_data += "]";
+
+			System.out.println(sal_chart_data);
+			// obj.put("chartName", "직원평균연봉정보");
+
+			mav.addObject("sal_chart_data", sal_chart_data);
+			
 
 			mav.setViewName("main.jsp");
 			mav.addObject("salListSearchDTO", salListSearchDTO);
@@ -148,6 +169,8 @@ public class HRController {
 		System.out.println("급여 컨트롤러 시작");
 		List<SalaryDTO> myPayCheckList = this.hrservice.getSalaryInfo(salListSearchDTO);
 		System.out.println("컨트롤러 급여명세서 조회 성공");
+		
+
 
 		mav.addObject("myPayCheckList", myPayCheckList);
 		mav.addObject("salListSearchDTO", salListSearchDTO);
@@ -335,6 +358,7 @@ public class HRController {
 		return updateCnt;
 	}
 
+	//새로운 직원 등록
 	@RequestMapping(value = "/newEmpInfoProc.do", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public int newEmpjoinMemberProc(EmployeeDTO employeeDTO, @RequestParam("uploadBtn") MultipartFile multipartFile) {
@@ -356,8 +380,11 @@ public class HRController {
 				//}
 				multipartFile.transferTo(localFile);
 				employeeDTO.setEmp_pic(upFileName);
-				newEmpInsertCnt = this.hrservice.getNewEmpInsertCnt(employeeDTO);
 			}
+			else {
+				employeeDTO.setEmp_pic("newWithoutPic");
+			}
+			newEmpInsertCnt = this.hrservice.getNewEmpInsertCnt(employeeDTO);
 		} catch (Exception e) {
 			System.out.println("<사원 등록 실패>");
 			System.out.println("예외 발생=>" + e);

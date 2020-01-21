@@ -7,7 +7,24 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="Dashboard">
+<meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 <title>YES4조 전사적자원관리 시스템 </title>
+<!-- Favicons -->
+<link href="${ctRootImg}/favicon.png" rel="icon">
+<link href="${ctRootImg}/apple-touch-icon.png" rel="apple-touch-icon">
+
+<!-- Bootstrap core CSS -->
+<link href="${ctRootlib}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!--external css-->
+<link href="${ctRootlib}/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="${ctRootlib}/bootstrap-datepicker/css/datepicker.css" />
+<link rel="stylesheet" type="text/css" href="${ctRootlib}/bootstrap-daterangepicker/daterangepicker.css" />
+<!-- Custom styles for this template -->
+<link href="${ctRootcss}/style.css" rel="stylesheet">
+<link href="${ctRootcss}/style-responsive.css" rel="stylesheet">
  <style>
       .tbcss1, .tbcss1 th,.tbcss1 td{ 
                border-collapse: collapse;
@@ -16,9 +33,30 @@
                font-size: 9pt;
                font-family: tahoma, 굴림, 돋움, verdana
       }
-    .fileBox .fileName {display:inline-block;width:190px;height:20px;padding-left:10px;margin-right:5px;line-height:30px;border:1px solid #aaa;background-color:#fff;vertical-align:middle}
+    .fileBox .fileName {
+    	display:inline-block;
+    	width:85%;
+    	height:10%;
+    	padding-left:10px;
+    	margin-right:5px;
+    	line-height:30px;
+    	border:1px solid #aaa;
+    	background-color:#fff;
+    	vertical-align:middle;
+    	padding:10px 12px;
+    	font-size: 14pt;
+    	line-height: 1.42857143;
+    	border: 1px solid #ccc;
+    }
 	.fileBox .btn_file {display:inline-block;border:1px solid #000;width:100px;height:20px;font-size:0.8em;line-height:20px;text-align:center;vertical-align:middle; background-color:black; color:white;}
-	.fileBox input[type="file"] {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);}
+	.fileBox input[type="file"] {
+		position:absolute;
+		width:1px;
+		height:1px;
+		padding:0;
+		margin:-1px;
+		overflow:hidden;clip:rect(0,0,0,0);
+	}
    </style>
 <script>
 
@@ -308,31 +346,15 @@
                <th bgcolor=#DBDBDB>이메일
                <td><input type="text" name="emp_email" class="emp_email" size="35" maxlength=40>
             </tr>
-             <!--
-            <tr>
-               <th bgcolor=#DBDBDB>회사전용 이메일
-               <td><input type="text" name="emp_email_office" class="emp_email_office" size="35" maxlength=40>
-            </tr>
-<<<<<<< HEAD
-            <!-- 
-            <tr>
-=======
-            
-            <tr>
 
->>>>>>> refs/remotes/b_cmj/b_cmj
-               <th bgcolor=#DBDBDB>직속상관이름
-               <td><input type="text" name="mgr_emp_name" class="mgr_emp_name" size="10">
-            </tr>
-             -->
-            <tr>
+<!--             <tr>
 
                <th bgcolor=#DBDBDB>직원주소</th>
                <td>
                		<input type="text" size="60" id="emp_addr" name="emp_addr" readOnly> 
                		<input type="button"onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
                	</td>
-            </tr>
+            </tr> -->
             <tr>
 
                <th bgcolor=#DBDBDB>증명사진</th>
@@ -363,5 +385,203 @@
          <input type="button" value=" 등록 " onclick="goJoinMember();">
          <input type="button" value=" 닫기 " onclick="goLogin();">
    </form>
+   
+   
+   
+   
+   
+   
+   
+   
+ <table align="center" width="100%" border="1">
+ 	<tr>
+ 		<td width="15%"></td>
+ 		<td align="center" width="70%">
+ 			<div style="width:80%; text-align:center">
+
+        <h3><i class="fa fa-user"></i>신규사원등록</h3>
+        <!-- BASIC FORM ELELEMNTS -->
+        <div align="center" class="row mt">
+          <div class="col-md-12">
+            <h4 class="title">정확한 정보를 기재해주십시오.</h4>
+            <div id="message"></div>
+            <form name="newEmpForm" class="contact-form php-mail-form" role="form" action="contactform/contactform.php" method="POST" enctype="multipart/form-data">
+
+              <div class="form-group">
+                <input type="text" name="emp_name" class="form-control" id="contact-name" placeholder="사원명" data-rule="minlen:2" data-msg="다시 입력해주십시오." >
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <input type="text" name="emp_eng_name" class="form-control" id="contact-name" placeholder="사원영문명" data-rule="minlen:2" data-msg="다시 입력해주십시오." >
+                <div class="validate"></div>
+              </div>
+               <div class="input-group input-large">
+                      <input type="text" class="form-control dpd1" name="jumin_num_f" placeholder="주민등록번호 앞자리" maxlength=6>
+                      <span style="border:0px;" class="input-group-addon">-</span>
+                      <input type="password" class="form-control dpd2" name="jumin_num_b" placeholder="주민등록번호 뒷자리" maxlength=7>
+              		  <input type="hidden" name="jumin_num">
+              </div>
+              <br>
+              <div style="text-align:left; backgound-color:white; width:100%;broder:1px solid black">
+              	<div class="input-group input-large" style="align:left">
+              		
+	                	<!-- 성별<input type="radio" name="email" class="form-control" id="contact-email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
+	                	 -->
+	                	<span style="border:0px; background-color:#eaeaea; color:#797979" class="input-group-addon">성별 </span>
+	                	<button type="button" name="emp_gender" class="btn btn-default" style="width:50%; color:#797979">남자
+	                		<input type="hidden" name="emp_gender" value="남">
+	                	</button>
+	                	<button type="button" name="emp_gender" class="btn btn-default" style="width:50%;  color:#797979">여자
+	                		<input type="hidden" name="emp_gender" value="여">
+	                	</button>
+                	</div>
+                <div class="validate"></div>
+              </div>
+              <br>
+              <div class="form-group">
+                <input type="text" name="phone" class="form-control" id="contact-email" placeholder="전화번호" data-msg="Please enter a valid email">
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <input type="text" name="emp_email" class="form-control" id="contact-email" placeholder="이메일" data-msg="Please enter a valid email">
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <input type="text" name="phone" class="form-control" id="contact-email" placeholder="전화번호" data-msg="Please enter a valid email">
+                <div class="validate"></div>
+              </div>
+              <!-- <div class="form-group">
+                <input type="text" name="subject" class="form-control" id="contact-subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+                <input type="text" size="60" id="emp_addr" name="emp_addr" readOnly> 
+               		<input type="button"onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+                <div class="validate"></div>
+              </div> -->
+               <div class="form-group">
+               	<table width="100%">
+               		<tr>
+               			<td width="85%">
+	                    	<input type="text" class="form-control" id="emp_addr" name="emp_addr" size="10" readOnly >
+               			</td>
+               			<td>
+               				&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-theme04" onclick="sample6_execDaumPostcode()">우편번호찾기</button>
+               			</td>
+               		</tr>
+	                  <!-- <label class="col-sm-2 col-sm-2 control-label">Placeholder</label> -->
+               	</table>
+               	<div class="validate"></div>
+               </div>
+               <div class="form-group">
+               	<table width="100%">
+               		<tr>
+               			<td width="85%">
+	                    	<div class="fileBox" align="left">	<!-- style="position:absolute;left:22%; -->
+							<input align="left" type="text" class="fileName" readonly="readonly">
+							<label style="cursor:pointer" for="uploadBtn" class="btn_file" align="left">사진</label>
+							<input type="file" id="uploadBtn" class="uploadBtn" name="uploadBtn">
+							</div>
+               			</td>
+               		</tr>
+	                  <!-- <label class="col-sm-2 col-sm-2 control-label">Placeholder</label> -->
+               	</table>
+               	<div class="validate"></div>
+               </div>
+              
+              
+              
+
+              <div class="form-group">
+                <textarea class="form-control" name="message" id="contact-message" placeholder="Your Message" rows="5" data-rule="required" data-msg="Please write something for us"></textarea>
+                <div class="validate"></div>
+              </div>
+
+              <div class="loading"></div>
+              <div class="error-message"></div>
+              <div class="sent-message">Your message has been sent. Thank you!</div>
+
+              <div class="form-send">
+                <button type="submit" class="btn btn-large btn-primary">Send Message</button>
+              </div>
+
+            </form>
+          </div>
+          </div>
+        <!-- /row -->
+          
+          
+          <div class="col-md-12">
+            <h4 class="title">Contact Details</h4>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            <ul class="contact_details">
+              <li><i class="fa fa-envelope-o"></i> info@yoursite.com</li>
+              <li><i class="fa fa-phone-square"></i> +34 5565 6555</li>
+              <li><i class="fa fa-home"></i> Some Fine Address, 887, Madrid, Spain.</li>
+            </ul>
+            <!-- contact_details -->
+          </div>
+        
+  </div>
+ 		</td>
+ 		<td width="15%"></td>
+ 	</tr>
+ 
+ </table> 
+   
+   
+  <!-- js placed at the end of the document so the pages load faster -->
+  <script src="${ctRootlib}/jquery/jquery.min.js"></script>
+  <script src="${ctRootlib}/bootstrap/js/bootstrap.min.js"></script>
+  <script class="include" type="text/javascript" src="${ctRootlib}/jquery.dcjqaccordion.2.7.js"></script>
+  <script src="${ctRootlib}/jquery.scrollTo.min.js"></script>
+  <script src="${ctRootlib}/jquery.nicescroll.js" type="text/javascript"></script>
+  <!--common script for all pages-->
+  <script src="${ctRootlib}/common-scripts.js"></script>
+  <!--script for this page-->
+  <script src="${ctRootlib}/jquery-ui-1.9.2.custom.min.js"></script>
+  <!--custom switch-->
+  <script src="${ctRootlib}/bootstrap-switch.js"></script>
+  <!--custom tagsinput-->
+  <script src="${ctRootlib}/jquery.tagsinput.js"></script>
+
+  <!--Contactform Validation-->
+  <script src="${ctRootlib}/php-mail-form/validate.js"></script>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 </body>
 </html>
