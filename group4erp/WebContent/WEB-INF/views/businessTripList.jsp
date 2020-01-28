@@ -42,17 +42,17 @@
 <style>
 
 .searchTable{
-   border-collapse: 1px collapse !important;
+	border-collapse: 1px collapse !important;
 }
 
 .searchTable td{
-   height: 32px;
+	height: 32px;
     background-color: #fff !important;
     padding-left: 7;
 }
 
 .searchTable th {
-   height: 32px;
+	height: 32px;
     background-color: #fff !important;
     padding-right: 7;
     
@@ -85,117 +85,117 @@
 </style>
 
 <script>
-   $(document).ready(function(){
+	$(document).ready(function(){
 
-      setTableTrBgColor(
-            "businessTripListTable",   //테이블 class 값
-            "${headerColor}",         //헤더 tr 배경색
-            "${oddTrColor}",      //홀수행 배경색
-            "${evenTrColor}",   //짝수행 배경색
-            "${mouseOverColor}"         //마우스 온 시 배경색
-      );
-      
-      $("#datepicker3").datepicker({
-         dateFormat: 'yy-mm-dd'
-      });
-      $("#datepicker4").datepicker({
-         dateFormat: 'yy-mm-dd'
-      });
-      
-      $('[name=rowCntPerPageDown]').change(function(){
-            $('[name=rowCntPerPage]').val( $(this).val() );
-            goSearch();
-      });
-      
-      
-      /* alert($("[name=getBusinessTripListSearchForm] [name=selectPageNo]").val());
-      alert($("[name=getBusinessTripListSearchForm] [name=rowCntPerPage]").val()); */
-      //페이징 처리 관련 HTML 소스를 class=pagingNumber 가진 태그 안에 삽입하기
-      $(".pagingNumber").html(
-            getPagingNumber(
-            "${businessTripListAllCnt}"                  //검색 결과 총 행 개수
-            ,"${businessTripSearchDTO.selectPageNo}"         //선택된 현재 페이지 번호
-            ,"${businessTripSearchDTO.rowCntPerPage}"         //페이지 당 출력행의 개수
-            ,"15"                              //페이지 당 보여줄 페이지번호 개수
-            ,"goSearch();"                        //페이지 번호 클릭 후 실행할 자스코드
-         )
-      );
+		setTableTrBgColor(
+				"businessTripListTable",	//테이블 class 값
+				"${headerColor}",			//헤더 tr 배경색
+				"${oddTrColor}",		//홀수행 배경색
+				"${evenTrColor}",	//짝수행 배경색
+				"${mouseOverColor}"			//마우스 온 시 배경색
+		);
+		
+		$("#datepicker3").datepicker({
+			dateFormat: 'yy-mm-dd'
+		});
+		$("#datepicker4").datepicker({
+			dateFormat: 'yy-mm-dd'
+		});
+		
+		$('[name=rowCntPerPageDown]').change(function(){
+			   $('[name=rowCntPerPage]').val( $(this).val() );
+			   goSearch();
+		});
+		
+		
+		/* alert($("[name=getBusinessTripListSearchForm] [name=selectPageNo]").val());
+		alert($("[name=getBusinessTripListSearchForm] [name=rowCntPerPage]").val()); */
+		//페이징 처리 관련 HTML 소스를 class=pagingNumber 가진 태그 안에 삽입하기
+		$(".pagingNumber").html(
+				getPagingNumber(
+				"${businessTripListAllCnt}"						//검색 결과 총 행 개수
+				,"${businessTripSearchDTO.selectPageNo}"			//선택된 현재 페이지 번호
+				,"${businessTripSearchDTO.rowCntPerPage}"			//페이지 당 출력행의 개수
+				,"15"										//페이지 당 보여줄 페이지번호 개수
+				,"goSearch();"								//페이지 번호 클릭 후 실행할 자스코드
+			)
+		);
 
-      inputData('[name=rowCntPerPageDown]',"${businessTripSearchDTO.rowCntPerPage}");
-      inputData('[name=selectPageNo]',"${businessTripSearchDTO.selectPageNo}");
-      inputData('#selectSearch',"${businessTripSearchDTO.searchKey}");
-      inputData('#searchKeyword',"${businessTripSearchDTO.keyword}");
-      inputData('#sort',"${businessTripSearchDTO.sort}");
-      inputData('#datepicker3',"${businessTripSearchDTO.startTime}");
-      inputData('#datepicker4',"${businessTripSearchDTO.endTime}");
-      <c:forEach items="${businessTripSearchDTO.payment}" var="payment">
-         inputData('[name=payment]',"${payment}");
-      </c:forEach> 
-      
+		inputData('[name=rowCntPerPageDown]',"${businessTripSearchDTO.rowCntPerPage}");
+		inputData('[name=selectPageNo]',"${businessTripSearchDTO.selectPageNo}");
+		inputData('#selectSearch',"${businessTripSearchDTO.searchKey}");
+		inputData('#searchKeyword',"${businessTripSearchDTO.keyword}");
+		inputData('#sort',"${businessTripSearchDTO.sort}");
+		inputData('#datepicker3',"${businessTripSearchDTO.startTime}");
+		inputData('#datepicker4',"${businessTripSearchDTO.endTime}");
+		<c:forEach items="${businessTripSearchDTO.payment}" var="payment">
+			inputData('[name=payment]',"${payment}");
+		</c:forEach> 
+		
 });
 
-   
-   
-   function goSearch(){
-      //var keyword = '';
-      var  keyword = $("#searchKeyword").val();
-      var  searchKey = $("#selectSearch").val();
-      var  outsideTime = $("#datepicker3").val();
-      var  comebackTime = $("#datepicker4").val();
+	
+	
+	function goSearch(){
+		//var keyword = '';
+		var  keyword = $("#searchKeyword").val();
+		var  searchKey = $("#selectSearch").val();
+		var  outsideTime = $("#datepicker3").val();
+		var  comebackTime = $("#datepicker4").val();
 
-      
-      $("#searchKey").val(searchKey);
-      $("#keyword").val(keyword);
-      $("#startTime").val(outsideTime);
-      $("#endTime").val(comebackTime);
+		
+		$("#searchKey").val(searchKey);
+		$("#keyword").val(keyword);
+		$("#startTime").val(outsideTime);
+		$("#endTime").val(comebackTime);
 
-      //alert( $('[name=getBusinessTripListSearchForm]').serialize() );
-      
-      document.getBusinessTripListSearchForm.submit();
-   }
-   
-   function goAllSearch(){
-      document.getBusinessTripListSearchForm.reset();
-      //$("#searchForm").submit()
-      $('[name=getBusinessTripListSearchForm] [name=rowCntPerPage]').val('10');
-      $('[name=getBusinessTripListSearchForm] [name=selectPageNo]').val('1');
-      goSearch();
-   }
-   
-   function goReset(){
-      document.getBusinessTripListSearchForm.reset();
-   }
-   
-                                                               
-   function goBusinessTripContentsForm(work_outside_seq,emp_no,travel_payment,dep_no,mgr_no,jikup){
-         if( 
-            (
-               ("${businessTripDTO.login_emp_id}"== emp_no)
-                  ||
-               (
-                  ("${businessTripDTO.login_mgr_no}"==mgr_no)
-                     &&
-                  ("${businessTripDTO.login_dep_no}"==dep_no)
-               )
-                  ||
-               ("${businessTripDTO.login_dep_no}"==6)
-                  ||
-               ("${businessTripDTO.login_jikup}"=="대표이사")
-            ) 
-            && 
-            (travel_payment =="W")){
-              alert($('[name=getBusinessTripListSearchForm]').serialize());
-            var str = "work_outside_seq="+work_outside_seq+"&"+emp_no+"&"+$('[name=getBusinessTripListSearchForm]').serialize();
-            location.replace("/group4erp/businessTripUpDelForm.do?"+str )
-         }else{
-            var str = "work_outside_seq="+work_outside_seq+"&"+emp_no+"&"+$('[name=getBusinessTripListSearchForm]').serialize();
-            location.replace("/group4erp/businessTripContentsForm.do?"+str )}
-   }
+		//alert( $('[name=getBusinessTripListSearchForm]').serialize() );
+		
+		document.getBusinessTripListSearchForm.submit();
+	}
+	
+	function goAllSearch(){
+		document.getBusinessTripListSearchForm.reset();
+		//$("#searchForm").submit()
+		$('[name=getBusinessTripListSearchForm] [name=rowCntPerPage]').val('10');
+		$('[name=getBusinessTripListSearchForm] [name=selectPageNo]').val('1');
+		goSearch();
+	}
+	
+	function goReset(){
+		document.getBusinessTripListSearchForm.reset();
+	}
+	
+																					
+	function goBusinessTripContentsForm(work_outside_seq,emp_no,travel_payment,dep_no,mgr_no,jikup){
+			if( 
+				(
+					("${businessTripDTO.login_emp_id}"== emp_no)
+						||
+					(
+						("${businessTripDTO.login_mgr_no}"==mgr_no)
+							&&
+						("${businessTripDTO.login_dep_no}"==dep_no)
+					)
+						||
+					("${businessTripDTO.login_dep_no}"==6)
+						||
+					("${businessTripDTO.login_jikup}"=="대표이사")
+				) 
+				&& 
+				(travel_payment =="W")){
+				  alert($('[name=getBusinessTripListSearchForm]').serialize());
+				var str = "work_outside_seq="+work_outside_seq+"&"+emp_no+"&"+$('[name=getBusinessTripListSearchForm]').serialize();
+				location.href="/group4erp/businessTripUpDelForm.do?"+str;
+			}else{
+				var str = "work_outside_seq="+work_outside_seq+"&"+emp_no+"&"+$('[name=getBusinessTripListSearchForm]').serialize();
+				location.href="/group4erp/businessTripContentsForm.do?"+str;}
+	}
 
-   function goBusinessTripForm() {
-      location.href = "/group4erp/businessTripForm.do";
-   }
-   
+	function goBusinessTripForm() {
+		location.href = "/group4erp/businessTripForm.do";
+	}
+	
 </script>
 
 
@@ -218,11 +218,11 @@
           <!-- settings start -->
           <!-- notification dropdown end -->
           <li>
-            <table>
-               <tr>
-                  <td align="left"> <font style="color:#D8E8E4;"><h5><span id="nowTime" align="right"></span> </h5></font></td>
-               </tr>
-            </table>
+     		 <table>
+        		 <tr>
+        		 	<td align="left"> <font style="color:#D8E8E4;"><h5><span id="nowTime" align="right"></span> </h5></font></td>
+         		</tr>
+      		</table>
           </li>
         </ul>
         <!--  notification end -->
@@ -377,75 +377,73 @@
     <section id="main-content">
       <section class="wrapper" style="text-align:left;">
         <table width=99%>
-         <tr>
-         <td>
-           <h3><i class="fa fa-angle-right"></i> 출장 신청</h3>
-          <td align=right>
-          <button type="button" class="btn btn-theme04" onclick="goBusinessTripForm();"><i class="fa fa-briefcase"></i> 출장 신청</button>
+	      <tr>
+	      <td>
+	        <h3><i class="fa fa-angle-right"></i> 출장 신청</h3>
+	       <td align=right>
+	       <button type="button" class="btn btn-theme04" onclick="goBusinessTripForm();"><i class="fa fa-briefcase"></i> 출장 신청</button>
       </table>
         <div class="row">
           <div class="col-md-12">
             <div class="content-panel">
               <h4><i class="fa fa-angle-right"></i> 검색</h4>
               <hr>
-      <form name="getBusinessTripListSearchForm" id="getBusinessTripListSearchForm" method="post" action="/group4erp/businessTripList.do">
-         <!-- <div class="divcss"> -->
-         <table class="searchTable" style="border: 0px;">
-            <tr>
-               <th width="14%" style="text-align:right;"><b>* 결재 상태&nbsp;</b></th>
-               
-               <td width="30%" align=left>
-               <input type="checkbox" name='payment' class="payment" value="Y">승인
-                  <input type="checkbox" name='payment' class="payment" value="W">대기중
-                  <input type="checkbox" name='payment' class="payment" value="N">반려 </td>
-                  <th width="10%" style="text-align:right;"><b>* 판매 상황&nbsp;</b></th>
-               <td align=left>
-                  <input type="text" id="datepicker3" readonly>&nbsp;~&nbsp;
-                  <input type="text" id="datepicker4" readonly>
-               </td>
-         </table>
-         <br>
-         <table class="searchTable" style="border: 0px;">
-            <tr>
-               <th width="8%" style="text-align:right;"><b>* 출장 날짜&nbsp;</b>
-               <td width="50%">
-                  <select id = "selectSearch">
-                     <option>------</option>
-                     <option value="emp_name">성명</option>
-                     <option value="dep_name">부서</option>
-                     <option value="outside_start_time">출발 날짜</option>
-                     <option value="outside_end_time">복귀 날짜</option>
-                     <option value="travel_payment">결제</option>
-                  </select>
-                  <input type="text" name="book_keyword" id="searchKeyword" size=78>
-               <th>
-               <td>
-               <th>
-               <td  width="20%">
-                  <button type="button" class="btn btn-default" onclick="goSearch();"><input type="image" src="/group4erp/resources/image/magnifying-glass.png" width="15" height="15">검색</button>
-                  &nbsp;
-                  <button type="button" class="btn btn-default" onclick="goAllSearch();"><input type="image" src="/group4erp/resources/image/searchA.png" width="15" height="15">모두검색</button>
-                  &nbsp;
-                  <button type="button" class="btn btn-default" onclick="goReset();"><input type="image" src="/group4erp/resources/image/reset.png" width="15" height="15">초기화</button>
-         </table>
+		<form name="getBusinessTripListSearchForm" id="getBusinessTripListSearchForm" method="post" action="/group4erp/businessTripList.do">
+			<!-- <div class="divcss"> -->
+			<table class="searchTable" style="border: 0px;">
+				<tr>
+					<th width="14%" style="text-align:right;"><b>* 결재 상태&nbsp;</b></th>
+					
+					<td width="30%" align=left>
+					<input type="checkbox" name='payment' class="payment" value="Y">승인
+         			<input type="checkbox" name='payment' class="payment" value="W">대기중
+         			<input type="checkbox" name='payment' class="payment" value="N">반려 </td>
+         			<th width="10%" style="text-align:right;"><b>* 출장 날짜&nbsp;</b></th>
+					<td align=left>
+						<input type="text" id="datepicker3" readonly>&nbsp;~&nbsp;
+						<input type="text" id="datepicker4" readonly>
+					</td>
+			</table>
+			<br>
+			<table class="searchTable" style="border: 0px;">
+				<tr>
+					<th width="8%" style="text-align:right;"><b>* 출장 날짜&nbsp;</b>
+					<td width="50%">
+						<select id = "selectSearch">
+							<option>------</option>
+							<option value="emp_name">성명</option>
+							<option value="dep_name">부서</option>
+							<option value="mgr_name">담당자</option>
+						</select>
+						<input type="text" name="book_keyword" id="searchKeyword" size=78>
+					<th>
+					<td>
+					<th>
+					<td  width="20%">
+						<button type="button" class="btn btn-default" onclick="goSearch();"><input type="image" src="/group4erp/resources/image/magnifying-glass.png" width="15" height="15">검색</button>
+						&nbsp;
+						<button type="button" class="btn btn-default" onclick="goAllSearch();"><input type="image" src="/group4erp/resources/image/searchA.png" width="15" height="15">모두검색</button>
+						&nbsp;
+						<button type="button" class="btn btn-default" onclick="goReset();"><input type="image" src="/group4erp/resources/image/reset.png" width="15" height="15">초기화</button>
+			</table>
 
-         <br>
-         <!-- 
-         <input type="image" src="/group4erp/resources/image/magnifying-glass.png" width="20" height="20" value="검색" onclick="goSearchBookInven();">  
-         <a href="javascript:goSearchBookInven();">검색</a>&nbsp;&nbsp;
-         <input type="button" value="모두검색" onclick="goAllSearchBookInven();">&nbsp;&nbsp;
-         <input type="button" value="초기화" onclick="goAllReset();">
-          -->
-         <!-- </div> -->
-         <input type="hidden" name="searchKey" id="searchKey" >
-         <input type="hidden" name="keyword" id="keyword">
-         <input type="hidden" name="startTime" id="startTime">
-            <input type="hidden" name="endTime" id="endTime">
-         <input type="hidden" name="selectPageNo">
-         <input type="hidden" name="rowCntPerPage" value="${businessTripSearchDTO.rowCntPerPage}">
-         <!-- header sort를 하기 위한 hidden Tag -->
-         <input type="hidden" name="sort" id="sort">
-         </form>
+			<br>
+			<!-- 
+			<input type="image" src="/group4erp/resources/image/magnifying-glass.png" width="20" height="20" value="검색" onclick="goSearchBookInven();">  
+			<a href="javascript:goSearchBookInven();">검색</a>&nbsp;&nbsp;
+			<input type="button" value="모두검색" onclick="goAllSearchBookInven();">&nbsp;&nbsp;
+			<input type="button" value="초기화" onclick="goAllReset();">
+ 			-->
+			<!-- </div> -->
+			<input type="hidden" name="searchKey" id="searchKey" >
+			<input type="hidden" name="keyword" id="keyword">
+			<input type="hidden" name="startTime" id="startTime">
+      		<input type="hidden" name="endTime" id="endTime">
+			<input type="hidden" name="selectPageNo">
+			<input type="hidden" name="rowCntPerPage" value="${businessTripSearchDTO.rowCntPerPage}">
+			<!-- header sort를 하기 위한 hidden Tag -->
+			<input type="hidden" name="sort" id="sort">
+			</form>
             </div>
           </div>
           <!-- /col-md-12 -->
@@ -453,160 +451,160 @@
             <div class="content-panel">
             <div class="adv-table">
             <table border=0 width=98%>
-               <tr>
-                  <td><h4><i class="fa fa-angle-right"></i>검색 결과</h4>
-                  <td align=right>[총 신청 수] : ${businessTripListAllCnt} 건
-                  <select name="rowCntPerPageDown">
-                        <option value="10">10</option>
-                        <option value="15">15</option>
-                        <option value="20">20</option>
-                        <option value="25">25</option>
-                        <option value="30">30</option>
-                  </select> 행보기
-         </table>
-         <table><tr><td height="10"></td></tr></table>
+					<tr>
+						<td><h4><i class="fa fa-angle-right"></i>검색 결과</h4>
+						<td align=right>[총 신청 수] : ${businessTripListAllCnt} 건
+						<select name="rowCntPerPageDown">
+								<option value="10">10</option>
+								<option value="15">15</option>
+								<option value="20">20</option>
+								<option value="25">25</option>
+								<option value="30">30</option>
+						</select> 행보기
+			</table>
+			<table><tr><td height="10"></td></tr></table>
              <table class="table table-striped table-advance table-hover table-bordered" width="90%" border=0 cellspacing=0 cellpadding=5>
              <thead>
-            <tr>
-               <th>번호</th>
-               
-         
-               <c:choose>
-                  <c:when test="${param.sort=='3 desc'}">
-                     <th style="cursor:pointer" onclick="$('[name=sort]').val('outside_start_time desc'); goSearch();">▼성명</th>
-                  </c:when>
-                  <c:when test="${param.sort=='3 asc'}">
-                     <th style="cursor:pointer" onclick="$('[name=sort]').val('3 desc'); goSearch();">▲성명</th>
-                  </c:when>
-                  <c:otherwise>
-                     <th style="cursor:pointer" onclick="$('[name=sort]').val('3 asc'); goSearch();">성명</th>
-                  </c:otherwise>
-               </c:choose>
-               
-               <c:choose>
-                  <c:when test="${param.sort=='c.jikup_cd desc'}">
-                     <th style="cursor:pointer" onclick="$('[name=sort]').val('outside_start_time desc'); goSearch();">▼직급</th>
-                  </c:when>
-                  <c:when test="${param.sort=='c.jikup_cd asc'}">
-                     <th style="cursor:pointer" onclick="$('[name=sort]').val('c.jikup_cd desc'); goSearch();">▲직급</th>
-                  </c:when>
-                  <c:otherwise>
-                     <th style="cursor:pointer" onclick="$('[name=sort]').val('c.jikup_cd asc'); goSearch();">직급</th>
-                  </c:otherwise>
-               </c:choose>
-               
-               
+				<tr>
+					<th>번호</th>
+					
+			
+					<c:choose>
+						<c:when test="${param.sort=='3 desc'}">
+							<th style="cursor:pointer" onclick="$('[name=sort]').val('outside_start_time desc'); goSearch();">▼성명</th>
+						</c:when>
+						<c:when test="${param.sort=='3 asc'}">
+							<th style="cursor:pointer" onclick="$('[name=sort]').val('3 desc'); goSearch();">▲성명</th>
+						</c:when>
+						<c:otherwise>
+							<th style="cursor:pointer" onclick="$('[name=sort]').val('3 asc'); goSearch();">성명</th>
+						</c:otherwise>
+					</c:choose>
+					
+					<c:choose>
+						<c:when test="${param.sort=='c.jikup_cd desc'}">
+							<th style="cursor:pointer" onclick="$('[name=sort]').val('outside_start_time desc'); goSearch();">▼직급</th>
+						</c:when>
+						<c:when test="${param.sort=='c.jikup_cd asc'}">
+							<th style="cursor:pointer" onclick="$('[name=sort]').val('c.jikup_cd desc'); goSearch();">▲직급</th>
+						</c:when>
+						<c:otherwise>
+							<th style="cursor:pointer" onclick="$('[name=sort]').val('c.jikup_cd asc'); goSearch();">직급</th>
+						</c:otherwise>
+					</c:choose>
+					
+					
 
-               <c:choose>
-                  <c:when test="${param.sort=='4 desc'}">
-                     <th style="cursor:pointer" onclick="$('[name=sort]').val('outside_start_time desc'); goSearch();">▼부서명</th>
-                  </c:when>
-                  <c:when test="${param.sort=='4 asc'}">
-                     <th style="cursor:pointer" onclick="$('[name=sort]').val('4 desc'); goSearch();">▲부서명</th>
-                  </c:when>
-                  <c:otherwise>
-                     <th style="cursor:pointer" onclick="$('[name=sort]').val('4 asc'); goSearch();">부서명</th>
-                  </c:otherwise>
-               </c:choose>
+					<c:choose>
+						<c:when test="${param.sort=='4 desc'}">
+							<th style="cursor:pointer" onclick="$('[name=sort]').val('outside_start_time desc'); goSearch();">▼부서명</th>
+						</c:when>
+						<c:when test="${param.sort=='4 asc'}">
+							<th style="cursor:pointer" onclick="$('[name=sort]').val('4 desc'); goSearch();">▲부서명</th>
+						</c:when>
+						<c:otherwise>
+							<th style="cursor:pointer" onclick="$('[name=sort]').val('4 asc'); goSearch();">부서명</th>
+						</c:otherwise>
+					</c:choose>
 
-               
-   
-               <c:choose>
-                  <c:when test="${param.sort=='7 desc'}">
-                     <th style="cursor:pointer" onclick="$('[name=sort]').val('outside_start_time desc'); goSearch();">▼출발 날짜</th>
-                  </c:when>
-                  <c:when test="${param.sort=='7 asc'}">
-                     <th style="cursor:pointer" onclick="$('[name=sort]').val('7 desc'); goSearch();">▲출발 날짜</th>
-                  </c:when>
-                  <c:otherwise>
-                     <th style="cursor:pointer" onclick="$('[name=sort]').val('7 asc'); goSearch();">출발 날짜</th>
-                  </c:otherwise>
-               </c:choose>
-               
-               <c:choose>
-                  <c:when test="${param.sort=='8 desc'}">
-                     <th style="cursor:pointer" onclick="$('[name=sort]').val('outside_start_time desc'); goSearch();">▼복귀 예정 날짜</th>
-                  </c:when>
-                  <c:when test="${param.sort=='8 asc'}">
-                     <th style="cursor:pointer" onclick="$('[name=sort]').val('8 desc'); goSearch()">▲복귀 예정 날짜</th>
-                  </c:when>
-                  <c:otherwise>
-                     <th style="cursor:pointer" onclick="$('[name=sort]').val('8 asc'); goSearch();">복귀 예정 날짜</th>
-                  </c:otherwise>
-               </c:choose>
+					
+	
+					<c:choose>
+						<c:when test="${param.sort=='7 desc'}">
+							<th style="cursor:pointer" onclick="$('[name=sort]').val('outside_start_time desc'); goSearch();">▼출발 날짜</th>
+						</c:when>
+						<c:when test="${param.sort=='7 asc'}">
+							<th style="cursor:pointer" onclick="$('[name=sort]').val('7 desc'); goSearch();">▲출발 날짜</th>
+						</c:when>
+						<c:otherwise>
+							<th style="cursor:pointer" onclick="$('[name=sort]').val('7 asc'); goSearch();">출발 날짜</th>
+						</c:otherwise>
+					</c:choose>
+					
+					<c:choose>
+						<c:when test="${param.sort=='8 desc'}">
+							<th style="cursor:pointer" onclick="$('[name=sort]').val('outside_start_time desc'); goSearch();">▼복귀 예정 날짜</th>
+						</c:when>
+						<c:when test="${param.sort=='8 asc'}">
+							<th style="cursor:pointer" onclick="$('[name=sort]').val('8 desc'); goSearch()">▲복귀 예정 날짜</th>
+						</c:when>
+						<c:otherwise>
+							<th style="cursor:pointer" onclick="$('[name=sort]').val('8 asc'); goSearch();">복귀 예정 날짜</th>
+						</c:otherwise>
+					</c:choose>
 
-               
-               <c:choose>
-                  <c:when test="${param.sort=='9 desc'}">
-                     <th style="cursor:pointer" onclick="$('[name=sort]').val('outside_start_time desc'); goSearch();">▼담당자</th>
-                  </c:when>
-                  <c:when test="${param.sort=='9 asc'}">
-                     <th style="cursor:pointer" onclick="$('[name=sort]').val('9 desc'); goSearch()">▲담당자</th>
-                  </c:when>
-                  <c:otherwise>
-                     <th style="cursor:pointer" onclick="$('[name=sort]').val('9 asc'); goSearch();">담당자</th>
-                  </c:otherwise>
-               </c:choose>
-               
-               
-               <c:choose>
-                  <c:when test="${param.sort=='10 desc'}">
-                     <th style="cursor:pointer" onclick="$('[name=sort]').val('outside_start_time desc'); goSearch();">▼결재</th>
-                  </c:when>
-                  <c:when test="${param.sort=='10 asc'}">
-                     <th style="cursor:pointer" onclick="$('[name=sort]').val('10 desc'); goSearch()">▲결재</th>
-                  </c:when>
-                  <c:otherwise>
-                     <th style="cursor:pointer" onclick="$('[name=sort]').val('10 asc'); goSearch();">결재</th>
-                  </c:otherwise>
-               </c:choose>
-            </tr>
-               </thead>
-               <tbody>
-               <c:forEach items="${businessTripList}" var="businessList" varStatus="loopTagStatus">
-                  <tr class="tab" style="cursor:pointer" onClick="goBusinessTripContentsForm(${businessList.work_outside_seq}
-                                                                           ,${businessList.emp_no}
-                                                                           ,'${businessList.travel_payment}'
-                                                                           ,${businessList.dep_no}
-                                                                           ,${businessList.mgr_no}
-                                                                           ,'${businessList.jikup}');">
-                        <td align=center>${businessTripListAllCnt - businessList.RNUM + 1}</td>   
-                        <td align=center>
-                           ${businessList.emp_name}
-                        </td>
-                        <td align=center>${businessList.jikup}</td>
-                        <td align=center>${businessList.dep_name}</td>
-                        <td align=center>${businessList.outside_start_time}</td>
-                        <td align=center>${businessList.outside_end_time}</td>
-                        <td align=center>
-                           <c:choose>
-                              <c:when test="${businessList.mgr_name ne ' '}">
-                                 ${businessList.mgr_name}
-                              </c:when>
-                              <c:otherwise>
-                                    -
-                              </c:otherwise>            
-                           </c:choose>
-                        </td>
-                        <td>
-                           <c:choose>
-                              <c:when test="${businessList.travel_payment eq 'Y'}">
-                                 승인
-                              </c:when>
-                              <c:when test="${businessList.travel_payment eq 'N'}">
-                                 반려
-                              </c:when>
-                              <c:otherwise>
-                                 대기중
-                              </c:otherwise>            
-                           </c:choose>
-                        </td>
-                  </tr>      
-                  </c:forEach>
-               </tbody>
-         </table>
-         <div align=center>&nbsp;<span class="pagingNumber"></span>&nbsp;</div>
-         <br>
+					
+					<c:choose>
+						<c:when test="${param.sort=='9 desc'}">
+							<th style="cursor:pointer" onclick="$('[name=sort]').val('outside_start_time desc'); goSearch();">▼담당자</th>
+						</c:when>
+						<c:when test="${param.sort=='9 asc'}">
+							<th style="cursor:pointer" onclick="$('[name=sort]').val('9 desc'); goSearch()">▲담당자</th>
+						</c:when>
+						<c:otherwise>
+							<th style="cursor:pointer" onclick="$('[name=sort]').val('9 asc'); goSearch();">담당자</th>
+						</c:otherwise>
+					</c:choose>
+					
+					
+					<c:choose>
+						<c:when test="${param.sort=='10 desc'}">
+							<th style="cursor:pointer" onclick="$('[name=sort]').val('outside_start_time desc'); goSearch();">▼결재</th>
+						</c:when>
+						<c:when test="${param.sort=='10 asc'}">
+							<th style="cursor:pointer" onclick="$('[name=sort]').val('10 desc'); goSearch()">▲결재</th>
+						</c:when>
+						<c:otherwise>
+							<th style="cursor:pointer" onclick="$('[name=sort]').val('10 asc'); goSearch();">결재</th>
+						</c:otherwise>
+					</c:choose>
+				</tr>
+					</thead>
+					<tbody>
+					<c:forEach items="${businessTripList}" var="businessList" varStatus="loopTagStatus">
+						<tr class="tab" style="cursor:pointer" onClick="goBusinessTripContentsForm(${businessList.work_outside_seq}
+																									,${businessList.emp_no}
+																									,'${businessList.travel_payment}'
+																									,${businessList.dep_no}
+																									,${businessList.mgr_no}
+																									,'${businessList.jikup}');">
+								<td align=center>${businessTripListAllCnt - businessList.RNUM + 1}</td>	
+								<td align=center>
+									${businessList.emp_name}
+								</td>
+								<td align=center>${businessList.jikup}</td>
+								<td align=center>${businessList.dep_name}</td>
+								<td align=center>${businessList.outside_start_time}</td>
+								<td align=center>${businessList.outside_end_time}</td>
+								<td align=center>
+									<c:choose>
+										<c:when test="${businessList.mgr_name ne ' '}">
+											${businessList.mgr_name}
+										</c:when>
+										<c:otherwise>
+												-
+										</c:otherwise>				
+									</c:choose>
+								</td>
+								<td>
+									<c:choose>
+										<c:when test="${businessList.travel_payment eq 'Y'}">
+											승인
+										</c:when>
+										<c:when test="${businessList.travel_payment eq 'N'}">
+											반려
+										</c:when>
+										<c:otherwise>
+											대기중
+										</c:otherwise>				
+									</c:choose>
+								</td>
+						</tr>		
+						</c:forEach>
+					</tbody>
+			</table>
+			<div align=center>&nbsp;<span class="pagingNumber"></span>&nbsp;</div>
+			<br>
             </div>
           </div>
           <!-- /col-md-12 -->
@@ -621,7 +619,7 @@
     <footer class="site-footer">
       <div class="text-center">
         <p>
-         KOSMO 자바&빅데이터 과정 팀프로젝트
+			KOSMO 자바&빅데이터 과정 팀프로젝트
         </p>
         <div class="credits">
         <font style="font-size:12pt;">
@@ -655,7 +653,7 @@
   <script src="${ctRootlib}/common-scripts.js"></script>
   <!--script for this page-->
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </body>
 
 </html>

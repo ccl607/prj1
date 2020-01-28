@@ -25,40 +25,41 @@
 <link href="${ctRootcss}/style-responsive.css" rel="stylesheet">
 <style>
 .checkID{
-	/* background-color:#D4D4D4; */
-	background-color:white;
-	color:black;
-	/*position:absolute;
- 	left:25%;
-	top:10%;
-	width:50%;
-	height:90%;
-	align:center; */
+   /* background-color:#D4D4D4; */
+   background-color:white;
+   color:black;
+   /*position:absolute;
+    left:25%;
+   top:10%;
+   width:50%;
+   height:90%;
+   align:center; */
 }
 .aprroval{
-	background-color:white;
-	/* background-color:#D4D4D4; */
-	color:black;
-	position:absolute;
-	left:525;
-	top:290;
-	width:30%;
-	height:55%;
-	align:center;
+   background-color:white;
+   /* background-color:#D4D4D4; */
+   color:black;
+   position:absolute;
+   left:525;
+   top:290;
+   width:30%;
+   height:55%;
+   align:center;
 }
 .noAprroval{
-	/* background-color:#D4D4D4; */
-	background-color:white;
-	color:black;
-	position:absolute;
-	left:525;
-	top:290;
-	width:30%;
-	height:55%;
-	align:center;
+   /* background-color:#D4D4D4; */
+   background-color:white;
+   color:black;
+   position:absolute;
+   left:525;
+   top:290;
+   width:30%;
+   height:55%;
+   align:center;
 }
 body{
-  background: #797979;
+  /* background: #2f323a; */
+  background: #444c57;
   color:white;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -152,332 +153,334 @@ var x = 0;
 var y = 0;
 
 $(document).ready( function() {
-	
-	//$(".checkID").hide();
-	//$(".aprroval").hide();
-	//$(".noAprroval").hide();
-	
-	$(".newEmpDiv").hide();
-	
-	$("[name=newEmp]").click(function(){
-		$(".newEmpDiv").show( 1000 );
-		//$("[name=test]").css( {"border", 0);
-		//$(".checkID").show( 1000 );
-		
-		//x = event.clientX+10;
-		//y = event.clientY+10;
-		
-		//$(".checkID").css(
-		//	{"top":y,"left":x}
-		//);
-	});
+   
+   //$(".checkID").hide();
+   //$(".aprroval").hide();
+   //$(".noAprroval").hide();
+   
+   $(".newEmpDiv").hide();
+   
+   $("[name=newEmp]").click(function(){
+      $(".newEmpDiv").show( 1000 );
+      //$("[name=test]").css( {"border", 0);
+      //$(".checkID").show( 1000 );
+      
+      //x = event.clientX+10;
+      //y = event.clientY+10;
+      
+      //$(".checkID").css(
+      //   {"top":y,"left":x}
+      //);
+   });
 
-	
-	
-	$('[name=searchbtu]').click(function(){
-		
-		//$(".newEmpDiv").hide();
-		$(".newEmpDiv").show();
-		//alert("승인 여부 구현중");
-		//return;
-		alert($('[name=checkIDProc1]').serialize());
-		$.ajax({
-			
-			url : "/group4erp/checkApprovalProc.do"
-			, type : "post"
-			, data : $('[name=checkIDProc1]').serialize()
-			, success : function(check){
-				if(check.emp_no){
-					if(check.emp_no.length<6){
-						//$(".noAprroval").show( 1000 );
-						alert('미승인');
-						//$(".newEmpDiv").show();
-						//$("[name=jumin_num]").remove();
-						$("[name=jumin_num]").replaceWith("<i id='unconfirmed'><font style='color:blue;'>미승인 사원입니다.</font></i>");
-						//$(".newEmpDiv").show();
-						//$(".noAprroval").css( {"top":y,"left":x} );
-					}
-					else{
-						alert("사번:"+check.emp_no+" 비밀번호:"+check.emp_pwd);
-						//$(".newEmpDiv").show();
-						//$("[name=jumin_num]").remove();
-						//console.log($(".newEmpDiv").is(":visible"));
-						$("[name=jumin_num]").replaceWith("<i id='confirmed' style='color:blue;'>사번:"+check.emp_no+" 비밀번호:"+check.emp_pwd+"</i>");
-						//$(".newEmpDiv").show();
-						//$('#approvalID td:eq(0)').text(check.emp_no);
-						//$('#approvalID td:eq(1)').text(check.emp_pwd);
-						
-						//$(".aprroval").show( 1000 );
-						//$(".aprroval").css( {"top":y,"left":x} );
-					}
-					
-				}else{
-					$("[name=jumin_num]").replaceWith("<i><font style='color:blue;'>등록되지 않은 사원입니다.</font></i>");
-				}
-				
-			}
-			, error : function(){
-				alert("서버 접속 실패");
-			}
-		});
-		
-		
-		
-	});
-	
+   
+   
+   $('[name=searchbtu]').click(function(){
+      
+      //$(".newEmpDiv").hide();
+      $(".newEmpDiv").show();
+      //alert("승인 여부 구현중");
+      //return;
+      alert($('[name=checkIDProc1]').serialize());
+      $.ajax({
+         
+         url : "/group4erp/checkApprovalProc.do"
+         , type : "post"
+         , data : $('[name=checkIDProc1]').serialize()
+         , success : function(check){
+            if(check.emp_no){
+               var empNo = check.emp_no+'';
+               if(empNo.length <= 5){
+                  //$(".noAprroval").show( 1000 );
+                  //alert('미승인');
+                  //$(".newEmpDiv").show();
+                  //$("[name=jumin_num]").remove();
+                  $("[name=jumin_num]").replaceWith("<i id='unconfirmed'><font style='color:blue;'>미승인 사원입니다.</font></i>");
+                  //$(".newEmpDiv").show();
+                  //$(".noAprroval").css( {"top":y,"left":x} );
+               }
+               else{
+                  //alert("사번:"+check.emp_no+" 비밀번호:"+check.emp_pwd);
+                  //$(".newEmpDiv").show();
+                  //$("[name=jumin_num]").remove();
+                  //console.log($(".newEmpDiv").is(":visible"));
+                  $("[name=jumin_num]").replaceWith("<i id='confirmed' style='color:blue;'>사번:"+check.emp_no+" 비밀번호:"+check.emp_pwd+"</i>");
+                  //$(".newEmpDiv").show();
+                  //$('#approvalID td:eq(0)').text(check.emp_no);
+                  //$('#approvalID td:eq(1)').text(check.emp_pwd);
+                  
+                  //$(".aprroval").show( 1000 );
+                  //$(".aprroval").css( {"top":y,"left":x} );
+               }
+               
+            }else{
+               $("[name=jumin_num]").replaceWith("<i><font style='color:blue;'>등록되지 않은 사원입니다.</font></i>");
+            }
+            
+         }
+         , error : function(){
+            alert("서버 접속 실패");
+         }
+      });
+      
+      
+      
+   });
+   
 });
 
-	function checkLoginInfo() {
-		$.ajax({
-			
-			url : "/group4erp/loginProc.do"
-			, type : "post"
-			, data : $('[name=login_form]').serialize()
-			, success : function(loginCnt){
-				
-				if(loginCnt==1){
-					//alert("회원 로그인 성공!");
-					//location.replace("/group4erp/goMainPage.do");
-					location.replace("/group4erp/goMainTest.do");
-				}
-				else{
-					alert("회원 로그인 실패! 관리자에게 문의 바람.");
-				}
-			}
-			, error : function(){
-				alert("서버 접속 실패");
-			}
-		});
-				
-		
-	}
+   function checkLoginInfo() {
+      $.ajax({
+         
+         url : "/group4erp/loginProc.do"
+         , type : "post"
+         , data : $('[name=login_form]').serialize()
+         , success : function(loginCnt){
+            
+            if(loginCnt==1){
+               //alert("회원 로그인 성공!");
+               //location.replace("/group4erp/goMainPage.do");
+               location.replace("/group4erp/goMainTest.do");
+            }
+            else{
+               alert("회원 로그인 실패! 관리자에게 문의 바람.");
+            }
+         }
+         , error : function(){
+            alert("서버 접속 실패");
+         }
+      });
+            
+      
+   }
 
-	/*function joinMembership(){
-		location.replace("/group4erp/joininsert.do");
-	}
-	
-	function deleteMembership(){
-		location.replace("/group4erp/godelete.do");
-	}*/
+   /*function joinMembership(){
+      location.replace("/group4erp/joininsert.do");
+   }
+   
+   function deleteMembership(){
+      location.replace("/group4erp/godelete.do");
+   }*/
 
 
-	function goCEOLogin(str){
-		
-		$('[name=emp_pwd]').val(1111);
-		
-		if( str=='대표이사' ){
-			$('[name=emp_id]').val(100001);
-			checkLoginInfo();
-		}
-		if( str=='기획부장' ){
-			$('[name=emp_id]').val(200003);
-			checkLoginInfo();
-		}
-		if( str=='영업부장' ){
-			$('[name=emp_id]').val(300004);
-			checkLoginInfo();
-		}
-		if( str=='마케팅부장' ){
-			$('[name=emp_id]').val(400005);
-			checkLoginInfo();
-		}
-		if( str=='사업부장' ){
-			$('[name=emp_id]').val(500003);
-			checkLoginInfo();
-		}
-		if( str=='인사부장' ){
-			$('[name=emp_id]').val(600001);
-			checkLoginInfo();
-		}
-	}
+   function goCEOLogin(str){
+      
+      $('[name=emp_pwd]').val(1111);
+      
+      if( str=='대표이사' ){
+         $('[name=emp_id]').val(100001);
+         checkLoginInfo();
+      }
+      if( str=='기획부장' ){
+         $('[name=emp_id]').val(200003);
+         checkLoginInfo();
+      }
+      if( str=='영업부장' ){
+         $('[name=emp_id]').val(300004);
+         checkLoginInfo();
+      }
+      if( str=='마케팅부장' ){
+         $('[name=emp_id]').val(400005);
+         checkLoginInfo();
+      }
+      if( str=='사업부장' ){
+         $('[name=emp_id]').val(500003);
+         checkLoginInfo();
+      }
+      if( str=='인사부장' ){
+         $('[name=emp_id]').val(600001);
+         checkLoginInfo();
+      }
+   }
 
-	
-	function insertNewEmp() {
-		location.href="/group4erp/viewNewEmpJoin.do"
-	}
-	
-	function goClose1(){
-		
-		//$("#input_area").empty();
-		//$("#input_area").append("<input class='form-control' id='cname' name='jumin_num' minlength='13' maxlength='13' type='text' placeholder='&quot; - &quot; 를 제외하고 입력하시오' />");
-		/* if($("i").is("#unconfirmed")){
-			$("#unconfirmed").replaceWith("<input class='form-control' id='cname' name='jumin_num' minlength='13' maxlength='13' type='text' placeholder='&quot; - &quot; 를 제외하고 입력하시오' />");
-		}else if($("i").is("#confirmed")){
-			$("#confirmed").replaceWith("<input class='form-control' id='cname' name='jumin_num' minlength='13' maxlength='13' type='text' placeholder='&quot; - &quot; 를 제외하고 입력하시오' />");
-		}else{
-			$("[name=jumin_num]").replaceWith("<input class='form-control' id='cname' name='jumin_num' minlength='13' maxlength='13' type='text' placeholder='&quot; - &quot; 를 제외하고 입력하시오' />");
-		}
-			 */
-		//$("[name=jumin_num]").replaceWith("123");
-		//console.log("주민번호 인풋", $("[name=jumin_num]"));
-		$(".newEmpDiv").hide(1000);
-		goReset();
-	}
-	function goReset(){
-		$("#input_area").empty();
-		$("#input_area").append("<input class='form-control' id='cname' name='jumin_num' minlength='13' maxlength='13' type='text' placeholder='&quot; - &quot; 를 제외하고 입력하시오' />");
+   
+   function insertNewEmp() {
+      location.href="/group4erp/viewNewEmpJoin.do"
+   }
+   
+   function goClose1(){
+      
+      //$("#input_area").empty();
+      //$("#input_area").append("<input class='form-control' id='cname' name='jumin_num' minlength='13' maxlength='13' type='text' placeholder='&quot; - &quot; 를 제외하고 입력하시오' />");
+      /* if($("i").is("#unconfirmed")){
+         $("#unconfirmed").replaceWith("<input class='form-control' id='cname' name='jumin_num' minlength='13' maxlength='13' type='text' placeholder='&quot; - &quot; 를 제외하고 입력하시오' />");
+      }else if($("i").is("#confirmed")){
+         $("#confirmed").replaceWith("<input class='form-control' id='cname' name='jumin_num' minlength='13' maxlength='13' type='text' placeholder='&quot; - &quot; 를 제외하고 입력하시오' />");
+      }else{
+         $("[name=jumin_num]").replaceWith("<input class='form-control' id='cname' name='jumin_num' minlength='13' maxlength='13' type='text' placeholder='&quot; - &quot; 를 제외하고 입력하시오' />");
+      }
+          */
+      //$("[name=jumin_num]").replaceWith("123");
+      //console.log("주민번호 인풋", $("[name=jumin_num]"));
+      $(".newEmpDiv").hide(1000);
+      goReset();
+   }
+   function goReset(){
+      $("#input_area").empty();
+      $("#input_area").append("<input class='form-control' id='cname' name='jumin_num' minlength='13' maxlength='13' type='text' placeholder='&quot; - &quot; 를 제외하고 입력하시오' />");
 
-	}
-/* 	function goClose2(){
-		$(".aprroval").hide(1000);
-	}
-	function goClose3(){
-		$(".noAprroval").hide(1000);
-	} */
+   }
+/*    function goClose2(){
+      $(".aprroval").hide(1000);
+   }
+   function goClose3(){
+      $(".noAprroval").hide(1000);
+   } */
 
-	//고객 주문 페이지
-	function goClient(){
-		location.href="/group4erp/goClientLogin.do";
-	}
-	
+   //고객 주문 페이지
+   function goClient(){
+      location.href="/group4erp/goClientLogin.do";
+   }
+   
 </script>
+
 <!-- style="display:none" -->
 </head>
 <body>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <!-- <div align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a><img src="/group4erp/resources/image/paper.png" width="2.5%" height="5%" style="cursor:pointer;"><br>신입사원 승인 여부 확인하기</a></div> -->
 <!--<a style="cursor:pointer;">[승인 여부]</a> <div align="left"><a><img src="/group4erp/resources/image/paper.png" width="3%" height="6%" style="cursor:pointer;"><br>[신입사원 승인 여부 확인하기]</a></div> -->
 <div align="right" onclick="goClient();">
-	<font style="font-size:11pt; font-weight:400;">고객주문페이지</font>
-	<img src="/group4erp/resources/image/box (2).png" height="7%">
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <font style="font-size:11pt; font-weight:400;">고객주문페이지</font>
+   <img src="/group4erp/resources/image/box (2).png" height="7%">
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </div>
 <center>
 <form name="login_form" method="post" action="/group4erp/loginProc.do">
-	<table width="90%">
-		<tr>
-			<td>
-				<center><img src="/group4erp/resources/image/bst_logo.png" align="center" width="17%" height="50%"></center><!-- width="30%" -->
-				<center><b style="font-size:15pt; color:#F0C40F;">전사적 자원 관리 시스템</b></center>
-			</td>
+   <table width="90%">
+      <tr>
+         <td>
+            <center><img src="/group4erp/resources/image/bst_logo.png" align="center" width="17%" height="50%"></center><!-- width="30%" -->
+            <center><b style="font-size:15pt; color:#F0C40F;">전사적 자원 관리 시스템</b></center>
+         </td>
 
-		<tr>
-			<td>
-				<!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
-				<br><br><br><br>
-				<!-- <div align="center"><a><img src="/group4erp/resources/image/paper.png" width="3%" height="5%" style="cursor:pointer;"><br>신입사원 승인 여부 확인하기</a></div> -->
-<!-- 				<div align="left"><a><img src="/group4erp/resources/image/paper.png" width="5%" height="7%" style="cursor:pointer;"><br><font style="color:pink;">신입사원 승인 여부 확인하기</font></a></div> -->
-				<br><br>
-				<table align="center" class="tab" width="30%" border="1" cellpadding=5 cellspacing=5> <!-- width="20%" -->
-					<tr>
-						<td width="30%"><img src="/group4erp/resources/image/user.png" height="7%"><!-- <font style="font-size:15pt;">사원번호</font> --></td>
-						<td>
-							<div class="webflow-style-input">
-							<input type="text" name="emp_id" size="20%" class="input" placeholder="사원번호를 입력해주세요.">
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><img src="/group4erp/resources/image/password.png" height="7%"><!-- <font style="font-size:15pt;">비밀번호</font> --></td>
-						<td>
-							<div class="webflow-style-input">
-							<input type="password" name="emp_pwd" class="input" placeholder="비밀번호를 입력해주세요.">
-							</div>
-						</td>
-					</tr>	
-				</table>
-				<br><br>
-				<center>
-				<input type="button" value="로그인" name="loginBtn" class="button" style=" vertical-align:top;" onClick="checkLoginInfo();">
-				<input type="button" value="신규사원등록" class="button" style=" vertical-align:top;" onClick="insertNewEmp();">
-				<br><input type="button" name="newEmp" value="신규사원 승인 여부 체크" class="button" style="width:31%; vertical-align:top;">
-				<br><br>
-				<!-- <div align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a><img src="/group4erp/resources/image/paper.png" width="2.5%" height="5%" style="cursor:pointer;"><br>신입사원 승인 여부 확인하기</a></div> -->
-				</center>
-			</td>
-	</table>
+      <tr>
+         <td>
+            <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+            <br><br><br><br>
+            <!-- <div align="center"><a><img src="/group4erp/resources/image/paper.png" width="3%" height="5%" style="cursor:pointer;"><br>신입사원 승인 여부 확인하기</a></div> -->
+<!--             <div align="left"><a><img src="/group4erp/resources/image/paper.png" width="5%" height="7%" style="cursor:pointer;"><br><font style="color:pink;">신입사원 승인 여부 확인하기</font></a></div> -->
+            <br><br>
+            <table align="center" class="tab" width="30%" border="1" cellpadding=5 cellspacing=5> <!-- width="20%" -->
+               <tr>
+                  <td width="30%"><img src="/group4erp/resources/image/user.png" height="7%"><!-- <font style="font-size:15pt;">사원번호</font> --></td>
+                  <td>
+                     <div class="webflow-style-input">
+                     <input type="text" name="emp_id" size="20%" class="input" placeholder="사원번호를 입력해주세요.">
+                     </div>
+                  </td>
+               </tr>
+               <tr>
+                  <td><img src="/group4erp/resources/image/password.png" height="7%"><!-- <font style="font-size:15pt;">비밀번호</font> --></td>
+                  <td>
+                     <div class="webflow-style-input">
+                     <input type="password" name="emp_pwd" class="input" placeholder="비밀번호를 입력해주세요.">
+                     </div>
+                  </td>
+               </tr>   
+            </table>
+            <br><br>
+            <center>
+            <input type="button" value="로그인" name="loginBtn" class="button" style=" vertical-align:top;" onClick="checkLoginInfo();">
+            <input type="button" value="신규사원등록" class="button" style=" vertical-align:top;" onClick="insertNewEmp();">
+            <br><input type="button" name="newEmp" value="신규사원 승인 여부 체크" class="button" style="width:31%; vertical-align:top;">
+            <br><br>
+            <!-- <div align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a><img src="/group4erp/resources/image/paper.png" width="2.5%" height="5%" style="cursor:pointer;"><br>신입사원 승인 여부 확인하기</a></div> -->
+            </center>
+         </td>
+   </table>
 </form>
 
 <div class="newEmpDiv">
 <table width="30%" name="test" class="tab3">
-	<tr>
-		<td width="30%" align="center">
-			<div class="checkID" height="100%">
-				<form name="checkIDProc1">  
-				<center>
-				<!-- <section id="main-content"> -->
-			      <section class="wrapper" style="margin-top:30px; text-align:center;height:100%">
-			        <h4><i class="fa fa-check-square"></i>신규사원 승인여부</h4>
-			        <!-- FORM VALIDATION -->
-			        
-			        <div class="row mt">
-			          <!-- <div class="col-md-4"> -->
-			          <div>
-			            <h5>주민등록번호를 입력해주세요</h5>
-			            <!-- <div class="form-panel"> -->
-			              <div class=" form">
-			                <form class="cmxform form-horizontal style-form" id="commentForm" method="get" action="">
-			                  <div class="form-group ">
-			                    <!-- <label for="cname" class="control-label col-lg-2">주민번호</label> -->
-			                    <div class="col-lg-12" id="input_area">
-			                      <input class=" form-control" id="cname" name="jumin_num" minlength="13" maxlength="13" type="text" placeholder="' - ' 를 제외하고 입력하시오" />
-<!-- 			                      <input class=" form-control" id="cname" name="jumin_num" minlength="13" maxlength="14" type="text" placeholder="' - ' 를 제외하고 입력하시오" required /> -->
-			                    </div>
-			                  </div>
-			                  <div class="form-group" style="text-align:center;">
-			                    <div class="col-lg-12" style="text-align:center;">
-			                    	<table width="100%" border="1" class="tab3" style="border-collapse: collapse; border:1px solid ;black">
-			                    	<tr>
-			                    	<td align="center" width="100%">
-			                    	<br>
-	                      			<button align="center" class="btn btn-theme" type="button" name="searchbtu">검색</button>
-	                      			<button align="center" class="btn btn-theme" type="button" name="reset" onclick="goReset();">초기화</button>
-	                      			<button align="center" class="btn btn-theme04" type="button" onclick="goClose1();">닫기</button>
-			                      <!-- <input type="button" value="검색" name="searchbtu" >&nbsp;
-								  <input type="button" value="닫기" onclick="goClose1();"> -->
-								  	</td>
-								  	</tr>
-								    </table>
-			                    </div>
-			                  </div>
-			                </form>
-			              </div>
-			            <!-- </div> -->
-			            <!-- /form-panel -->
-			          </div>
-			          <!-- /col-lg-12 -->
-			        </div>
-			
-			
-			        <!-- /row -->
-			      </section>
-			      <!-- /wrapper -->
-			<!--     </section> -->
-			   	</center>
-				<!-- <table>
-					<tr>
-						<th>주민등록번호<td><input type="text" name="jumin_num" size="20">
-				</table> -->
-				<!-- onclick="goCheckApproval();" -->
-				<!-- <input type="button" value="검색" name="searchbtu" >&nbsp;
-				<input type="button" value="닫기" onclick="goClose1();"> -->
-				</form>
-			</div>			
-		</td>
-	</tr>
+   <tr>
+      <td width="30%" align="center">
+         <div class="checkID" height="100%">
+            <form name="checkIDProc1">  
+            <center>
+            <!-- <section id="main-content"> -->
+               <section class="wrapper" style="margin-top:30px; text-align:center;height:100%">
+                 <h4><i class="fa fa-check-square"></i>신규사원 승인여부</h4>
+                 <!-- FORM VALIDATION -->
+                 
+                 <div class="row mt">
+                   <!-- <div class="col-md-4"> -->
+                   <div>
+                     <h5>주민등록번호를 입력해주세요</h5>
+                     <!-- <div class="form-panel"> -->
+                       <div class=" form">
+                         <form class="cmxform form-horizontal style-form" id="commentForm" method="get" action="">
+                           <div class="form-group ">
+                             <!-- <label for="cname" class="control-label col-lg-2">주민번호</label> -->
+                             <div class="col-lg-12" id="input_area">
+                               <input class=" form-control" id="cname" name="jumin_num" minlength="13" maxlength="13" type="text" placeholder="' - ' 를 제외하고 입력하시오" />
+<!--                                <input class=" form-control" id="cname" name="jumin_num" minlength="13" maxlength="14" type="text" placeholder="' - ' 를 제외하고 입력하시오" required /> -->
+                             </div>
+                           </div>
+                           <div class="form-group" style="text-align:center;">
+                             <div class="col-lg-12" style="text-align:center;">
+                                <table width="100%" border="1" class="tab3" style="border-collapse: collapse; border:1px solid ;black">
+                                <tr>
+                                <td align="center" width="100%">
+                                <br>
+                                  <button align="center" class="btn btn-theme" type="button" name="searchbtu">검색</button>
+                                  <button align="center" class="btn btn-theme" type="button" name="reset" onclick="goReset();">초기화</button>
+                                  <button align="center" class="btn btn-theme04" type="button" onclick="goClose1();">닫기</button>
+                               <!-- <input type="button" value="검색" name="searchbtu" >&nbsp;
+                          <input type="button" value="닫기" onclick="goClose1();"> -->
+                             </td>
+                             </tr>
+                            </table>
+                             </div>
+                           </div>
+                         </form>
+                       </div>
+                     <!-- </div> -->
+                     <!-- /form-panel -->
+                   </div>
+                   <!-- /col-lg-12 -->
+                 </div>
+         
+         
+                 <!-- /row -->
+               </section>
+               <!-- /wrapper -->
+         <!--     </section> -->
+               </center>
+            <!-- <table>
+               <tr>
+                  <th>주민등록번호<td><input type="text" name="jumin_num" size="20">
+            </table> -->
+            <!-- onclick="goCheckApproval();" -->
+            <!-- <input type="button" value="검색" name="searchbtu" >&nbsp;
+            <input type="button" value="닫기" onclick="goClose1();"> -->
+            </form>
+         </div>         
+      </td>
+   </tr>
 </table>
 </div>
 
 
 
 <!-- <div class="aprroval" >
-	<form name="checkIDProc2">
-	<table id="approvalID">
-		<tr>
-			<th>사번 :<td>
-		<tr>
-			<th>비밀번호 :<td>
-	</table>
-	<input type="button" value="닫기" onclick="goClose2();">
-	</form>
+   <form name="checkIDProc2">
+   <table id="approvalID">
+      <tr>
+         <th>사번 :<td>
+      <tr>
+         <th>비밀번호 :<td>
+   </table>
+   <input type="button" value="닫기" onclick="goClose2();">
+   </form>
 </div>
 <div class="noAprroval" >
-	<form name="checkIDProc3">
-	<table id="noApprovalID">
-		<tr>
-			<th>승인되지 않은 주민등록번호 입니다!
-	</table>
-	<input type="button" value="닫기" onclick="goClose3();">
-	</form>
+   <form name="checkIDProc3">
+   <table id="noApprovalID">
+      <tr>
+         <th>승인되지 않은 주민등록번호 입니다!
+   </table>
+   <input type="button" value="닫기" onclick="goClose3();">
+   </form>
 </div> -->
 
 <!-- <input type="button" name="joinBtn" value="사원등록" onClick="joinMembership();">&nbsp;

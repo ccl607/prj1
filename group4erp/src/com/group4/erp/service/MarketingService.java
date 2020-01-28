@@ -12,7 +12,7 @@ import com.group4.erp.SalesInfoDTO;
 
 public interface MarketingService {
 
-	int getEventAllCnt();
+	int getEventAllCnt(EventSearchDTO eventSearchDTO);
 	
 	int getEventCnt(EventSearchDTO eventSearchDTO);
 	
@@ -57,5 +57,13 @@ public interface MarketingService {
 	EventDTO getMyEventInfoApproval(String document_no);
 	
 	int updateEvntApprovalState(EventDTO eventDTO);
+	
+	List<SalesInfoDTO> getDailyOfflineSalesChart();
+	
+	int updateEventReApproval(String document_no);
+	
+	SalesInfoDTO getDailyOfflineSalesTotCnt();
+	
+	int getEventNumForApproval();
 
 }

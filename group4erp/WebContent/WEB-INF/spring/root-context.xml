@@ -36,12 +36,14 @@
         	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 	        <property name="url" value="jdbc:oracle:thin:@192.168.1.29:1521:XE" />
 	        <property name="username" value="book" />
-	        <property name="password" value="b123" /> 
-	        <!-- <property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:XE" />
+	        <property name="password" value="b123" />
+
+	        <!--<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:XE" />
 	        <property name="username" value="booklocal" />
 	        <property name="password" value="k123" />
+	        
 	        <property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:XE" />
-	        <property name="username" value="bookSt" />
+	        <property name="username" value="bookst" />
 	        <property name="password" value="b123" />-->
 	</bean>		
 	<bean id="log4jdbcProxyDataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
@@ -58,7 +60,7 @@
 	</bean>		
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="log4jdbcProxyDataSource"/>
-		<property name="mapperLocations" value="classpath:com/group4/erp/*.xml"/>		
+		<property name="mapperLocations" value="classpath:com/group4/*/*.xml"/>		
 	</bean> 
 			 
 	<!--**********************************************************************************************-->

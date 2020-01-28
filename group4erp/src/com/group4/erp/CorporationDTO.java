@@ -9,13 +9,29 @@ public class CorporationDTO {
 	private String corp_fax;
 	private String corp_tel;
 	private String corp_business_area;
+	private String corp_business_name;
 	private String is_on_business;
 	private String new_corp_no;
-
+	private String RNUM;
 	private String bus_area_code;
 	private String bus_area_name;
 	
-	
+
+	public String getCorp_business_name() {
+		return corp_business_name;
+	}
+
+	public void setCorp_business_name(String corp_business_name) {
+		this.corp_business_name = corp_business_name;
+	}
+
+	public String getRNUM() {
+		return RNUM;
+	}
+
+	public void setRNUM(String rNUM) {
+		RNUM = rNUM;
+	}
 	public String getNew_corp_no() {
 		return new_corp_no;
 	}

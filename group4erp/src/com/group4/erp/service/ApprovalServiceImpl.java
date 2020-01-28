@@ -104,4 +104,36 @@ public class ApprovalServiceImpl implements ApprovalService {
 		return approvalResList;
 	}
 
+	@Override
+	public int insertBTripApproval(ApprovalDTO approvalDTO) {
+		// TODO Auto-generated method stub
+		int myBTripApprovalCnt = this.approvalDAO.insertBTripApproval(approvalDTO);
+		
+		return myBTripApprovalCnt;
+	}
+
+	@Override
+	public int getMyReApprovalCnt(String document_no) {
+		// TODO Auto-generated method stub
+		int myReApprovalCnt = this.approvalDAO.getMyReApprovalCnt(document_no);
+		
+		return myReApprovalCnt;
+	}
+
+	@Override
+	public int deleteDayOffApproval(int dayoff_apply_no) {
+		// TODO Auto-generated method stub
+		int delMyDayOffApproval = this.approvalDAO.deleteDayOffApproval(dayoff_apply_no);
+		
+		return delMyDayOffApproval;
+	}
+
+	@Override
+	public int updateBTripApprovalProc(ApprovalDTO approvalDTO) {
+		// TODO Auto-generated method stub
+		int bTripApprovalCnt = this.approvalDAO.updateBTripApprovalProc(approvalDTO);
+		
+		return bTripApprovalCnt;
+	}
+
 }

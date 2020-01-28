@@ -4,7 +4,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <head>
+ 
+  
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
@@ -21,12 +26,12 @@
   <link href="${ctRootlib}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!--external css-->
   <link href="${ctRootlib}/font-awesome/css/font-awesome.css" rel="stylesheet" />
-  <link href="${ctRootlib}/advanced-datatable/css/demo_page.css" rel="stylesheet" />
-  <link href="${ctRootlib}/advanced-datatable/css/demo_table.css" rel="stylesheet" />
-  <link rel="stylesheet" href="${ctRootlib}/advanced-datatable/css/DT_bootstrap.css" />
   <!-- Custom styles for this template -->
   <link href="${ctRootcss}/style.css" rel="stylesheet">
   <link href="${ctRootcss}/style-responsive.css" rel="stylesheet">
+
+  
+
 
   <!-- =======================================================
     Template Name: Dashio
@@ -60,17 +65,17 @@
 }
 
 .searchTable{
-   border-collapse: 1px collapse !important;
+	border-collapse: 1px collapse !important;
 }
 
 .searchTable td{
-   height: 32px;
+	height: 32px;
     background-color: #fff !important;
     padding-left: 7;
 }
 
 .searchTable th {
-   height: 32px;
+	height: 32px;
     background-color: #fff !important;
     padding-right: 7;
     
@@ -107,9 +112,9 @@
       });
       
       $('[name=rowCntPerPageDown]').change(function(){
-          $('[name=rowCntPerPage]').val( $(this).val() );
-          goSearch();
-       });
+			 $('[name=rowCntPerPage]').val( $(this).val() );
+			 goSearch();
+		 });
       
       $(".pagingNumber").html(
                getPagingNumber(
@@ -121,20 +126,12 @@
                )
             );
 
-      setTableTrBgColor(
-         "returnOrderTable",   //테이블 class 값
-         "${headerColor}",         //헤더 tr 배경색
-         "${oddTrColor}",      //홀수행 배경색
-         "${evenTrColor}",   //짝수행 배경색
-         "${mouseOverColor}"         //마우스 온 시 배경색
-      );
-
       inputData('[name=rowCntPerPageDown]',"${returnSearchDTO.rowCntPerPage}");
       inputData('[name=selectPageNo]',"${returnSearchDTO.selectPageNo}");
       inputData('[name=dateFrom]',"${returnSearchDTO.dateFrom}");
       inputData('[name=dateTill]',"${returnSearchDTO.dateTill}");
       inputData('[name=searchKeyword]',"${returnSearchDTO.searchKeyword}");
-      inputData('[name=sort]').val("${returnSearchDTO.sort}");
+      inputData('[name=sort]', "${returnSearchDTO.sort}");
       <c:forEach items="${returnSearchDTO.return_cd}" var="cdReturn">
          inputData( "[name=return_cd]", "${cdReturn}" );
       </c:forEach>
@@ -142,6 +139,27 @@
    });
 
 
+   function goSearchToday(){
+	      $('[name=searchToday]').val('y');
+	      
+	      var date = new Date();
+	      
+	      var todayY = date.getFullYear();
+	      var todayM = date.getMonth()+1;
+	      var todayD = date.getDate();
+	      
+	      if(todayM<10) todayM = '0'+todayM;
+	      if(todayD<10) todayD = '0'+todayD;
+	      
+	      var today = todayY+'-'+todayM+'-'+todayD;
+	      
+	      
+	      $('[name=dateFrom]').val(today);
+	      $('[name=dateTill]').val(today);
+	      
+	      goSearch();
+	   }
+   
    function goSearch() {
 
       var keyword = $("[name=returnSearchForm] [name=searchKeyword]").val();
@@ -195,11 +213,12 @@
                          $("#contentTable td:eq(2)").text(data.book_name);
                          $("#contentTable td:eq(3) [name=info]").text(data.return_comment);
 
-                  var insert = "<tr name='thisTr' bgcolor='white'><td colspan=4>"+$("#contecnt").html()+"</td></tr>"
+                  var insert = "<tr name='thisTr' bgcolor='white'><td colspan=5>"+$("#contecnt").html()+"</td></tr>"
                   
                   thisTr.after(insert);
                   
-                  
+                  $('[name=thisTr]').hide();
+                  $('[name=thisTr]').show(1000);
                   
                   }
             }
@@ -212,37 +231,16 @@
       
    function goClose(){
 
-      $('[name=thisTr]').remove();
+      $('[name=thisTr]').hide(1000);
       
     }
    
-   function searchToday(){
-      alert("999");
-      $('[name=searchToday]').val('y');
-      
-      var date = new Date();
-      
-      var todayY = date.getFullYear();
-      var todayM = date.getMonth()+1;
-      var todayD = date.getDate();
-      
-      if(todayM<10) todayM = '0'+todayM;
-      if(todayD<10) todayD = '0'+todayD;
-      
-      var today = todayY+'-'+todayM+'-'+todayD;
-      
-      
-      $('[name=dateFrom]').val(today);
-      $('[name=dateTill]').val(today);
-      
-      goSearch();
-   }
    
-   function goReset(){
-      //alert(1)
-         document.returnSearchForm.reset();
-      //$('[name=bookReleaseSearch]').reset();
-   }
+	function goReset(){
+		//alert(1)
+			document.returnSearchForm.reset();
+		//$('[name=bookReleaseSearch]').reset();
+	}
 
 </script>
 
@@ -266,11 +264,11 @@
          
           <!-- notification dropdown end -->
           <li>
-            <table>
-               <tr>
-                  <td align="left"> <font style="color:#D8E8E4;"><h5><span id="nowTime" align="right"></span> </h5></font></td>
-               </tr>
-            </table>
+     		 <table>
+        		 <tr>
+        		 	<td align="left"> <font style="color:#D8E8E4;"><h5><span id="nowTime" align="right"></span> </h5></font></td>
+         		</tr>
+      		</table>
           </li>
         </ul>
         <!--  notification end -->
@@ -424,54 +422,56 @@
     <!--main content start-->
    <section id="main-content">
       <section class="wrapper" style="text-align:left;">
-        <h3><i class="fa fa-angle-right"></i> 반품 현황(datepicker 수정해야함.)</h3>
+        <h3><i class="fa fa-angle-right"></i> 반품 현황</h3>
         <div class="row">
           <div class="col-md-12">
             <div class="content-panel">
               <h4><i class="fa fa-angle-right"></i> 검색</h4>
               <hr>
-         <form name="returnSearchForm" method="post" action="/group4erp/goReturnOrderList.do">
-         <!-- <div class="divcss"> -->
-         <table class="searchTable" style="border: 0px;">
-            <tr>
-               <th width="8%" style="text-align:right;"><b>* 지역&nbsp;</b></th>
-               
-               <td width="42%" align=left>
-                     &nbsp;&nbsp;<input type="checkbox" value="01" name="return_cd">파손
+			<form name="returnSearchForm" method="post" action="/group4erp/goReturnOrderList.do">
+			<!-- <div class="divcss"> -->
+			<table class="searchTable" style="border: 0px;">
+				<tr>
+					<th width="8%" style="text-align:right;"><b>* 지역&nbsp;</b></th>
+					
+					<td width="42%" align=left>
+						   &nbsp;&nbsp;<input type="checkbox" value="01" name="return_cd">파손
                            &nbsp;&nbsp;<input type="checkbox" value="03" name="return_cd">변심
                            &nbsp;&nbsp;<input type="checkbox" value="02" name="return_cd">오배송
                            &nbsp;&nbsp;<input type="checkbox" value="04" name="return_cd">제작사 요청
                            &nbsp;&nbsp;<input type="checkbox" value="05" name="return_cd">기타
-                  </td>
-            <tr>
-               <th width="8%" style="text-align:right;"><b>* 일자&nbsp;</b>
-               <td colspan=2 width="42%" align=left>
-                  <input type="text" id="datepicker1" name="dateFrom" size=30>
-                  &nbsp; ~ &nbsp;
-                  <input type="text" id="datepicker2" name="dateTill" size=30>&nbsp;&nbsp;
-                  <button type="button" class="btn btn-default" onclick="searchToday();"><i class="fa fa-calendar-o"></i>금일 검색</button>
-            <tr>
-               <th width="8%" style="text-align:right;"><b>* 키워드&nbsp;</b>
-               <td width="42%"> <input type="text" name="searchKeyword" size=76>
-               <th>
-               <td>
-               <th>
-               <td  width="20%">
-                  <button type="button" class="btn btn-default" onclick="goSearch();"><input type="image" src="/group4erp/resources/image/magnifying-glass.png" width="15" height="15">검색</button>
-                  &nbsp;
-                  <button type="button" class="btn btn-default" onclick="goSearchAll();"><input type="image" src="/group4erp/resources/image/searchA.png" width="15" height="15">모두검색</button>
-                  &nbsp;
-                  <button type="button" class="btn btn-default" onclick="goReset();"><input type="image" src="/group4erp/resources/image/reset.png" width="15" height="15">초기화</button>
-         </table>
+            		</td>
+				<tr>
+					<th width="8%" style="text-align:right;"><b>* 일자&nbsp;</b>
+					<td colspan=2 width="42%" align=left>
+						<input type="text" id="datepicker1" name="dateFrom" size=30>
+						&nbsp; ~ &nbsp;
+						<input type="text" id="datepicker2" name="dateTill" size=30>&nbsp;&nbsp;
+						
+						<button type="button" class="btn btn-default" onclick="goSearchToday();"><i class="fa fa-calendar-o"></i>금일 검색</button>
+						
+				<tr>
+					<th width="8%" style="text-align:right;"><b>* 키워드&nbsp;</b>
+					<td width="42%"> <input type="text" name="searchKeyword" size=76>
+					<th>
+					<td>
+					<th>
+					<td  width="20%">
+						<button type="button" class="btn btn-default" onclick="goSearch();"><input type="image" src="/group4erp/resources/image/magnifying-glass.png" width="15" height="15">검색</button>
+						&nbsp;
+						<button type="button" class="btn btn-default" onclick="goSearchAll();"><input type="image" src="/group4erp/resources/image/searchA.png" width="15" height="15">모두검색</button>
+						&nbsp;
+						<button type="button" class="btn btn-default" onclick="goReset();"><input type="image" src="/group4erp/resources/image/reset.png" width="15" height="15">초기화</button>
+			</table>
 
-         <br>
-         <!-- </div> -->
-         <input type="hidden" name="searchToday">
-         <input type="hidden" name="selectPageNo" value="${returnSearchDTO.selectPageNo}">
-         <input type="hidden" name="rowCntPerPage" value="${returnSearchDTO.rowCntPerPage}">
-         <!-- header sort를 하기 위한 hidden Tag -->
-         <input type="hidden" name="sort">
-         </form>
+			<br>
+			<!-- </div> -->
+			<input type="hidden" name="searchToday">
+			<input type="hidden" name="selectPageNo" value="${returnSearchDTO.selectPageNo}">
+			<input type="hidden" name="rowCntPerPage" value="${returnSearchDTO.rowCntPerPage}">
+			<!-- header sort를 하기 위한 hidden Tag -->
+			<input type="hidden" name="sort">
+			</form>
             </div>
           </div>
           <!-- /col-md-12 -->
@@ -479,87 +479,87 @@
             <div class="content-panel">
             <div class="adv-table">
             <table border=0 width=98%>
-               <tr>
-                  <td><h4><i class="fa fa-angle-right"></i>검색 결과</h4>
-                  <td align=right> [검색 수량] : ${returnOrderCnt}개
-                  <select name="rowCntPerPageDown">
-                        <option value="10">10</option>
-                        <option value="15">15</option>
-                        <option value="20">20</option>
-                        <option value="25">25</option>
-                        <option value="30">30</option>
-                  </select> 행보기
-         </table>
-         <table><tr><td height="10"></td></tr></table>
+					<tr>
+						<td><h4><i class="fa fa-angle-right"></i>검색 결과</h4>
+						<td align=right> [검색 수량] : ${returnOrderCnt}개
+						<select name="rowCntPerPageDown">
+								<option value="10">10</option>
+								<option value="15">15</option>
+								<option value="20">20</option>
+								<option value="25">25</option>
+								<option value="30">30</option>
+						</select> 행보기
+			</table>
+			<table><tr><td height="10"></td></tr></table>
              <table class="table table-striped table-advance table-hover table-bordered">
              <thead>
-                <tr>
-                   <th>NO
-                  <c:choose>
-                     <c:when test="${param.sort=='1 desc'}">
-                        <th style="cursor:pointer" onClick="$('[name=sort]').val(''); goSearch();  "> ▲ 반품접수번호</th>
-                     </c:when>
-                     <c:when test="${param.sort=='1 asc'}">
-                        <th style="cursor:pointer" onClick="$('[name=sort]').val('1 desc'); goSearch(); "> ▼ 반품접수번호</th>
-                     </c:when>         
-                     <c:otherwise>
-                        <th style="cursor:pointer" onClick="$('[name=sort]').val('1 asc'); goSearch();  ">반품접수번호</th>
-                     </c:otherwise>
-                  </c:choose>
-                  
-                  <c:choose>
-                     <c:when test="${param.sort=='2 desc'}">
-                        <th style="cursor:pointer" onClick="$('[name=sort]').val(''); goSearch();  "> ▲ 주문번호</th>
-                     </c:when>
-                     <c:when test="${param.sort=='2 asc'}">
-                        <th style="cursor:pointer" onClick="$('[name=sort]').val('2 desc'); goSearch(); "> ▼ 주문번호</th>
-                     </c:when>         
-                     <c:otherwise>
-                        <th style="cursor:pointer" onClick="$('[name=sort]').val('2 asc'); goSearch();  ">주문번호</th>
-                     </c:otherwise>
-                  </c:choose>
-                  
-                  <c:choose>
-                     <c:when test="${param.sort=='3 desc'}">
-                        <th style="cursor:pointer" onClick="$('[name=sort]').val(''); goSearch();  "> ▲ isbn</th>
-                     </c:when>
-                     <c:when test="${param.sort=='3 asc'}">
-                        <th style="cursor:pointer" onClick="$('[name=sort]').val('3 desc'); goSearch(); "> ▼ isbn</th>
-                     </c:when>         
-                     <c:otherwise>
-                        <th style="cursor:pointer" onClick="$('[name=sort]').val('3 asc'); goSearch();  ">isbn</th>
-                     </c:otherwise>
-                  </c:choose>
-                  
-                  <c:choose>
-                     <c:when test="${param.sort=='4 desc'}">
-                        <th style="cursor:pointer" onClick="$('[name=sort]').val(''); goSearch();  "> ▲ 반품사유</th>
-                     </c:when>
-                     <c:when test="${param.sort=='4 asc'}">
-                        <th style="cursor:pointer" onClick="$('[name=sort]').val('4 desc'); goSearch(); "> ▼ 반품사유</th>
-                     </c:when>         
-                     <c:otherwise>
-                        <th style="cursor:pointer" onClick="$('[name=sort]').val('4 asc'); goSearch();  ">반품사유</th>
-                     </c:otherwise>
-                  </c:choose>
-            
-                  </tr>
-               </thead>
-               <tbody>
-               <c:forEach items='${returnOrderList}' var="reOrder" varStatus="loopTagStatus">
-                     <tr style="cursor:pointer" onclick="goReturnInfo(this, '${reOrder.return_sales_no}');">
-                        <td align="center">${returnOrderCnt-(returnSearchDTO.selectPageNo*returnSearchDTO.rowCntPerPage-returnSearchDTO.rowCntPerPage+1+loopTagStatus.index)+1}</td>
-                        <td align="center">${reOrder.return_sales_no}</td>
-                        <td align="center">${reOrder.order_no}</td>
-                        <td align="center">${reOrder.isbn13}</td>
-                        <td align="center">${reOrder.return_cause}</td>
-                     </tr>
-                  </c:forEach>
-               </tbody>
-         </table>
-         <br>
-         <div align=center>&nbsp;<span class="pagingNumber"></span>&nbsp;</div>
-         <br>
+					 <tr>
+					 	<th>NO
+				      <c:choose>
+				         <c:when test="${param.sort=='1 desc'}">
+				            <th style="cursor:pointer" onClick="$('[name=sort]').val(''); goSearch();  "> ▲ 반품접수번호</th>
+				         </c:when>
+				         <c:when test="${param.sort=='1 asc'}">
+				            <th style="cursor:pointer" onClick="$('[name=sort]').val('1 desc'); goSearch(); "> ▼ 반품접수번호</th>
+				         </c:when>         
+				         <c:otherwise>
+				            <th style="cursor:pointer" onClick="$('[name=sort]').val('1 asc'); goSearch();  ">반품접수번호</th>
+				         </c:otherwise>
+				      </c:choose>
+				      
+				      <c:choose>
+				         <c:when test="${param.sort=='2 desc'}">
+				            <th style="cursor:pointer" onClick="$('[name=sort]').val(''); goSearch();  "> ▲ 주문번호</th>
+				         </c:when>
+				         <c:when test="${param.sort=='2 asc'}">
+				            <th style="cursor:pointer" onClick="$('[name=sort]').val('2 desc'); goSearch(); "> ▼ 주문번호</th>
+				         </c:when>         
+				         <c:otherwise>
+				            <th style="cursor:pointer" onClick="$('[name=sort]').val('2 asc'); goSearch();  ">주문번호</th>
+				         </c:otherwise>
+				      </c:choose>
+				      
+				      <c:choose>
+				         <c:when test="${param.sort=='3 desc'}">
+				            <th style="cursor:pointer" onClick="$('[name=sort]').val(''); goSearch();  "> ▲ isbn</th>
+				         </c:when>
+				         <c:when test="${param.sort=='3 asc'}">
+				            <th style="cursor:pointer" onClick="$('[name=sort]').val('3 desc'); goSearch(); "> ▼ isbn</th>
+				         </c:when>         
+				         <c:otherwise>
+				            <th style="cursor:pointer" onClick="$('[name=sort]').val('3 asc'); goSearch();  ">isbn</th>
+				         </c:otherwise>
+				      </c:choose>
+				      
+				      <c:choose>
+				         <c:when test="${param.sort=='4 desc'}">
+				            <th style="cursor:pointer" onClick="$('[name=sort]').val(''); goSearch();  "> ▲ 반품사유</th>
+				         </c:when>
+				         <c:when test="${param.sort=='4 asc'}">
+				            <th style="cursor:pointer" onClick="$('[name=sort]').val('4 desc'); goSearch(); "> ▼ 반품사유</th>
+				         </c:when>         
+				         <c:otherwise>
+				            <th style="cursor:pointer" onClick="$('[name=sort]').val('4 asc'); goSearch();  ">반품사유</th>
+				         </c:otherwise>
+				      </c:choose>
+				
+				      </tr>
+					</thead>
+					<tbody>
+					<c:forEach items='${returnOrderList}' var="reOrder" varStatus="loopTagStatus">
+				         <tr style="cursor:pointer" onclick="goReturnInfo(this, '${reOrder.return_sales_no}');">
+				         	<td align="center">${returnOrderCnt-(returnSearchDTO.selectPageNo*returnSearchDTO.rowCntPerPage-returnSearchDTO.rowCntPerPage+1+loopTagStatus.index)+1}</td>
+				            <td align="center">${reOrder.return_sales_no}</td>
+				            <td align="center">${reOrder.order_no}</td>
+				            <td align="center">${reOrder.isbn13}</td>
+				            <td align="center">${reOrder.return_cause}</td>
+				         </tr>
+				      </c:forEach>
+					</tbody>
+			</table>
+			<br>
+			<div align=center>&nbsp;<span class="pagingNumber"></span>&nbsp;</div>
+			<br>
             </div>
           </div>
           <!-- /col-md-12 -->
@@ -569,6 +569,11 @@
       </section>
     </section>
     <div id="contecnt" style="display:none;">
+      <table border=0 width=99%>
+	 		<tr>
+	 			<td align=right>
+	 				<h3><i class="fa fa-times" onclick="goClose();" style="cursor:pointer;"></i></h3>
+	  </table>
       <table class="table table-striped table-advance table-bordered" id="contentTable" align=center>
          <tr>
             <th>ID</th>
@@ -578,21 +583,16 @@
          </tr>
          <tr>
             <th>책 제목</th>
-            <td align=center colspan=3></td>
+            <td align=center colspan=4></td>
          </tr>
          <tr>
             <th>세부내용</th>
-            <td align=center colspan=3>
-               <textarea name="info" cols=60 rows=10 readonly> </textarea>
+            <td align=center colspan=4>
+               <textarea name="info" cols=80 rows=10 readonly> </textarea>
             </td>
          </tr>
       </table>
       <table><tr height=1><td></td></tr></table>
-      <table border=0 width=100%>
-             <tr>
-                <td align=center>
-                  <h3><button type="button" class="btn btn-default" onclick="goClose();"><i class="fa fa-times"></i>닫기</button></h3>
-      </table>
    </div>
     <!-- /MAIN CONTENT -->
     <!--main content end-->
@@ -600,11 +600,11 @@
     <footer class="site-footer">
       <div class="text-center">
         <p>
-         KOSMO 자바&빅데이터 과정 팀프로젝트
+			KOSMO 자바&빅데이터 과정 팀프로젝트
         </p>
         <div class="credits">
         <font style="font-size:12pt;">
-        	ⓒ Copyrights <strong>조충래, 김태현, 박현우, 이동하, 임남희, 최민지</strong>
+        ⓒ Copyrights <strong>조충래, 김태현, 박현우, 이동하, 임남희, 최민지</strong>
          </font>
           <!--
             You are NOT allowed to delete the credit link to TemplateMag with free version.
@@ -621,18 +621,18 @@
     <!--footer end-->
   </section>
   <!-- js placed at the end of the document so the pages load faster -->
-  <script src="${ctRootlib}/jquery/jquery.min.js"></script>
-  <script type="text/javascript" language="javascript" src="${ctRootlib}/advanced-datatable/js/jquery.js"></script>
+  
   <script src="${ctRootlib}/bootstrap/js/bootstrap.min.js"></script>
+  <script src="${ctRootlib}/jquery/jquery.min.js"></script>
   <script class="include" type="text/javascript" src="${ctRootlib}/jquery.dcjqaccordion.2.7.js"></script>
   <script src="${ctRootlib}/jquery.scrollTo.min.js"></script>
   <script src="${ctRootlib}/jquery.nicescroll.js" type="text/javascript"></script>
-  <script type="text/javascript" language="javascript" src="${ctRootlib}/advanced-datatable/js/jquery.dataTables.js"></script>
-  <script type="text/javascript" src="${ctRootlib}/advanced-datatable/js/DT_bootstrap.js"></script>
   <!--common script for all pages-->
   <script src="${ctRootlib}/common-scripts.js"></script>
   <!--script for this page-->
-
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  
 </body>
 
 </html>

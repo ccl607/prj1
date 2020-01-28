@@ -2,8 +2,9 @@
  * Bootstrap v3.3.7 (http://getbootstrap.com)
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
+  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+/*# sourceMappingURL=bootstrap.min.css.map */
 html {
 	font-family: sans-serif;
 	-webkit-text-size-adjust: 100%;
@@ -13,7 +14,7 @@ html {
 body {
 	margin: 0
 }
-
+/* 제대로 고정이 되게 */
 article, aside, details, figcaption, figure, footer, header, hgroup,
 	main, menu, nav, section, summary {
 	display: block
@@ -2578,7 +2579,7 @@ caption {
 }
 
 th {
-	text-align: center
+	text-align: left
 }
 
 .table {
@@ -2592,16 +2593,21 @@ th {
 	padding: 8px;
 	line-height: 1.42857143;
 	vertical-align: top;
-	border-top: 1px solid #ddd;
-	/* text-align:center;
-	back-ground:black; */
+	border-top: 1px solid #ddd
 }
-
+/*
+.table>thead>tr{
+	
+}
+*/
 .table>thead>tr>th {
 	vertical-align: bottom;
 	border-bottom: 2px solid #ddd;
-	/* back-ground:black; 
-	text-align:center;*/
+	/*background-color: #DCDCDC;*/
+	color: gray;
+	text-align: center;
+	font-weight: bold;
+	
 }
 
 .table>caption+thead>tr:first-child>td, .table>caption+thead>tr:first-child>th,
@@ -7404,4 +7410,3 @@ button.close {
 		display: none !important
 	}
 }
-/*# sourceMappingURL=bootstrap.min.css.map */

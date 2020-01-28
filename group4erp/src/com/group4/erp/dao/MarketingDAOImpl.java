@@ -63,9 +63,9 @@ public class MarketingDAOImpl implements MarketingDAO {
 	}
 
 	@Override
-	public int getEventAllCnt() {
+	public int getEventAllCnt(EventSearchDTO eventSearchDTO) {
 		// TODO Auto-generated method stub
-		int eventAllCnt = this.sqlSession.selectOne(mapper_namespace+"getEventAllCnt");
+		int eventAllCnt = this.sqlSession.selectOne(mapper_namespace+"getEventAllCnt", eventSearchDTO);
 		
 		return eventAllCnt;
 	}
@@ -205,6 +205,38 @@ public class MarketingDAOImpl implements MarketingDAO {
 		int eventAppovalState = this.sqlSession.update(mapper_namespace+"updateEvntApprovalState", eventDTO);
 		
 		return eventAppovalState;
+	}
+
+	@Override
+	public List<SalesInfoDTO> getDailyOfflineSalesChart() {
+		// TODO Auto-generated method stub
+		List<SalesInfoDTO> dailyOfflineSalesChart = this.sqlSession.selectList(mapper_namespace+"getDailyOfflineSalesChart");
+		
+		return dailyOfflineSalesChart;
+	}
+
+	@Override
+	public int updateEventReApproval(String document_no) {
+		// TODO Auto-generated method stub
+		int myEventReApproval = this.sqlSession.update(mapper_namespace+"updateEventReApproval", document_no);
+		
+		return myEventReApproval;
+	}
+
+	@Override
+	public SalesInfoDTO getDailyOfflineSalesTotCnt() {
+		// TODO Auto-generated method stub
+		SalesInfoDTO dailyOfflineSalesTotCnt = this.sqlSession.selectOne(mapper_namespace+"getDailyOfflineSalesTotCnt");
+		
+		return dailyOfflineSalesTotCnt;
+	}
+
+	@Override
+	public int getEventNumForApproval() {
+		// TODO Auto-generated method stub
+		int eventNumForApproval = this.sqlSession.selectOne(mapper_namespace+"getEventNumForApproval");
+		
+		return eventNumForApproval;
 	}
 
 }

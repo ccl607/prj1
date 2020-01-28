@@ -27,7 +27,16 @@ public class TranSpecDTO {
 	private int selectPageNo=1;
 	private int rowCntPerPage=10;
 	
-	
+
+	public String getRNUM() {
+		return RNUM;
+	}
+
+	public void setRNUM(String rNUM) {
+		RNUM = rNUM;
+	}
+
+	private String RNUM;
 	public String getSearchKeyword() {
 		return searchKeyword;
 	}

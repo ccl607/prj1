@@ -28,7 +28,6 @@ import com.group4.erp.service.AccountService;
 @Controller
 public class AccountController {
 	
-	//AccountService accountService;
 	@Autowired
 	AccountService accountService;
 	
@@ -39,49 +38,36 @@ public class AccountController {
 		//mav.setViewName("eventScheduleForm.jsp");
 		
 		mav.setViewName("main.jsp");
+
 		mav.addObject("subMenu", "viewCorpList");
-		mav.addObject("navigator", "[회계관리]-[거래처 현황]");
+		mav.addObject("navigator", "[회계관리] → [거래처 현황]");
 		
 		String corpBusiness = "";
-		
-		if(corpSearchDTO.getCorp_business()!= null) {
-			for(int i=0; i<corpSearchDTO.getCorp_business().length; i++) {
-				System.out.println("corpSearchDTO.getCorp_business.size==="+corpSearchDTO.getCorp_business()[i]);
-				
-				//if(i !=corpSearchDTO.getCorp_business().length-1) {
-				//	corpBusiness += corpSearchDTO.getCorp_business()[i] +", ";
-				//} else {
-				//	corpBusiness += corpSearchDTO.getCorp_business()[i];
-				//}
-				
-			}
-		
-		}
-		
-		//corpSearchDTO.setCorp_business_area(corpBusiness);
-		//System.out.println(corpBusiness);
 		
 		try {
 			
 			int corpListCnt = this.accountService.getCorpListCnt(corpSearchDTO);
-			
-			
+						
 			if(corpListCnt >0 ) {
 				int selectPageNo = corpSearchDTO.getSelectPageNo();	//선택한 페이지 번호 구하기
 				int rowCntPerPage = corpSearchDTO.getRowCntPerPage();	//한 화면에 보여지는 행의 개수 구하기
-				int beginRowNo = selectPageNo * rowCntPerPage - rowCntPerPage +1;	//검색할 시작행 번호 구하기
-				if(corpListCnt < beginRowNo) {		//만약 검색한 총 개수가 검색할 시작행 번호보다 작으면 선택한 페이지 번호를 1로 지정
-					corpSearchDTO.setSelectPageNo(1);
-				}
+				int beginRowNo = (selectPageNo * rowCntPerPage - rowCntPerPage +1);	//검색할 시작행 번호 구하기
+				if(corpListCnt < beginRowNo) corpSearchDTO.setSelectPageNo(1);
 			}
 			
 			List<CorporationDTO> corpList = this.accountService.getCorpList(corpSearchDTO);
 			List<CorporationDTO> business_area = this.accountService.getBusiness_area();
+
+			System.out.println(corpSearchDTO.getSelectPageNo());
+			System.out.println(corpSearchDTO.getRowCntPerPage());
+			System.out.println(corpSearchDTO.getSearchKeyword());
+			System.out.println(corpSearchDTO.getKeyword());
 			
 			mav.addObject("corpListCnt", corpListCnt);
 			mav.addObject("corpList", corpList);
 			mav.addObject("corp_business_area", business_area);
 			mav.addObject("corpSearchDTO", corpSearchDTO);
+			
 						
 		} catch(Exception e) {
 			System.out.println("예외발생=="+e);
@@ -89,7 +75,6 @@ public class AccountController {
 		
 		return mav;
 	}
-	
 	
 	
 	@RequestMapping(value="/goInsertCorpPage.do")
@@ -100,7 +85,7 @@ public class AccountController {
 		
 		mav.setViewName("main.jsp");
 		mav.addObject("subMenu", "goInsertCorpPage");
-		mav.addObject("navigator", "[회계관리]-[거래처등록/삭제]");
+		mav.addObject("navigator", "[회계관리] → [거래처등록/삭제]");
 		
 		List<CorporationDTO> business_area = this.accountService.getBusiness_area();
 		
@@ -184,18 +169,10 @@ public class AccountController {
 		try {
 
 			upCnt = this.accountService.updateCorpInfo(corpDTO);
-			
-			/*if(upDel.equals("up")) {
-				upDelCnt = this.boardService.updateBoard(boardDTO);
-			}
-			
-			//만약 삭제 모드이면 삭제 실행하고 삭제 적용행의 개수를 저장
-			else {
-				upDelCnt = this.boardService.deleteBoard(boardDTO);
-			} */
+			System.out.println("updateCorpProc() 메소드 실행 & upCnt=="+upCnt);
 			
 		} catch(Exception e) {
-			System.out.println("deleteCorpProc() 메소드에서 예외 발생 >>> "+e);
+			System.out.println("updateCorpProc() 메소드에서 예외 발생 >>> "+e);
 		}
 				
 		return upCnt;
@@ -208,7 +185,7 @@ public class AccountController {
 		
 		mav.setViewName("main.jsp");
 		mav.addObject("subMenu", "viewTranSpecList");
-		mav.addObject("navigator", "[회계관리]-[거래 내역]");
+		mav.addObject("navigator", "[회계관리] → [거래 내역]");
 		
 		try {
 			int corp_tran_cnt = this.accountService.getCorpOrderCnt(corpSearchDTO);
@@ -220,6 +197,7 @@ public class AccountController {
 			mav.addObject("corp_tran_cnt", corp_tran_cnt);
 			mav.addObject("corp_tran_list", corp_tran_list);
 			mav.addObject("corpSearchDTO", corpSearchDTO);
+			mav.addObject("tranSpecSearchDTO", tranSpecSearchDTO);
 			//mav.addObject("tranSpecIssueList", tranSpecIssueList);
 			
 		} catch(Exception e) {
@@ -236,7 +214,7 @@ public class AccountController {
 		
 		mav.setViewName("main.jsp");
 		mav.addObject("subMenu", "viewTranSpecInfo");
-		mav.addObject("navigator", "[회계관리] - [거래내역 조회] - [거래명세서 발급]");
+		mav.addObject("navigator", "[회계관리] → [거래내역 조회] → [거래명세서 발급]");
 		
 		try {
 			
@@ -261,7 +239,7 @@ public class AccountController {
 		
 		mav.setViewName("main.jsp");
 		mav.addObject("subMenu", "viewTranSpecIssueList");
-		mav.addObject("navigator", "[회계관리] - [거래내역 조회] - [거래명세서 발급 내역]");
+		mav.addObject("navigator", "[회계관리] → [거래내역 조회] → [거래명세서 발급 내역]");
 		
 		try {
 			

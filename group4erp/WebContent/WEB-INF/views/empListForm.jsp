@@ -64,71 +64,73 @@
 </style>
 
 <script>
-$(document).ready(function(){	
-	
-	//headerSort("empListTable", 0);
-	
-	$('[name=rowCntPerPage]').change(function(){
-		$('[name=rowCntPerPage]').val( $(this).val() );
-		goSearch();
-	});
-	
-	$(".pagingNumber").html(
-			getPagingNumber(
-				"${getEmpBoardListCnt}"						//검색 결과 총 행 개수
-				,"${hrListSearchDTO.selectPageNo}"			//선택된 현재 페이지 번호
-				,"${hrListSearchDTO.rowCntPerPage}"		//페이지 당 출력행의 개수
-				,"10"										//페이지 당 보여줄 페이지번호 개수
-				,"goSearch();"						//페이지 번호 클릭 후 실행할 자스코드
-			)
-		);
-	
-	inputData('[name=rowCntPerPage]',"${hrListSearchDTO.rowCntPerPage}");
-	inputData('[name=selectPageNo]',"${hrListSearchDTO.selectPageNo}");
-	inputData('[name=searchKeyword]',"${hrListSearchDTO.searchKeyword}");
-	inputData('[name=sort]',"${hrListSearchDTO.sort}");
+$(document).ready(function(){   
+   
+   //headerSort("empListTable", 0);
+   
+   $('[name=rowCntPerPageDown]').change(function(){
+      $('[name=rowCntPerPage]').val( $(this).val() );
+      goSearch();
+   });
+   
+   $(".pagingNumber").html(
+         getPagingNumber(
+            "${getEmpBoardListCnt}"                  //검색 결과 총 행 개수
+            ,"${hrListSearchDTO.selectPageNo}"         //선택된 현재 페이지 번호
+            ,"${hrListSearchDTO.rowCntPerPage}"      //페이지 당 출력행의 개수
+            ,"10"                              //페이지 당 보여줄 페이지번호 개수
+            ,"goSearch();"                  //페이지 번호 클릭 후 실행할 자스코드
+         )
+      );
+   
+   inputData('[name=rowCntPerPageDown]',"${hrListSearchDTO.rowCntPerPage}");
+   inputData('[name=selectPageNo]',"${hrListSearchDTO.selectPageNo}");
+   inputData('[name=searchKeyword]',"${hrListSearchDTO.searchKeyword}");
+   inputData('[name=sort]',"${hrListSearchDTO.sort}");
 });
 
-	function goSearch() {
-		document.empListSearchForm.submit();
-	}
-	function goSearchAll() {
-		document.empListSearchForm.reset();
-		$("[name=empListSearchForm] [name=selectPageNo]").val(1);
-		$("[name=empListSearchForm] [name=rowCntPerPage]").val(10);
-		$("[name=empListSearchForm] [name=sort]").val('');
-		document.empListSearchForm.submit();
-	}
-// 	function insertNewEmp() {
-//		location.href="/group4erp/viewNewEmpJoin.do"
-//	} 
- 	function goAllReset(){
- 		inputData('[name=searchKeyword]',"");
- 		$('[name=searchKeyword]').focus();
- 	 }
-	function goEmpContentForm(emp_no){
-		//alert("emp_no="+emp_no);
-		//return;
-		var str = "emp_no="+emp_no
-		location.href="/group4erp/viewEmpContentForm.do?"+str;
-		/*
-		$.ajax({
-			url : "/group4erp/empViewContantProc.do"
-			, type : "post"
-			, data : "emp_no="+emp_no
-			, success : function(upDelCnt){
-				alert(999);
-				return;
-				location.replace("/group4erp/???????.do");
-			}
-			, error : function(){
-				alert("서버 접속 실패");
-			}
-		});
-		*/
-		//location.replace("......");
-	}
-	
+   function goSearch() {
+	   
+	   
+      document.empListSearchForm.submit();
+   }
+   function goSearchAll() {
+      document.empListSearchForm.reset();
+      $("[name=empListSearchForm] [name=selectPageNo]").val(1);
+      $("[name=empListSearchForm] [name=rowCntPerPage]").val(10);
+      $("[name=empListSearchForm] [name=sort]").val('');
+      document.empListSearchForm.submit();
+   }
+//    function insertNewEmp() {
+//      location.href="/group4erp/viewNewEmpJoin.do"
+//   } 
+    function goAllReset(){
+       inputData('[name=searchKeyword]',"");
+       $('[name=searchKeyword]').focus();
+     }
+   function goEmpContentForm(emp_no){
+      //alert("emp_no="+emp_no);
+      //return;
+      var str = "emp_no="+emp_no
+      location.href="/group4erp/viewEmpContentForm.do?"+str;
+      /*
+      $.ajax({
+         url : "/group4erp/empViewContantProc.do"
+         , type : "post"
+         , data : "emp_no="+emp_no
+         , success : function(upDelCnt){
+            alert(999);
+            return;
+            location.replace("/group4erp/???????.do");
+         }
+         , error : function(){
+            alert("서버 접속 실패");
+         }
+      });
+      */
+      //location.replace("......");
+   }
+   
 </script>
 <body>
   <section id="container">
@@ -141,7 +143,7 @@ $(document).ready(function(){
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="index.html" class="logo"><b>BOOKST<span>.ERP</span></b></a>
+      <a href="/group4erp/goMainTest.do" class="logo"><b>BOOKST<span>.ERP</span></b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -164,7 +166,7 @@ $(document).ready(function(){
             <a class="goBackss" href="javascript:goBack();">뒤로 가기</a>
           </li> -->
           <li>
-            <a class="logout" href="login.html">Logout</a>
+            <a class="logout" href="/group4erp/logout.do">Logout</a>
           </li>
         </ul>
       </div>
@@ -183,7 +185,7 @@ $(document).ready(function(){
           </p>
           <h5 class="centered">Sam Soffes</h5>
           <li class="mt">
-            <a href="index.html">
+            <a href="/group4erp/goMainTest.do">
               <i class="fa fa-dashboard"></i>
               <span>메인페이지</span>
               </a>
@@ -251,7 +253,7 @@ $(document).ready(function(){
               <span>인사 관리</span>
               </a>
             <ul class="sub">
-              <li class="active">
+              <li>
                 <a href="/group4erp/viewEmpList.do"><i class="fa fa-info-circle"></i>직원정보</a>
               </li>
               <li>
@@ -340,7 +342,7 @@ $(document).ready(function(){
          <!-- </div> -->
          
          <input type="hidden" name="selectPageNo">
-         <input type="hidden" name="rowCntPerPage"> <%-- value="${invenSearchDTO.rowCntPerPage}" --%>
+         <input type="hidden" name="rowCntPerPage" value="${hrListSearchDTO.rowCntPerPage}"> <%-- value="${invenSearchDTO.rowCntPerPage}" --%>
          <!-- header sort를 하기 위한 hidden Tag -->
          <input type="hidden" name="sort">
          </form>
@@ -364,89 +366,89 @@ $(document).ready(function(){
          </table>
          <table><tr><td height="10"></td></tr></table>
          <form name="empListForm" method="post" action="/group4erp/viewEmpInfo.do">
-			<table class="table table-striped table-advance table-hover table-bordered" width="100%" border=0 cellspacing=0 cellpadding=5>	
+         <table class="table table-striped table-advance table-hover table-bordered" width="100%" border=0 cellspacing=0 cellpadding=5>   
          
          
          <thead>
-				<tr>
-				<c:choose>
-					<c:when test="${param.sort=='emp_no desc'}">
-						<th width="15%" style="cursor:pointer" onclick="$('[name=sort]').val(''); goSearch();">▼사번
-					</c:when>
-					<c:when test="${param.sort=='emp_no asc'}">
-						<th width="15%" style="cursor:pointer" onclick="$('[name=sort]').val('emp_no desc'); goSearch();">▲사번
-					</c:when>
-					<c:otherwise>
-						<th width="15%" style="cursor:pointer" onclick="$('[name=sort]').val('emp_no asc'); goSearch();">사번
-					</c:otherwise>
-				</c:choose>
-				<c:choose>
-					<c:when test="${param.sort=='emp_name desc'}">
-						<th width="30%" style="cursor:pointer" onclick="$('[name=sort]').val(''); goSearch();">▼성명
-					</c:when>
-					<c:when test="${param.sort=='emp_name asc'}">
-						<th width="30%" style="cursor:pointer" onclick="$('[name=sort]').val('emp_name desc'); goSearch();">▲성명
-					</c:when>
-					<c:otherwise>
-						<th width="30%" style="cursor:pointer" onclick="$('[name=sort]').val('emp_name asc'); goSearch();">성명
-					</c:otherwise>
-				</c:choose>
-				<c:choose>
-					<c:when test="${param.sort=='3 desc'}">
-						<th width="20%" style="cursor:pointer" onclick="$('[name=sort]').val(''); goSearch();">▼부서
-					</c:when>
-					<c:when test="${param.sort=='3 asc'}">
-						<th width="20%" style="cursor:pointer" onclick="$('[name=sort]').val('3 desc'); goSearch();">▲부서
-					</c:when>
-					<c:otherwise>
-						<th width="20%" style="cursor:pointer" onclick="$('[name=sort]').val('3 asc'); goSearch();">부서
-					</c:otherwise>
-				</c:choose>
-				<c:choose>
-					<c:when test="${param.sort=='jikup_cd desc'}">
-						<th width="20%" style="cursor:pointer" onclick="$('[name=sort]').val(''); goSearch();">▼직급
-					</c:when>
-					<c:when test="${param.sort=='jikup_cd asc'}">
-						<th width="20%" style="cursor:pointer" onclick="$('[name=sort]').val('jikup_cd desc'); goSearch();">▲직급
-					</c:when>
-					<c:otherwise>
-						<th width="20%" style="cursor:pointer" onclick="$('[name=sort]').val('jikup_cd asc'); goSearch();">직급
-					</c:otherwise>
-				</c:choose>
-				<c:choose>
-					<c:when test="${param.sort=='5 desc'}">
-						<th width="10%" style="cursor:pointer" onclick="$('[name=sort]').val(''); goSearch();">▼승인상태
-					</c:when>
-					<c:when test="${param.sort=='5 asc'}">
-						<th width="10%" style="cursor:pointer" onclick="$('[name=sort]').val('5 desc'); goSearch();">▲승인상태
-					</c:when>
-					<c:otherwise>
-						<th width="10%" style="cursor:pointer" onclick="$('[name=sort]').val('5 asc'); goSearch();">승인상태
-					</c:otherwise>
-				</c:choose>
-			</thead>
-			<tbody>
-			<c:forEach items="${requestScope.getEmpBoardList}" var="empList" varStatus="loopTagStatus">
-				<tr style="cursor:pointer" onClick="goEmpContentForm(${empList.emp_no});">	
-					<td align=center>${empList.emp_no}</td>	<!-- <input type="hidden" value="${dep_no}">  -->
-					<td align=center>${empList.emp_name}</td>
-					<td align=center>${empList.dep_name}</td>
-					<td align=center>${empList.jikup}</td>
-					<c:if test="${empList.worktime_name=='미승인'}">
-						<td align=center>${empList.worktime_name}</td>
-					</c:if>
-					<c:if test="${empList.worktime_name!='미승인'}">
-						<td align=center></td>
-					</c:if>
-				</tr>		
-			</c:forEach>
-			</tbody>
-		</table>
-		<br>
-		<!-- <input type="button" value="신규사원등록" onClick="insertNewEmp();"> -->
-		<br><br>
-		<div align=center>&nbsp;<span class="pagingNumber"></span>&nbsp;</div>
-	</form>
+            <tr>
+            <c:choose>
+               <c:when test="${param.sort=='emp_no desc'}">
+                  <th width="15%" style="cursor:pointer" onclick="$('[name=sort]').val(''); goSearch();">▼사번
+               </c:when>
+               <c:when test="${param.sort=='emp_no asc'}">
+                  <th width="15%" style="cursor:pointer" onclick="$('[name=sort]').val('emp_no desc'); goSearch();">▲사번
+               </c:when>
+               <c:otherwise>
+                  <th width="15%" style="cursor:pointer" onclick="$('[name=sort]').val('emp_no asc'); goSearch();">사번
+               </c:otherwise>
+            </c:choose>
+            <c:choose>
+               <c:when test="${param.sort=='emp_name desc'}">
+                  <th width="30%" style="cursor:pointer" onclick="$('[name=sort]').val(''); goSearch();">▼성명
+               </c:when>
+               <c:when test="${param.sort=='emp_name asc'}">
+                  <th width="30%" style="cursor:pointer" onclick="$('[name=sort]').val('emp_name desc'); goSearch();">▲성명
+               </c:when>
+               <c:otherwise>
+                  <th width="30%" style="cursor:pointer" onclick="$('[name=sort]').val('emp_name asc'); goSearch();">성명
+               </c:otherwise>
+            </c:choose>
+            <c:choose>
+               <c:when test="${param.sort=='3 desc'}">
+                  <th width="20%" style="cursor:pointer" onclick="$('[name=sort]').val(''); goSearch();">▼부서
+               </c:when>
+               <c:when test="${param.sort=='3 asc'}">
+                  <th width="20%" style="cursor:pointer" onclick="$('[name=sort]').val('3 desc'); goSearch();">▲부서
+               </c:when>
+               <c:otherwise>
+                  <th width="20%" style="cursor:pointer" onclick="$('[name=sort]').val('3 asc'); goSearch();">부서
+               </c:otherwise>
+            </c:choose>
+            <c:choose>
+               <c:when test="${param.sort=='jikup_cd desc'}">
+                  <th width="20%" style="cursor:pointer" onclick="$('[name=sort]').val(''); goSearch();">▼직급
+               </c:when>
+               <c:when test="${param.sort=='jikup_cd asc'}">
+                  <th width="20%" style="cursor:pointer" onclick="$('[name=sort]').val('jikup_cd desc'); goSearch();">▲직급
+               </c:when>
+               <c:otherwise>
+                  <th width="20%" style="cursor:pointer" onclick="$('[name=sort]').val('jikup_cd asc'); goSearch();">직급
+               </c:otherwise>
+            </c:choose>
+            <c:choose>
+               <c:when test="${param.sort=='5 desc'}">
+                  <th width="10%" style="cursor:pointer" onclick="$('[name=sort]').val(''); goSearch();">▼승인상태
+               </c:when>
+               <c:when test="${param.sort=='5 asc'}">
+                  <th width="10%" style="cursor:pointer" onclick="$('[name=sort]').val('5 desc'); goSearch();">▲승인상태
+               </c:when>
+               <c:otherwise>
+                  <th width="10%" style="cursor:pointer" onclick="$('[name=sort]').val('5 asc'); goSearch();">승인상태
+               </c:otherwise>
+            </c:choose>
+         </thead>
+         <tbody>
+         <c:forEach items="${requestScope.getEmpBoardList}" var="empList" varStatus="loopTagStatus">
+            <tr style="cursor:pointer" onClick="goEmpContentForm(${empList.emp_no});">   
+               <td align=center>${empList.emp_no}</td>   <!-- <input type="hidden" value="${dep_no}">  -->
+               <td align=center>${empList.emp_name}</td>
+               <td align=center>${empList.dep_name}</td>
+               <td align=center>${empList.jikup}</td>
+               <c:if test="${empList.worktime_name=='미승인'}">
+                  <td align=center>${empList.worktime_name}</td>
+               </c:if>
+               <c:if test="${empList.worktime_name!='미승인'}">
+                  <td align=center></td>
+               </c:if>
+            </tr>      
+         </c:forEach>
+         </tbody>
+      </table>
+      <br>
+      <!-- <input type="button" value="신규사원등록" onClick="insertNewEmp();"> -->
+      <br><br>
+      <div align=center>&nbsp;<span class="pagingNumber"></span>&nbsp;</div>
+   </form>
          
          
          
@@ -506,7 +508,6 @@ $(document).ready(function(){
 </body>
 
 </html>
-
 
 
 

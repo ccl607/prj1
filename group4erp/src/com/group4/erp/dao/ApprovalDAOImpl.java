@@ -108,4 +108,36 @@ public class ApprovalDAOImpl implements ApprovalDAO {
 		return approvalResList;
 	}
 
+	@Override
+	public int insertBTripApproval(ApprovalDTO approvalDTO) {
+		// TODO Auto-generated method stub
+		int myBTripApprovalCnt = this.sqlSession.insert(mapper_namespace+"insertApproval", approvalDTO);
+		
+		return myBTripApprovalCnt;
+	}
+
+	@Override
+	public int getMyReApprovalCnt(String document_no) {
+		// TODO Auto-generated method stub
+		int myReApprovalCnt = this.sqlSession.selectOne(mapper_namespace+"getMyReApprovalCnt", document_no);
+		
+		return myReApprovalCnt;
+	}
+
+	@Override
+	public int deleteDayOffApproval(int dayoff_apply_no) {
+		// TODO Auto-generated method stub
+		int deleteMyDayOffApproval = this.sqlSession.delete(mapper_namespace+"deleteDayOffApproval", dayoff_apply_no);
+		
+		return deleteMyDayOffApproval;
+	}
+
+	@Override
+	public int updateBTripApprovalProc(ApprovalDTO approvalDTO) {
+		// TODO Auto-generated method stub
+		int bTripApprovalCnt = this.sqlSession.update(mapper_namespace+"updateBTripApproval", approvalDTO);
+		
+		return bTripApprovalCnt;
+	}
+
 }

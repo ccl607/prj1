@@ -20,8 +20,6 @@
   <link href="${ctRootlib}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!--external css-->
   <link href="${ctRootlib}/font-awesome/css/font-awesome.css" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="${ctRootlib}/bootstrap-datepicker/css/datepicker.css" />
-  <link rel="stylesheet" type="text/css" href="${ctRootlib}/bootstrap-daterangepicker/daterangepicker.css" />
   <!-- Custom styles for this template -->
   <link href="${ctRootcss}/style.css" rel="stylesheet">
   <link href="${ctRootcss}/style-responsive.css" rel="stylesheet">
@@ -66,159 +64,159 @@ var basePages = null;
 var baseCnt = null;
 
 $(document).ready(function(){
-   
-   startTime();
-   
-   $("#published_dt").datepicker({
-      dateFormat: 'yy-mm-dd'
-       ,onSelect: function() { 
-          //var date = $('#datepicker').datepicker({ dateFormat: 'yyyy-mm-dd' }).val();
-           var dateObject = $(this).datepicker('getDate');
+	
+	startTime();
+	
+	$("#published_dt").datepicker({
+		dateFormat: 'yy-mm-dd'
+	    ,onSelect: function() { 
+	    	//var date = $('#datepicker').datepicker({ dateFormat: 'yyyy-mm-dd' }).val();
+	        var dateObject = $(this).datepicker('getDate');
 
-       }
-   });
-   
-   var basePrice = $('[name=book_price]').val();
-   var basePages = $('[name=book_pages]').val();
-   var baseCnt = $('[name=isbn_cnt]').val();
-   
-   inputData("[name=size_name]", "${bookInfo.size_name}");
-   inputData("[name=branch_name]", "${bookInfo.branch_name}");
-   
+	    }
+	});
+	
+	var basePrice = $('[name=book_price]').val();
+	var basePages = $('[name=book_pages]').val();
+	var baseCnt = $('[name=isbn_cnt]').val();
+	
+	inputData("[name=size_name]", "${bookInfo.size_name}");
+	inputData("[name=branch_name]", "${bookInfo.branch_name}");
+	
 });
-   function goBack(){
-      history.go(-1);
-   }
-   
-   function bookInfoUp(){
-      //alert( $('[name=bookContentUpB]').serialize() );
-      //return;
-   
-      var bookContentUp = $('[name=bookContentUpA]').serialize()+"&"+$('[name=bookContentUpB]').serialize();
-      
-      alert(bookContentUp);
-      
-      if( is_empty('[name=book_name]') ){
-         alert("책 제목을 입력해주세요.");
-         $("[name=book_name]").focus();
-         return;
-      }
-      if( is_empty('[name=cat_name]') ){
-         alert("카테고리를 입력해주세요.");
-         $("[name=cat_name]").focus();
-         return;
-      }
-      if( is_empty('[name=book_price]') ){
-         alert("책 가격을 입력해주세요.");
-         $("[name=book_price]").focus();
-         return;
-      }
-      if( is_empty('[name=book_pages]') ){
-         alert("페이지 수를 입력해주세요.");
-         $("[name=book_pages]").focus();
-         return;
-      }
-      if( is_empty('[name=writer]') ){
-         alert("저자를 입력해주세요.");
-         $("[name=writer]").focus();
-         return;
-      }
-      if( is_empty('[name=publisher]') ){
-         alert("출판사를 입력해주세요.");
-         $("[name=publisher]").focus();
-         return;
-      }
-      if( is_empty('[name=size_name]') ){
-         alert("판형을 선택해주세요.");
-         $("[name=size_name]").focus();
-         return;
-      }
-      if( is_empty('[name=is_print]') ){
-         alert("판매여부를 선택해주세요.");
-         $("[name=is_print]").focus();
-         return;
-      }
-      if( is_empty('[name=emp_name]') ){
-         alert("도서 담당직원의 이름을 입력해주세요.");
-         $("[name=emp_name]").focus();
-         return;
-      }
-      if( is_empty('[name=published_dt]') ){
-         alert("출판일을 입력해주세요.");
-         $("[name=published_dt]").focus();
-         return;
-      }
-      if( is_empty('[name=editor]') ){
-         alert("출판사 담당직원 이름을 입력해주세요.");
-         $("[name=editor]").focus();
-         return;
-      }
-      if( is_empty('[name=branch_name]') ){
-         alert("재고 위치를 선택해주세요.");
-         $("[name=branch_name]").focus();
-         return;
-      }
-      
-      
-      var checkPirce = $('[name=book_price]').val();
-      if(isNaN(checkPirce)==true){
-         alert("책 가격은 숫자만 기입해주세요");
-         //$('[name=book_price]').val();
-         return;
-      }
-      var checkPages = $('[name=book_pages]').val();
-      if(isNaN(checkPages)==true){
-         alert("페이지 수는 숫자만 기입해주세요");
-         //$('[name=book_pages]').val(basePages);
-         return;
-      }
-      var checkCnt = $('[name=isbn_cnt]').val();
-      if(isNaN(checkCnt)==true){
-         alert("재고량은 숫자만 기입해주세요");
-         //$('[name=isbn_cnt]').val(baseCnt);
-         return;
-      }
-      
-      
-      var checkEditor = $('[name=editor]').val();
-      if(isFinite(checkEditor)==true){
-         alert("출판사 담당 직원은 문자만 기입해주세요");
-         //$('[name=isbn_cnt]').val(baseCnt);
-         return;
-      }
-      var checkEmp_name = $('[name=emp_name]').val();
-      if(isFinite(checkEmp_name)==true){
-         alert("담당직원은 문자만 기입해주세요");
-         //$('[name=isbn_cnt]').val(baseCnt);
-         return;
-      }
-      
-      
-      if(confirm("정말 저장하시겠습니까?")==false){return;}
-      
-      $.ajax({
-         url : "/group4erp/goBookInfoUpProc.do"
-         , type : "post"
-         , data : bookContentUp
-         , success : function(upCnt){
-            if(upCnt==1){
-               alert('책 수정 성공');
-               location.replace("/group4erp/goBookList.do");
-               return;
-            }else if(upCnt==0){
-               alert("책 수정 실패");
-               return;
-            }else if(upCnt==-2){
-               alert("지사 수정 실패"); 
-            }else alert("DB 오류");
-            
-         }
-         , error : function(){
-            alert("서버 접속 실패");
-         }
-      });
-      
-   }
+	function goBack(){
+		history.go(-1);
+	}
+	
+	function bookInfoUp(){
+		//alert( $('[name=bookContentUpB]').serialize() );
+		//return;
+	
+		var bookContentUp = $('[name=bookContentUpA]').serialize()+"&"+$('[name=bookContentUpB]').serialize();
+		
+		alert(bookContentUp);
+		
+		if( is_empty('[name=book_name]') ){
+			alert("책 제목을 입력해주세요.");
+			$("[name=book_name]").focus();
+			return;
+		}
+		if( is_empty('[name=cat_name]') ){
+			alert("카테고리를 입력해주세요.");
+			$("[name=cat_name]").focus();
+			return;
+		}
+		if( is_empty('[name=book_price]') ){
+			alert("책 가격을 입력해주세요.");
+			$("[name=book_price]").focus();
+			return;
+		}
+		if( is_empty('[name=book_pages]') ){
+			alert("페이지 수를 입력해주세요.");
+			$("[name=book_pages]").focus();
+			return;
+		}
+		if( is_empty('[name=writer]') ){
+			alert("저자를 입력해주세요.");
+			$("[name=writer]").focus();
+			return;
+		}
+		if( is_empty('[name=publisher]') ){
+			alert("출판사를 입력해주세요.");
+			$("[name=publisher]").focus();
+			return;
+		}
+		if( is_empty('[name=size_name]') ){
+			alert("판형을 선택해주세요.");
+			$("[name=size_name]").focus();
+			return;
+		}
+		if( is_empty('[name=is_print]') ){
+			alert("판매여부를 선택해주세요.");
+			$("[name=is_print]").focus();
+			return;
+		}
+		if( is_empty('[name=emp_name]') ){
+			alert("도서 담당직원의 이름을 입력해주세요.");
+			$("[name=emp_name]").focus();
+			return;
+		}
+		if( is_empty('[name=published_dt]') ){
+			alert("출판일을 입력해주세요.");
+			$("[name=published_dt]").focus();
+			return;
+		}
+		if( is_empty('[name=editor]') ){
+			alert("출판사 담당직원 이름을 입력해주세요.");
+			$("[name=editor]").focus();
+			return;
+		}
+		if( is_empty('[name=branch_name]') ){
+			alert("재고 위치를 선택해주세요.");
+			$("[name=branch_name]").focus();
+			return;
+		}
+		
+		
+		var checkPirce = $('[name=book_price]').val();
+		if(isNaN(checkPirce)==true){
+			alert("책 가격은 숫자만 기입해주세요");
+			//$('[name=book_price]').val();
+			return;
+		}
+		var checkPages = $('[name=book_pages]').val();
+		if(isNaN(checkPages)==true){
+			alert("페이지 수는 숫자만 기입해주세요");
+			//$('[name=book_pages]').val(basePages);
+			return;
+		}
+		var checkCnt = $('[name=isbn_cnt]').val();
+		if(isNaN(checkCnt)==true){
+			alert("재고량은 숫자만 기입해주세요");
+			//$('[name=isbn_cnt]').val(baseCnt);
+			return;
+		}
+		
+		
+		var checkEditor = $('[name=editor]').val();
+		if(isFinite(checkEditor)==true){
+			alert("출판사 담당 직원은 문자만 기입해주세요");
+			//$('[name=isbn_cnt]').val(baseCnt);
+			return;
+		}
+		var checkEmp_name = $('[name=emp_name]').val();
+		if(isFinite(checkEmp_name)==true){
+			alert("담당직원은 문자만 기입해주세요");
+			//$('[name=isbn_cnt]').val(baseCnt);
+			return;
+		}
+		
+		
+		if(confirm("정말 저장하시겠습니까?")==false){return;}
+		
+		$.ajax({
+			url : "/group4erp/goBookInfoUpProc.do"
+			, type : "post"
+			, data : bookContentUp
+			, success : function(upCnt){
+				if(upCnt==1){
+					alert('책 수정 성공');
+					location.replace("/group4erp/goBookList.do");
+					return;
+				}else if(upCnt==0){
+					alert("책 수정 실패");
+					return;
+				}else if(upCnt==-2){
+					alert("지사 수정 실패"); 
+				}else alert("DB 오류");
+				
+			}
+			, error : function(){
+				alert("서버 접속 실패");
+			}
+		});
+		
+	}
 
 </script>
 <body>
@@ -232,18 +230,18 @@ $(document).ready(function(){
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="index.html" class="logo"><b>BOOKST<span>.ERP</span></b></a>
+      <a href="/group4erp/goMainTest.do" class="logo"><b>BOOKST<span>.ERP</span></b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
         <ul class="nav top-menu">
           <!-- settings start -->
           <li>
-            <table>
-               <tr>
-                  <td align="left"> <font style="color:#D8E8E4;"><h5><span id="nowTime" align="right"></span> </h5></font></td>
-               </tr>
-            </table>
+     		 <table>
+        		 <tr>
+        		 	<td align="left"> <font style="color:#D8E8E4;"><h5><span id="nowTime" align="right"></span> </h5></font></td>
+         		</tr>
+      		</table>
           </li>
         </ul>
         <!--  notification end -->
@@ -254,7 +252,7 @@ $(document).ready(function(){
             <a class="goBackss" href="javascript:goBack();">뒤로 가기</a>
           </li> -->
           <li>
-            <a class="logout" href="login.html">Logout</a>
+            <a class="logout" href="/group4erp/logout.do">Logout</a>
           </li>
         </ul>
       </div>
@@ -273,7 +271,7 @@ $(document).ready(function(){
           </p>
           <h5 class="centered">Sam Soffes</h5>
           <li class="mt">
-            <a href="index.html">
+            <a href="/group4erp/goMainTest.do">
               <i class="fa fa-dashboard"></i>
               <span>메인페이지</span>
               </a>
@@ -400,12 +398,12 @@ $(document).ready(function(){
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
-         <table border=0 cellpadding=0 cellspace=0 width="98%">
-         <tr>
-         <td widtj=50%>
-         <h3 align=left><i class="fa fa-angle-right"></i>서적 상세정보(datepicker 수정해야함.)</h3>
-         <td widtj=50%>
-         <h3 align=right><button type="button" class="btn btn btn-default" onclick="goBack();"><i class="fa fa-long-arrow-left"></i></button></h3>
+      	<table border=0 cellpadding=0 cellspace=0 width="98%">
+      	<tr>
+      	<td widtj=50%>
+      	<h3 align=left><i class="fa fa-angle-right"></i>서적 상세정보(datepicker 수정해야함.)</h3>
+      	<td widtj=50%>
+      	<h3 align=right><i class="fa fa-arrow-left" onclick="goBack();" style="cursor:pointer;"></i></h3>
         </table>
         <!-- BASIC FORM ELELEMNTS -->
         <div class="row mt">
@@ -417,8 +415,8 @@ $(document).ready(function(){
                 <!-- 
                   <div class="col-lg-12 col-md-4">
                     <p class="centered">
-                     <a href="profile.html"><img src="${ctRootImg}/ui-sam.jpg" class="img-circle" width="80"></a>
-                  </p>
+            			<a href="profile.html"><img src="${ctRootImg}/ui-sam.jpg" class="img-circle" width="80"></a>
+         			</p>
                   </div>
                    -->
                   <label class="col-sm-1 col-sm-1 control-label">책 이름</label>
@@ -445,13 +443,13 @@ $(document).ready(function(){
                   <label class="col-sm-1 col-sm-1 control-label">판매여부</label>
                   <div class="col-sm-3">
                     <c:if test="${bookInfo.is_print=='y'}">
-                  <input type="radio" name="is_print" value="y" checked>판매중
-                  <input type="radio" name="is_print" value="n">절판
-               </c:if>
-               <c:if test="${bookInfo.is_print=='n'}">
-                  <input type="radio" name="is_print" value="y">판매중
-                  <input type="radio" name="is_print" value="n" checked>절판
-               </c:if>
+						<input type="radio" name="is_print" value="y" checked>판매중
+						<input type="radio" name="is_print" value="n">절판
+					</c:if>
+					<c:if test="${bookInfo.is_print=='n'}">
+						<input type="radio" name="is_print" value="y">판매중
+						<input type="radio" name="is_print" value="n" checked>절판
+					</c:if>
                   </div>
                 </div>
                 <div class="form-group">
@@ -462,15 +460,15 @@ $(document).ready(function(){
                   <label class="col-sm-1 col-sm-1 control-label">판형</label>
                   <div class="col-sm-3">
                     <select name="size_name">
-                  <option value="신국판">신국판
-                  <option value="국판">국판
-                  <option value="46판">46판
-                  <option value="46배판">46배판
-                  <option value="크라운판">크라운판
-                  <option value="국배판">국배판
-                  <option value="타블로이드">타블로이드
-                  <option value="기타">기타
-               </select>
+						<option value="신국판">신국판
+						<option value="국판">국판
+						<option value="46판">46판
+						<option value="46배판">46배판
+						<option value="크라운판">크라운판
+						<option value="국배판">국배판
+						<option value="타블로이드">타블로이드
+						<option value="기타">기타
+					</select>
                   </div>
                 </div>
                 <div class="form-group">
@@ -513,10 +511,10 @@ $(document).ready(function(){
                   <label class="col-sm-1 col-sm-1 control-label">재고 위치</label>
                   <div class="col-sm-5">
                     <select name="branch_name">
-               <c:forEach items="${requestScope.inventory_loc}" var="inven" varStatus="loopTagStatus">
-                      <option value="${inven.branch_name}">${inven.branch_name}
-                   </c:forEach>
-                   </select>
+					<c:forEach items="${requestScope.inventory_loc}" var="inven" varStatus="loopTagStatus">
+             			<option value="${inven.branch_name}">${inven.branch_name}
+             		</c:forEach>
+             		</select>
                   </div>
                   <label class="col-sm-1 col-sm-1 control-label">재고 량</label>
                   <div class="col-sm-5">
@@ -532,7 +530,7 @@ $(document).ready(function(){
         <!-- /row -->
         <!-- INPUT MESSAGES -->
        <br>
-       <button ailgn=center type="button" class="btn btn-default" onclick="bookInfoUp();"><input type="image" src="/group4erp/resources/image/update.png" width="13" height="13">&nbsp;수정</button>
+        <button type="button" class="btn btn-theme02" onclick="bookInfoUp();"><i class="fa fa-check"></i> 수정</button>
        
         <!-- /row -->
         <!-- INPUT MESSAGES -->
@@ -546,7 +544,7 @@ $(document).ready(function(){
      <footer class="site-footer">
       <div class="text-center">
         <p>
-         KOSMO 자바&빅데이터 과정 팀프로젝트
+			KOSMO 자바&빅데이터 과정 팀프로젝트
         </p>
         <div class="credits">
         <font style="font-size:12pt;">
@@ -575,18 +573,8 @@ $(document).ready(function(){
   <!--common script for all pages-->
   <script src="${ctRootlib}/common-scripts.js"></script>
   <!--script for this page-->
-  <script src="${ctRootlib}/jquery-ui-1.9.2.custom.min.js"></script>
-  <!--custom switch-->
-  <script src="${ctRootlib}/bootstrap-switch.js"></script>
-  <!--custom tagsinput-->
-  <script src="${ctRootlib}/jquery.tagsinput.js"></script>
-  <!--custom checkbox & radio-->
-  <script type="text/javascript" src="${ctRootlib}/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-  <script type="text/javascript" src="${ctRootlib}/bootstrap-daterangepicker/date.js"></script>
-  <script type="text/javascript" src="${ctRootlib}/bootstrap-daterangepicker/daterangepicker.js"></script>
-  <script type="text/javascript" src="${ctRootlib}/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
-  <script src="${ctRootlib}/form-component.js"></script>
-
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </body>
 
 </html>

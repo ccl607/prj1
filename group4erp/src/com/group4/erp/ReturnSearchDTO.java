@@ -11,7 +11,7 @@ public class ReturnSearchDTO {
 	private String dateFrom;
 	private String dateTill;
 	private String searchToday;
-
+	
 	public String getReturn_dt() {
 		return return_dt;
 	}
@@ -85,5 +85,4 @@ public class ReturnSearchDTO {
 	public void setSort(String sort) {
 		this.sort = sort;
 	}
-
 }

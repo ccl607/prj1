@@ -53,6 +53,10 @@
 		});
 		 */
 	}
+
+	function reset(){
+		document.workStateListSearch.reset();
+	}
 </script>
 
 </head>
@@ -96,9 +100,6 @@
 	
 	<!-- <form name="workDaysMng" method="post" action="/group4erp/workDaysList.do"> -->
 		
-			
-			
-	
 			<!-- 메인 목록 시작 -->
 			<table class="workDayStateList tab" name="workDayStateList" width="80%" cellpadding="5" cellspacing="5">
 				<thead>

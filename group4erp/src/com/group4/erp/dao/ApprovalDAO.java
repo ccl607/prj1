@@ -29,5 +29,13 @@ public interface ApprovalDAO {
 	int insertApproval_dayOff(ApprovalDTO approvalDTO);
 	
 	int updateApprovalProc(ApprovalDTO approvalDTO);
+	
+	int insertBTripApproval(ApprovalDTO approvalDTO);
+	
+	int getMyReApprovalCnt(String document_no);
+	
+	int deleteDayOffApproval(int dayoff_apply_no);
+	
+	int updateBTripApprovalProc(ApprovalDTO approvalDTO);
 
 }

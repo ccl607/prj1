@@ -48,7 +48,7 @@
 <!-- <link href="${pageContext.request.contextPath}/resources/test.css?ver=1" rel="stylesheet" type="text/css"> -->
 <!-- <link href="${ctRoot}/resources/common.css" rel="stylesheet" type="text/css"> -->
 <link href="/group4erp/resources/test.css?ver=1" rel="stylesheet" type="text/css">
-<link href="/group4erp/resources/component.css?ver=1" rel="stylesheet" type="text/css">
+<link href="/group4erp/resources/component.css" rel="stylesheet" type="text/css">
 <script src = "${ctRoot}/resources/jquery-1.11.0.min.js" type="text/javascript"></script>
 <script src = "${ctRoot}/resources/common.js?ver=1"></script>
 
