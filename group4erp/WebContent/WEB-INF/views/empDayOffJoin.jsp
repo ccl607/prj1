@@ -89,8 +89,8 @@ $(document).ready(function(){
 
 	getMonth();
 	getYearMonth();
+
 	startTime();
-	
 	
 	$('[name=dayoff_cd]').change(function(){
 		var dayval = $('[name=dayoff_cd]').val();
@@ -388,6 +388,7 @@ $(document).ready(function(){
         <!--  notification start -->
         <ul class="nav top-menu">
           <!-- settings start -->
+
           <!-- notification dropdown end -->
           <li><!-- 
             <table>

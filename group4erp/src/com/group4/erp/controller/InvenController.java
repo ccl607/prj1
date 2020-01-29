@@ -224,7 +224,7 @@ public class InvenController {
 		
 		List<Map<String, String>> category = this.invenService.getCategory();
 		mav.addObject("category", category);
-		
+
 		return mav;
 	}
 	

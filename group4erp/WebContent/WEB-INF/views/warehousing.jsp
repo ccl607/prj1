@@ -103,7 +103,7 @@
 /* 			$('[name=rowCntPerPage]').change(function(){
 				goSearch();
 			}); */
-			
+
 			startTime();
 			
 			 $('[name=rowCntPerPageDown]').change(function(){
@@ -345,6 +345,7 @@
         <!--  notification start -->
         <ul class="nav top-menu">
           <!-- settings start -->
+
           <!-- notification dropdown end -->
           <li><!-- 
      		 <table>

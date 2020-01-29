@@ -80,6 +80,7 @@
 
    $(document).ready(function(){
 
+
 	   startTime();
 	   
       $("#evnt_start_dt").datepicker({
@@ -98,7 +99,6 @@
             }
       });
       
-   
       $(".updateArea").hide();
 
 
@@ -452,6 +452,7 @@
                 <a href="/group4erp/viewEmpWorkStateList.do"><i class="fa fa-list"></i>직원별 근무현황</a>
               </li>
                -->
+
               <li>
                 <a href="/group4erp/viewEmpDayOffList.do"><i class="fa fa-list"></i>직원별 휴가 현황</a>
               </li>
@@ -583,6 +584,7 @@
 			</table>
 			<table><tr><td height="10"></td></tr></table>
 			<form name="eventScheduleForm" method="post" action="/group4erp/reserveEvent.do">
+
              <table class="eventListTable table table-striped table-advance table-hover table-bordered" width="90%" border=0 cellspacing=0 cellpadding=5>
              <thead>
 				<tr>

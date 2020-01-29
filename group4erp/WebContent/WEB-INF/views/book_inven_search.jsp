@@ -153,6 +153,7 @@ $(document).ready(function(){
 		   document.book_inventory_search_form.reset();
 	   }
 
+
 	   
 	   
 </script>
@@ -296,8 +297,8 @@ $(document).ready(function(){
               <li>
                 <a href="/group4erp/viewEmpList.do"><i class="fa fa-info-circle"></i>직원정보</a>
               </li>
-              <li>
-                <a href="/group4erp/viewSalList.do"><i class="fa fa-file"></i>급여명세서 조회</a>
+              <li class="active">
+              	<a href="/group4erp/viewEmpSalInfo.do"><i class="fa fa-file"></i>급여명세서 조회</a>
               </li>
               <!-- 
               <li>
@@ -352,6 +353,7 @@ $(document).ready(function(){
     <section id="main-content">
       <section class="wrapper" style="text-align:left;">
       <table width=99%> <tr> <td>
+
         <h3><i class="fa fa-angle-right"></i> 재고 관리</h3>
        <td align=right>
        <button type="button" class="btn btn-theme04" onclick="goNewBookInfo();"><i class="fa fa-book"></i> 서적 등록</button>
@@ -367,6 +369,7 @@ $(document).ready(function(){
 			<table class="searchTable" style="border: 0px;">
 				<tr>
 					<th width="8%" style="text-align:right;"><b>* 분야&nbsp;</b></th>
+
 					<td colspan=2 width="50%" align=left>
 					<c:forEach items="${requestScope.category}" var="cat" varStatus="loopTagStatus">
 							&nbsp;<input type="checkbox" name="category_name" value="${cat.cat_name}">${cat.cat_name}

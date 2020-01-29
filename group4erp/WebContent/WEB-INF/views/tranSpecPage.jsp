@@ -100,6 +100,7 @@ $(document).ready(function(){
         <ul class="nav top-menu">
           <!-- settings start -->
           <!-- notification dropdown end -->
+
           <li><!-- 
             <table>
                <tr>
@@ -280,6 +281,7 @@ $(document).ready(function(){
       	<td>
       	<h3 align=right><i class="fa fa-arrow-left" onclick="goBack();" style="cursor:pointer;"></i></h3>
         </table>
+        
         <div class="col-lg-12 mt">
           <div class="row content-panel">
             <div class="col-lg-10 col-lg-offset-1">

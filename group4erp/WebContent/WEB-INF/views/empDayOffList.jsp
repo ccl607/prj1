@@ -38,6 +38,7 @@
  
    <style type="text/css" media="screen">
        .ko_day { text-indent : -9999px; background: #eee url(/imgs/korea.png) no-repeat center;}
+
 .searchTable{
 	border-collapse: 1px collapse !important;
 }
@@ -62,6 +63,7 @@
 	text-align: right;
 	font-weight: bold;
 }
+
    </style>
 
 
@@ -69,11 +71,13 @@
    
 
       $(document).ready(function(){
-         
+
+	//headerSort("dayOffList", 0);
     	  startTime();
 
          $('[name=rowCntPerPageDown]').change(function(){
   		   $('[name=rowCntPerPage]').val( $(this).val() );
+
             goDayoffSearch();
          });
          
@@ -107,25 +111,13 @@
    
       function goDayoffSearch(){
          document.empDayoffSearch.submit();
+
       }
 
-      function goDayoffSearchAll(){
-         document.empDayoffSearch.reset();
-         $("[name=empDayoffSearch] [name=selectPageNo]").val(1)
-         $("[name=empDayoffSearch] [name=rowCntPerPage]").val(10);
-         $("[name=empDayoffSearch] [name=sort]").val('');
-         goDayoffSearch();
-      }
-
-      /* function getNowtime() {
-         var today = new Date();
-         var year = today.getFullYear(); 
-         var month = today.getMonth()+1; 
-         var date = today.getDate();
-         var week = getWeek(today);
 
          if(month < 10 ) {month = "0"+month;}
          if (date<10){date = "0" + date;}
+
 
          //alert( document.write(year) );
          //return 'abc';
@@ -133,6 +125,7 @@
          $("#nowtime").text('2019-09-09');         
          //return year + "년 " +month + "월 " + date + "일 ("+ week +") " + hour + "시 " + minute + "분 " +second + "초 ";
       } */
+
 
       var cd = $("[name=addTr]").find("[name=dayoff_name]").val();
       var dateS = null;
@@ -145,6 +138,8 @@
       var dayoff_apply_dt = null;
       var dtfromval = null;
       var dttillval = null;
+
+
 
       function addUpdelTr(ele, emp_no){
          //console.log(ele);
@@ -178,6 +173,7 @@
          var dttill = $(ele).children().eq(7).text();
          dttillval = dttill.replace(dttill.substr(11,2),"").trim();
 
+
          addhtmlTr += "<tr><th>복귀 예정일</th><td><input type='text' class='form-control round-form' name='end_dayoff' id='dateTill' size='15' value='"+dttillval+"'><input type='hidden' name='emp_no' value='"+emp_no+"'></td></tr>";
          addhtmlTr += "<tr><th>휴가 신청일수</th><td>";
          addhtmlTr += "<input type='text' class='form-control round-form' style='background-color:#EBEBE4; box-shadow:none; border: 1px solid lightgray; text-align:center;' name='using_dayoff' size='1' value='"+$(ele).children().eq(8).text()+"'readonly/>";
@@ -187,7 +183,7 @@
          addhtmlTr += "&nbsp;&nbsp;<button type='button' class='btn btn-default' onclick='goReset();'><input type='image' src='/group4erp/resources/image/reset.png' width='13' height='13'>초기화</button>"
          addhtmlTr += "&nbsp;&nbsp;</div><div style='height:20'></div></td><tr>";
          
-         
+        
          /* var addhtmlTr = "<tr name='addTr'><td align=center></td>";
          addhtmlTr += "<td align=center>"+$(ele).children().eq(1).text()+"</td>";
          addhtmlTr += "<td align=center>"+$(ele).children().eq(2).text()+"</td>";
@@ -218,6 +214,7 @@
          $(ele).after(addhtmlTr);
          inputData("[name=dayoff_name]", $(ele).children().eq(5).text());
          
+
          $('[name=addTr]').hide();
          $('[name=addTr]').show(1000);
          
@@ -225,9 +222,6 @@
          $("[name='addTr']").siblings();
          //$("[name=dayOffList]").addClass(dayOffList);
           */
-
-
-
 
          
              /*
@@ -541,9 +535,11 @@
       function dayoffClose(close){
          //$(close).parent().parent().prev().remove();   
          //$(close).parent().remove();
+
          $("[name=addTr]").hide(1000, function(){
         	 $("[name=addTr]").remove();
          });
+
       }
 
       var holidays = [
@@ -700,6 +696,7 @@
         <ul class="nav top-menu">
           <!-- settings start -->
           <!-- notification dropdown end -->
+
           <li><!-- 
             <table>
                <tr>
@@ -820,9 +817,20 @@
               <li>
                 <a href="/group4erp/viewEmpList.do"><i class="fa fa-info-circle"></i>직원정보</a>
               </li>
-              <li>
-                <a href="/group4erp/viewSalList.do"><i class="fa fa-file"></i>급여명세서 조회</a>
-              </li>
+				<c:if test="${emp_id eq '600001'}">
+                	<li>
+              			<a href="/group4erp/viewSalList.do"><i class="fa fa-file"></i>급여지급대장 조회</a>
+              		</li>	
+              		<li>
+              			<a href="/group4erp/viewEmpSalInfo.do"><i class="fa fa-file"></i>급여명세서 조회</a>
+              		</li>	
+				</c:if>
+                   
+                <c:if test="${emp_id != '600001'}">
+                	<li>
+              			<a href="/group4erp/viewEmpSalInfo.do"><i class="fa fa-file"></i>급여명세서 조회</a>
+              		</li>	
+                </c:if>
               <!-- 
               <li>
                 <a href="/group4erp/viewEmpWorkStateList.do"><i class="fa fa-list"></i>직원별 근무현황</a>
@@ -1140,6 +1148,7 @@
          <input type="hidden" name="selectPageNo">
          <br>
       <div align=center>&nbsp;<span class="pagingNumber"></span>&nbsp;</div>
+
       <%-- <c:if test="${empty getDayOffList}">
          금일은 휴가자가 없습니다.
       </c:if> --%>

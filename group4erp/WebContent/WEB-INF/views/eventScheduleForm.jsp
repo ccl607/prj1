@@ -63,6 +63,7 @@
 		var evnt_no = $("#event_no").html();
 		//alert(evnt_no);
 		inputData("[name=evnt_no]", evnt_no);
+
 			
 		$("#evnt_start_dt").datepicker({
 			dateFormat : 'yy-mm-dd',
@@ -277,6 +278,7 @@
 			$("[name = tot_est_cost]").focus();
 			return;
 		}
+
 		
 		if(confirm("정말 저장하겠습니까?")==false) {
 			return;
@@ -285,6 +287,7 @@
 		money = money.replace(/,/gi, "");
 		inputData("[name=tot_est_cost]", money);
 		
+
 		$.ajax({
 			url : "/group4erp/updateEventProc.do"	//접속할 서버쪽 url 주소 지정
 			, type : "post"					//전송 방법 설정
@@ -575,6 +578,7 @@
               </div>
               <input type="hidden" name="evnt_no" value="${evnt_no}">
 			  <input type="hidden" name="emp_no" value="${emp_no}">
+
 	</form>
 			  <br>
               <div class="form-send">

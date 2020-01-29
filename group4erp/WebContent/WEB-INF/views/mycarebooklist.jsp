@@ -95,7 +95,7 @@
    $(document).ready(function(){   
 
       //goSearchMyWorkList();
-      
+
       startTime();
       
       $('[name=rowCntPerPageDown]').change(function(){
@@ -263,10 +263,12 @@
    }
    
    function closeTr(){
+
 	   var delTr = $('[name=mycarebookTable] [name=test]');
 	   delTr.hide(1000, function(){
 		  delTr.remove(); 
 	   });
+
    }
    
    function goAllReset(){

@@ -3,7 +3,9 @@
 <%@ include file = "/WEB-INF/views/common.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -323,9 +325,23 @@
               <li>
                 <a href="/group4erp/viewEmpList.do"><i class="fa fa-info-circle"></i>직원정보</a>
               </li>
-              <li class="active">
-                <a href="/group4erp/viewSalList.do"><i class="fa fa-file"></i>급여명세서 조회</a>
-              </li>
+             
+                   <c:if test="${emp_id eq '600001'}">
+                   		<li class="active">
+              				<a href="/group4erp/viewSalList.do"><i class="fa fa-file"></i>급여지급대장 조회</a>
+              			</li>	
+              			<li class="active">
+              				<a href="/group4erp/viewEmpSalInfo.do"><i class="fa fa-file"></i>급여명세서 조회</a>
+              			</li>	
+                   </c:if>
+                   
+                   <c:if test="${emp_id != '600001'}">
+                   		<li class="active">
+              				<a href="/group4erp/viewEmpSalInfo.do"><i class="fa fa-file"></i>급여명세서 조회</a>
+              			</li>	
+                   </c:if>
+              	
+             
               <!-- 
               <li>
                 <a href="/group4erp/viewEmpWorkStateList.do"><i class="fa fa-list"></i>직원별 근무현황</a>
@@ -463,6 +479,7 @@
             
                <td><input type="hidden" name="jikup" value="${empSal.jikup}">${empSal.jikup}</td>
                <td><input type="hidden" name="emp_name" value="${empSal.emp_name}">${empSal.emp_name}</td>
+
                <td><input type="hidden" name="month_sal" value="${empSal.month_sal}"><fmt:formatNumber type="number" maxFractionDigits="3" value="${empSal.month_sal}" />원</td>
                <td><input type="hidden" name="mess_allowance" value="${empSal.mess_allowance}"><fmt:formatNumber type="number" maxFractionDigits="3" value="${empSal.mess_allowance}" />원</td> 
                <td><input type="hidden" name="bus_trip_bonus" value="${empSal.bus_trip_bonus}"><fmt:formatNumber type="number" maxFractionDigits="3" value="${empSal.bus_trip_bonus}" />원</td> 
@@ -473,6 +490,7 @@
                <td><input type="hidden" name="pension" value="${empSal.pension}"><fmt:formatNumber type="number" maxFractionDigits="3" value="${empSal.pension}" />원</td> 
                <td><input type="hidden" name="deduct" value="${empSal.deduct}"><fmt:formatNumber type="number" maxFractionDigits="3" value="${empSal.deduct}" />원</td> 
                <td><input type="hidden" name="real_sal" value="${empSal.real_sal}"><fmt:formatNumber type="number" maxFractionDigits="3" value="${empSal.real_sal}" />원</td>
+
             </tr>
          </c:forEach>
          </tbody>

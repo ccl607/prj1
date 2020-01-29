@@ -71,8 +71,10 @@
 				"${mouseOverColor}"			//마우스 온 시 배경색
 		);
 	
+
 		$('[name=rowCntPerPageDown]').change(function(){
 	         $('[name=rowCntPerPage]').val($(this).val());
+
 			goSearch();
 		});
 
@@ -92,6 +94,7 @@
 		//$('[name=empSalForm] [name=rowCntPerPage]').val("${salListSearchDTO.rowCntPerPage}");
 		//$('[name=empSalForm] [name=selectPageNo]').val("${salListSearchDTO.selectPageNo}");
 		
+
 		inputData('[name=rowCntPerPageDown]', "${salListSearchDTO.rowCntPerPage}");
 		inputData('[name=selectPageNo]',"${salListSearchDTO.selectPageNo}");
 		inputData('[name=sort]',  "${salListSearchDTO.sort}");
@@ -126,6 +129,7 @@
 </script>
 
 </head>
+
 <body>
 <section id="container">
     <!-- **********************************************************************************************************************************************************
@@ -264,9 +268,22 @@
               <li>
                 <a href="/group4erp/viewEmpList.do"><i class="fa fa-info-circle"></i>직원정보</a>
               </li>
-              <li class="active">
-                <a href="/group4erp/viewSalList.do"><i class="fa fa-file"></i>급여명세서 조회</a>
-              </li>
+                   <!-- 인사부장만 급여지급대장 조회 메뉴를 볼 수 있다. -->
+                   <c:if test="${emp_id eq '600001'}">
+                   		<li class="active">
+              				<a href="/group4erp/viewSalList.do"><i class="fa fa-file"></i>급여지급대장 조회</a>
+              			</li>	
+              			<li class="active">
+              				<a href="/group4erp/viewEmpSalInfo.do"><i class="fa fa-file"></i>급여명세서 조회</a>
+              			</li>	
+                   </c:if>
+                   
+                   <c:if test="${emp_id != '600001'}">
+                   		<li class="active">
+              				<a href="/group4erp/viewEmpSalInfo.do"><i class="fa fa-file"></i>급여명세서 조회</a>
+              			</li>	
+                   </c:if>
+                   
               <!-- 
               <li>
                 <a href="/group4erp/viewEmpWorkStateList.do"><i class="fa fa-list"></i>직원별 근무현황</a>
@@ -321,7 +338,7 @@
       <section class="wrapper" style="text-align:left;">
        <table width=99%>
            <tr>
-              <td width=20%> <h3><i class="fa fa-angle-right"></i> ${timeDTO.now_year}년도&nbsp;${timeDTO.now_month}월분 급여대장</h3> </td>
+              <td width=20%> <h3><i class="fa fa-angle-right"></i> ${timeDTO.now_year}년도&nbsp;${timeDTO.now_month}월분 급여지급내역</h3> </td>
               <td width=50% align="center"><h3> 직책 : ${jikup}	&nbsp;&nbsp; 성명 :${emp_name} </h3> </td>
                 <td align=right><h3><i class="fa fa-arrow-left" onclick="goBack();" style="cursor:pointer;"></i></h3> </td>
              </tr>
@@ -515,12 +532,14 @@
 									<fmt:formatNumber type="number" maxFractionDigits="3" value="${myPayCheckList.bus_trip_bonus}" />원
 								</c:if>
 							</td>
+
 							<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${myPayCheckList.sum_payable}" />원</td>
 							<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${myPayCheckList.emp_insurance}" />원</td>
 							<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${myPayCheckList.health}" />원</td>
 							<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${myPayCheckList.pension}" />원</td> 
 							<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${myPayCheckList.deduct}" />원</td>
 							<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${myPayCheckList.real_sal}" />원</td>
+
 						</tr>
 		
 					 </c:forEach>
@@ -544,6 +563,7 @@
           <!-- /col-md-12 -->
         </div>
         <br>
+
 
         
         <!-- /row -->

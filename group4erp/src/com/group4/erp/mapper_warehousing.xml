@@ -85,6 +85,7 @@
               or upper(w.order_inven_no) like upper('%${wh_keyword}%')
          )
 
+
 		</if>
 		
 	</sql> 
@@ -133,18 +134,18 @@
 	
 	<select id="warehContent" parameterType="String" resultType="com.group4.erp.WarehousingSearchDTO">
 		select 
-		    (select emp_name from employee where emp_no = (select emp_no from book where isbn13 = (select isbn13 from books_inven_order_info where order_inven_no = w.order_inven_no))) as "emp_name" 
-    		,(select to_char(order_dt,'YYYY-MM-DD DY', 'NLS_DATE_LANGUAGE=KOREAN') from books_inven_order_info where order_inven_no = w.order_inven_no)||''  as "order_dt" 
-    		,(select order_stock_cnt from books_inven_order_info where order_inven_no = w.order_inven_no )||''  as "order_stock_cnt"  
-    		,(select cost from books_inven_order_info where order_inven_no = w.order_inven_no)||'' as "cost"
-    		,(select supply_rate from books_inven_order_info where order_inven_no = w.order_inven_no )||''  as "supply_rate"
-    		,(select to_char(store_req_dt,'YYYY-MM-DD DY', 'NLS_DATE_LANGUAGE=KOREAN') from books_inven_order_info where order_inven_no = w.order_inven_no)||'' as "store_req_dt" 
-    		,(select branch_name from code_branch where branch_cd = (select branch_cd from books_inven_order_info where order_inven_no = w.order_inven_no))||''  as "branch_name"  
-    		,(select isbn13 from books_inven_order_info where order_inven_no = w.order_inven_no) as "isbn"
-    		,(select book_name from book where isbn13 = (select isbn13 from books_inven_order_info where order_inven_no = w.order_inven_no)  ) as "book_name"
-    		,(select publisher from book where isbn13 = (select isbn13 from books_inven_order_info where order_inven_no = w.order_inven_no)  ) as "book_publisher" 
-    		,(select cat_name from CODE_CATEGORY where cat_cd = (select cat_cd from book where isbn13 = (select isbn13 from books_inven_order_info where order_inven_no = w.order_inven_no )) ) as "cat_name"
-		from warehousing_info w
+            (select emp_name from employee where emp_no = (select emp_no from book where isbn13 = (select isbn13 from books_inven_order_info where order_inven_no = w.order_inven_no))) as "emp_name" 
+            ,(select to_char(order_dt,'YYYY-MM-DD DY', 'NLS_DATE_LANGUAGE=KOREAN') from books_inven_order_info where order_inven_no = w.order_inven_no)||''  as "order_dt" 
+            ,to_char((select order_stock_cnt from books_inven_order_info where order_inven_no = w.order_inven_no ),'999,999,999')  as "order_stock_cnt"  
+            ,to_char((select cost from books_inven_order_info where order_inven_no = w.order_inven_no),'999,999,999,999') as "cost"
+            ,(select supply_rate from books_inven_order_info where order_inven_no = w.order_inven_no )||''  as "supply_rate"
+            ,(select to_char(store_req_dt,'YYYY-MM-DD DY', 'NLS_DATE_LANGUAGE=KOREAN') from books_inven_order_info where order_inven_no = w.order_inven_no)||'' as "store_req_dt" 
+            ,(select branch_name from code_branch where branch_cd = (select branch_cd from books_inven_order_info where order_inven_no = w.order_inven_no))||''  as "branch_name"  
+            ,(select isbn13 from books_inven_order_info where order_inven_no = w.order_inven_no) as "isbn"
+            ,(select book_name from book where isbn13 = (select isbn13 from books_inven_order_info where order_inven_no = w.order_inven_no)  ) as "book_name"
+            ,(select publisher from book where isbn13 = (select isbn13 from books_inven_order_info where order_inven_no = w.order_inven_no)  ) as "book_publisher" 
+            ,(select cat_name from CODE_CATEGORY where cat_cd = (select cat_cd from book where isbn13 = (select isbn13 from books_inven_order_info where order_inven_no = w.order_inven_no )) ) as "cat_name"
+        from warehousing_info w
 		where w.order_inven_no = #{order_inven_no}
 	</select>
 	

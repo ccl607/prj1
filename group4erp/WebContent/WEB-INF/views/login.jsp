@@ -58,6 +58,7 @@
    align:center;
 }
 body{
+
   /* background: #2f323a; */
   background: #444c57;
   color:white;

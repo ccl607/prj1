@@ -140,6 +140,7 @@
 				</tr>
 				<tr>
 					<th width="100">메모</td><td colspan="3"><textarea name="e_work_comment" cols="40" rows="10" placeholder="반려할 시 사유를 기입해주세요."></textarea></td>
+
 				</tr>	
 			</table><br>
 			<h4>위와 같이 출장을 신청하오니 검토 부탁드립니다.</h4>	

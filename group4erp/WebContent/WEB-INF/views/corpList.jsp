@@ -64,6 +64,7 @@
 .tableth th{
 	text-align: right;
 	font-weight: bold;
+
 }
 
 </style>
@@ -73,9 +74,10 @@
 	$(document).ready(function(){
 
 		//$(".updateArea").hide();
-	
+
 		startTime();
 		
+
 		$('[name=rowCntPerPageDown]').change(function(){
 		   $('[name=rowCntPerPage]').val( $(this).val() );
 			goSearch();
@@ -166,6 +168,7 @@
     	htmlCode += "<td width=30% align=right>"
     	htmlCode += "<h3 align=right><i class='fa fa-times' onClick='closeThisTr();' style='cursor:pointer;'></i>&nbsp;&nbsp;</h3> </table>"
 		htmlCode += 	"<form name='updateCorpForm' method='post' action='/group4erp/updateCorpInfoProc.do'>"
+
 		htmlCode += 		"<table class='searchTable tableth' align='center'>"
 		htmlCode += 			"<tr> <th>사업자번호</th> <td><input type='text' class='form-control round-form' size='30' name='new_corp_no' value="+corp_no+"> </td> </tr>"
 		htmlCode += 			"<tr> <th>상호명 </th> <td><input type='text' class='form-control round-form' size='30' name='corp_name' value='"+corp_name+"'> </td> </tr>"
@@ -182,7 +185,9 @@
 		htmlCode += 			"<tr> <th>연락처</th> <td><input type='text' class='form-control round-form' size='30' name='corp_tel' value='"+corp_tel+"'></td> </tr>"
 		htmlCode += 			"<tr> <th>FAX</th> <td><input type='text' class='form-control round-form' size='30' name='corp_fax' value='"+corp_fax+"'></td> </tr>"
 		htmlCode += 		"</table><br>"
+
 		htmlCode +=			"<button type='button' class='btn btn-theme02' onClick='updateCorpInfoProc("+corp_no+");'><i class='fa fa-check'></i> 수정</button> &nbsp;"
+
 		htmlCode +=         "<input type='hidden' name='corp_no' value="+corp_no+">"
 		htmlCode +=  	"</form>"
 		htmlCode += "</td>"
@@ -549,6 +554,7 @@
 						</select> 행보기
 			</table>
 			<table><tr><td height="10"></td></tr></table>
+
              <table class="corpListTable table table-striped table-advance table-hover table-bordered" width="90%" border=0 cellspacing=0 cellpadding=5>
              <thead>
 				<tr>

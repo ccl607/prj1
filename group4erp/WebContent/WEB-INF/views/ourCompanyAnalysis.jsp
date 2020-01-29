@@ -36,6 +36,7 @@
          var cnt = $(this).filter(":checked").length;
          var cat_cd ='';
 
+
          if(cnt==1) {
             //change 이벤트가 발생한 체크박스의 형제들의 체크를 모두 풀기
             $(this).siblings().prop("checked", false);
@@ -57,7 +58,6 @@
 
 
    function drawHireOrResignChart() {
-
       var hireOrResign_chart_data = google.visualization.arrayToDataTable(${empHireOrResign_data});
       var hireOrResign_chart_options = {
          title: '직원 변동 현황',
@@ -66,6 +66,7 @@
          lineWidth: 4,
          colors:['#f0ad4e', '#ed5564', '#4eccc4'],
          /* '#4eccc4','#4eccc4' */
+
          animation:{
             "startup": true,
               duration: 1000,
@@ -78,7 +79,9 @@
                          
       hireOrResign_chart.draw(hireOrResign_chart_data, hireOrResign_chart_options);
 
+
    }
+
 
    function drawEmployeeCntChart() {
       var employee_chart_data = google.visualization.arrayToDataTable(${employee_chart_data});
@@ -94,6 +97,7 @@
               easing: 'out',
             }
       };
+
 
       var employee_chart = new google.visualization.ColumnChart(document.getElementById('employeeChart'));
 

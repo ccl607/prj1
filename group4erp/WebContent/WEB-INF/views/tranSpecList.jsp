@@ -164,6 +164,7 @@ $(document).ready(function(){
         <ul class="nav top-menu">
           <!-- settings start -->
           <!-- notification dropdown end -->
+
           <li><!-- 
             <table>
                <tr>

@@ -89,8 +89,7 @@
 <script>
 
 $(document).ready(function(){  
-	
-	
+
 	startTime();
 	
 	$("#datepicker1").datepicker({
@@ -355,6 +354,7 @@ $(document).ready(function(){
         <!--  notification start -->
         <ul class="nav top-menu">
           <!-- settings start -->
+
           <!-- notification dropdown end -->
           <li><!-- 
             <table>
@@ -476,8 +476,8 @@ $(document).ready(function(){
               <li>
                 <a href="/group4erp/viewEmpList.do"><i class="fa fa-info-circle"></i>직원정보</a>
               </li>
-              <li>
-                <a href="/group4erp/viewSalList.do"><i class="fa fa-file"></i>급여명세서 조회</a>
+              <li class="active">
+              	<a href="/group4erp/viewEmpSalInfo.do"><i class="fa fa-file"></i>급여명세서 조회</a>
               </li>
               <!-- 
               <li>
@@ -675,7 +675,9 @@ $(document).ready(function(){
 			            	</c:if>
 		         	</c:forEach>
 					</tbody>
+
 			</table>
+
 			<br>
 			<div align=center>&nbsp;<span class="pagingNumber"></span>&nbsp;</div>
 			<br>
@@ -695,6 +697,7 @@ $(document).ready(function(){
 						<h3 align=right><i class='fa fa-times' onclick='goClose();' style='cursor:pointer;'></i>&nbsp;&nbsp;</h3>
 			</table>
 			<table class="searchTable searchTable-bordered tableth" width="50%" id="contecntTable1"  align=center>
+
 				<tr>
 					<th>책번호
 					<td colspan=2>
@@ -724,12 +727,16 @@ $(document).ready(function(){
 		</div>
 		
 		<div id="contecnt2" style="dispaly:none;">
+
 			<table width=99%> <tr> <td width=30%> <td width=40% align=center>
 	 			⏷<br>[상세 정보]<br>
 	 				<td width=30% align=right>
 						<h3 align=right><i class='fa fa-times' onclick='goClose();' style='cursor:pointer;'></i>&nbsp;&nbsp;</h3>
+
 			</table>
+
 			<table class="searchTable searchTable-bordered tableth" width="50%" id="contecntTable2" align=center>
+
 				<tr>
 					<th>책번호
 					<td colspan=2>
@@ -771,6 +778,7 @@ $(document).ready(function(){
 	 				<td width=30% align=right>
 						<h3 align=right><i class='fa fa-times' onclick='goClose();' style='cursor:pointer;'></i>&nbsp;&nbsp;</h3>
 			</table>
+
 			<table class="searchTable searchTable-bordered tableth" width="50%" id="contecntTable3" align=center>
 				<tr>
 					<th>책번호

@@ -94,8 +94,9 @@
 <script>
 
 	$(document).ready(function() {
-		
+
 		startTime();
+
 		
 		var issueYn = '${corpSearchDTO.issueYn}';
 
@@ -192,6 +193,7 @@
         <ul class="nav top-menu">
           <!-- settings start -->
           <!-- notification dropdown end -->
+
           <li><!-- 
             <table>
                <tr>

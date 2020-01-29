@@ -360,6 +360,7 @@ input::placeholder {
         *********************************************************************************************************************************************************** -->
          <!--header start-->
          <header class="header black-bg">
+
       <div class="sidebar-toggle-box">
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
@@ -473,6 +474,7 @@ input::placeholder {
                 <a href="/group4erp/viewEmpWorkStateList.do"><i class="fa fa-list"></i>직원별 근무현황</a>
               </li>
                -->
+
                         <li><a href="/group4erp/viewEmpDayOffList.do"><i
                               class="fa fa-list"></i>직원별 휴가 현황</a></li>
                      </ul></li>

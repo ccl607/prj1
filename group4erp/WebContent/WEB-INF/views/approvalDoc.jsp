@@ -31,11 +31,13 @@
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
+
   <SCRIPT>
   	$(document).ready(function(){
   		startTime();
   	});
   </SCRIPT>
+
 </head>
 
 <body>
@@ -56,6 +58,7 @@
         <ul class="nav top-menu">
           <!-- settings start -->
           <!-- notification dropdown end -->
+
           <li><!-- 
             <table>
                <tr>
@@ -176,8 +179,8 @@
                 <a href="/group4erp/viewEmpList.do"><i class="fa fa-info-circle"></i>직원정보</a>
               </li>
               <li>
-                <a href="/group4erp/viewSalList.do"><i class="fa fa-file"></i>급여명세서 조회</a>
-              </li>
+              	<a href="/group4erp/viewEmpSalInfo.do"><i class="fa fa-file"></i>급여명세서 조회</a>
+              </li>	
               <!-- 
               <li>
                 <a href="/group4erp/viewEmpWorkStateList.do"><i class="fa fa-list"></i>직원별 근무현황</a>
@@ -231,6 +234,7 @@
      <section id="main-content">
       <section class="wrapper site-min-height">
         <h3><i class="fa fa-angle-right"></i> 결재 정보</h3>
+
         <div class="row mt">
           <div class="col-lg-12">
             <!-- 이벤트 행사 신청 결재 -->
