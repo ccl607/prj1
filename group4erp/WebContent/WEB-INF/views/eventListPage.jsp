@@ -99,7 +99,6 @@
       });
       
    
-      headerSort("eventListTable", 0);
       $(".updateArea").hide();
 
 

@@ -398,7 +398,8 @@ $(document).ready(function(){
 			<table><tr><td height="10"></td></tr></table>
              <table class="table table-striped table-advance table-hover table-bordered" name=mycarebookTable width="90%" border=0 cellspacing=0 cellpadding=5>
              <thead>
-				<tr>						
+				<tr>
+					<th>번호</th>
 						<c:choose>
 							<c:when test="${param.sort=='1 desc'}">
 								<th style="cursor:pointer" onClick="$('[name=sort]').val(''); goSearch();  "> ▼ 발급번호</th>
@@ -462,6 +463,7 @@ $(document).ready(function(){
 					<tbody>
 					<c:forEach items='${tranSpecIssueList}' var="tranSpecIssueList" varStatus="loopTagStatus">
 							<tr align=center>
+							<td align=center>${tranSpecIssueCnt-(tranSpecSearchDTO.selectPageNo*tranSpecSearchDTO.rowCntPerPage-tranSpecSearchDTO.rowCntPerPage+1+loopTagStatus.index)+1}</td>
 							<td>${tranSpecIssueList.issue_no}</td>
 							<td>${tranSpecIssueList.corp_no}</td>
 							<td>${tranSpecIssueList.corp_name}</td>
