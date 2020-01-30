@@ -75,11 +75,12 @@
 	
 	<select id="selectEventStat" resultType="com.group4.erp.CommonChartDTO">
 		select
-		    count(e.evnt_cd) as "cnt"
+		    round(count(e.evnt_cd)*100/(select count(*) from event_info where to_char(evnt_end_dt, 'yyyy') = to_char(sysdate-365, 'yyyy')), 0) as "cnt"
 		    ,c.event_type as "title"
-		 from event_info e, code_event c
-		where c.event_cd = e.evnt_cd
+		from event_info e, code_event c
+		where c.event_cd = e.evnt_cd and to_char(e.evnt_end_dt, 'yyyy') = to_char(sysdate-365, 'yyyy')
 		group by c.event_type
+		order by count(e.evnt_cd) desc
 	</select>
 	
 	<select id="selectGenderStat" resultType="com.group4.erp.CommonChartDTO">
@@ -91,13 +92,14 @@
 		group by cus_gender
 	</select>
 	
-	<!-- <select id="selectYesterdayStat" resultType="com.group4.erp.CommonChartDTO">
+	<select id="selectYesterdayStat" resultType="com.group4.erp.CommonChartDTO">
 		select
-		    (select count(*) from return_sale_info where to_date(to_char(return_order_dt, 'YYYY-MM-DD'), 'YYYY-MM-DD') = to_date(to_char(sysdate-1, 'YYYY-MM-DD'),'YYYY-MM-DD')) as "return_cnt"
+		    (select count(*) from book where to_date(to_char(reg_dt, 'YYYY-MM-DD'), 'YYYY-MM-DD') = to_date(to_char(sysdate-1, 'YYYY-MM-DD'),'YYYY-MM-DD')) as "reg_cnt"
+		    ,(select count(*) from return_sale_info where to_date(to_char(return_order_dt, 'YYYY-MM-DD'), 'YYYY-MM-DD') = to_date(to_char(sysdate-1, 'YYYY-MM-DD'),'YYYY-MM-DD')) as "return_cnt"
 		    ,(select count(*) from order_info where to_date(to_char(order_dt, 'YYYY-MM-DD'), 'YYYY-MM-DD') = to_date(to_char(sysdate-1, 'YYYY-MM-DD'),'YYYY-MM-DD')) as "order_cnt"
 		    ,(select count(*) from corp_order_info where to_date(to_char(order_dt, 'YYYY-MM-DD'), 'YYYY-MM-DD') = to_date(to_char(sysdate-1, 'YYYY-MM-DD'),'YYYY-MM-DD')) as "corp_order_cnt"
 		from dual;
-	</select> -->
+	</select>
 	
 	<select id="selectMonthEvnt" resultType="java.util.HashMap">
 		select

@@ -62,10 +62,10 @@
 	</select>
 	
 	<select id="getMonthlyBookRegChart" resultType="com.group4.erp.ChartDTO">
-		select 
-    		(extract(year from sysdate)-1)||c.month_cd "dt",
-    		(select count(*) from book b where to_char(b.reg_dt, 'yyyymm')= (extract(year from sysdate)-1)||c.month_cd) "cnt"
-  		from code_month c order by c.month_cd
+		select
+		    c.month_cd  as "dt",
+		    (select count(*) from book b where to_char(b.reg_dt, 'yyyymm')= extract(year from sysdate)-1||c.month_cd) as "cnt"
+		from code_month c order by c.month_cd
 	
 	</select>
 	

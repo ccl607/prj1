@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.group4.erp.ChartDTO;
 import com.group4.erp.EmpApprovalCheckDTO;
 import com.group4.erp.EmployeeDTO;
+import com.group4.erp.service.AnalysisService;
 import com.group4.erp.service.LoginService;
 import com.group4.erp.service.MainService;
 
@@ -25,6 +27,8 @@ public class LoginController {
 	private LoginService loginService;
 	@Autowired
 	private MainService mainService;
+	@Autowired
+	AnalysisService analysisService;
 
 	@RequestMapping(value = "/loginForm.do")
 	public ModelAndView loginForm() {
@@ -101,12 +105,26 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/goMainTest.do")
-	public ModelAndView goMainTest(HttpSession session) {
+	public ModelAndView goMainTest(HttpSession session, ChartDTO chartDTO) {
 
 		ModelAndView mav = new ModelAndView();
 		List<Map<String, String>> monthEvnt = mainService.getMonthEvnt();
-		System.out.println("monthEvnt=>" + monthEvnt);
+		
+		List<ChartDTO> monthlyBookRegChart = this.analysisService.getMonthlyBookRegChart();
+		String monthlyBook_reg_chart_data = "[";
+		monthlyBook_reg_chart_data += "['기간', '건수']";
+		
+		for(int i=0; i<monthlyBookRegChart.size(); i++) {
+			monthlyBook_reg_chart_data += ", ['";
+			monthlyBook_reg_chart_data += monthlyBookRegChart.get(i).getDt();
+			monthlyBook_reg_chart_data += "', ";
+			monthlyBook_reg_chart_data += monthlyBookRegChart.get(i).getCnt();
+			monthlyBook_reg_chart_data += "] ";
+		}
+		monthlyBook_reg_chart_data += "]";
+		//System.out.println("monthEvnt=>" + monthEvnt);
 		mav.addObject("monthEvnt", monthEvnt);
+		mav.addObject("monthlyBook_reg_chart_data", monthlyBook_reg_chart_data);
 		mav.setViewName("test.jsp");
 		// mav.addObject("subMenu", "mainPage");
 		return mav;

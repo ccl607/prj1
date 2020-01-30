@@ -27,6 +27,9 @@
   <link href="${ctRootcss}/style.css" rel="stylesheet">
   <link href="${ctRootcss}/style-responsive.css" rel="stylesheet">
   <script src="${ctRootlib}/chart-master/Chart.js"></script>
+  
+  <script src = "https://www.google.com/jsapi"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 
 
@@ -48,6 +51,64 @@
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
+<script type="text/javascript">
+
+   google.charts.load('current', {'packages' : ['corechart'] } );
+
+   google.charts.setOnLoadCallback(drawChart);
+
+
+
+   function drawChart() {
+      var monthlyBookReg_data = google.visualization.arrayToDataTable(${monthlyBook_reg_chart_data});
+      //var data2 = google.visualization.arrayToDataTable(${corpOrder_chart_data});
+      //var data3 = google.visualization.arrayToDataTable(${dailyOrder_chart_data});
+
+      var monthlyBookReg_data_options = {   
+         //title: '월별 도서 계약 건수',
+         //width :, 
+         //height: 300,
+         colors:['#fdfdfd','#fdfdfd'],
+         lineWidth: 4,
+         backgroundColor: {
+             fill: '#FF0000',
+             fillOpacity: 0
+           },
+            hAxis: {
+            	textStyle:{color: '#fdfdfd'},
+        	   baselineColor: 'none',
+        	   ticks: []
+        	 }, 
+        	 vAxis: {
+        	   baselineColor: 'none',
+        	   ticks: [],
+        	   textStyle: {
+                   color: 'red'
+               },
+               titleTextStyle: {
+                   color: 'red'
+               }
+        	 },
+        	 legend: {
+        	        textStyle: {
+        	            color: 'white'
+        	        }
+        	    },
+         animation:{
+            "startup": true,
+              duration: 1000,
+              easing: 'out',
+            }
+      };
+
+      var monthlyBookReg_chart = new google.visualization.LineChart(document.getElementById('monthlyBookRegChart'));
+
+      monthlyBookReg_chart.draw(monthlyBookReg_data, monthlyBookReg_data_options);
+
+   }
+
+
+</script>
 </head>
 
 
@@ -278,21 +339,42 @@
               <div class="col-md-4 col-sm-4 mb">
                 <div class="grey-panel pn donut-chart">
                   <div class="grey-header">
-                    <h5>회원 연령별 비율</h5>
+                    <h5>2019 계획대비 실적 현황</h5>
                   </div>
-                  <canvas id="ageStatCanvas" height="120" width="120"></canvas>
-                  <div class="row">
-                    <div class="col-sm-6 col-xs-6 goleft">
-                    <br>
-                      <p>남자 / 여자 : </p>
-                    </div>
-                    <div class="col-sm-6 col-xs-6" id="text">
-                      <!-- <h2><font style="font-size:20pt">21%</font>
-                      	  <font style="font-size:20pt; color:darkgray;">/</font> 
-                      	  <font style="font-size:20pt; color:#1c9ca7;">21%</font>
-                      </h2> -->
-                    </div>
+                  <table width="90%">
+                  	<tr><td>&nbsp;</td></tr>
+                  	<tr>
+                  		<td width="15%"></td>
+                  		<td>
+                  			
+	                  	<!-- <div class="task-info">
+		                    <div class="desc">Dashio Admin Panel</div>
+		                    <div class="percent">40%</div>
+		                  </div> -->
+		                                    판매율<!-- <font style="font-size:8pt;">(단위:100%=30,000건)</font> --> 
+		                  <div class="progress progress-striped">
+		                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+		                      <span class="sr-only">100% Complete (success)</span>
+		                    </div>
+		                  </div>
+                  	<!-- <div width="100%" id="monthlyBookRegChart"></div> -->
+                  	</td></tr>
+                  </table>
+                  
+                  <!-- <div class="chart mt">
+                    <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div>
+                  </div> -->
+                  
+                  
+                  <div id="event_text" align="left" style="padding-left:20; padding-top:10;">
+                 <!--  <p><b>$ 17,980</b><br/>Month Income</p> -->
                   </div>
+                  
+                  
+                  
+                  
+                  
+                  
                 </div>
                 <!-- /grey-panel -->
               </div>
@@ -340,13 +422,20 @@
                 <!-- REVENUE PANEL -->
                 <div class="green-panel pn">
                   <div class="green-header">
-                    <h5>REVENUE</h5>
+                    <h5>2019 이벤트 분포 현황</h5>
                   </div>
-                  <!-- <div class="chart mt">
-                    <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div>
-                  </div> -->
-                  <div id="event_text" align="left" style="padding-left:20">
-                  <p><b>$ 17,980</b><br/>Month Income</p>
+                  <canvas id="ageStatCanvas" height="120" width="120"></canvas>
+                  <div class="row">
+                    <!-- <div class="col-sm-6 col-xs-6 goleft" id="text1"> -->
+                    <div class="col-sm-12 col-xs-12 goleft" id="text1">
+                    </div>
+                    <div class="col-sm-12 col-xs-12" id="text">
+                    	<br>
+                      <!-- <h2><font style="font-size:20pt">21%</font>
+                      	  <font style="font-size:20pt; color:darkgray;">/</font> 
+                      	  <font style="font-size:20pt; color:#1c9ca7;">21%</font>
+                      </h2> -->
+                    </div>
                   </div>
                   
                 </div>
@@ -368,31 +457,77 @@
                <div class="col-md-8 mb">
                 <div class="message-p pn">
                   <div class="message-header">
-                    <h5>DIRECT MESSAGE</h5>
+                    <h5>Yesterday summary</h5>
                   </div>
                   <div class="row">
-                    <div class="col-md-3 centered hidden-sm hidden-xs">
-                      <img src="${ctRootImg}/ui-danro.jpg" class="img-circle" width="65">
-                    </div>
-                    <div class="col-md-9">
-                      <p>
+                   
+                    <div class="col-md-12">
+                    	<table width="100%">
+                    		<tr>
+                    		<td width="20%">
+                    		<table ><tr><td></td></tr></table>
+                    		</td>
+                    		<td>
+	                    	<table id="yesterdaySum">
+	                    		<tr height="30"></tr>
+	                    		<tr>
+	                    			<td>
+	                    				<h4><i class="fa fa-chevron-circle-right"></i>&nbsp;</h4> 
+	                    			</td>
+	                    			<td>
+	                    				어제 도서계약 건수 :&nbsp;
+	                    			</td>
+	                    			<td id="firstTd"></td>
+	                    			
+	                    			<td width="30%"></td>
+	                    			
+	                    			<td>
+	                    				<h4><i class="fa fa-chevron-circle-right"></i>&nbsp;</h4> 
+	                    			</td>
+	                    			<td >
+	                    				어제 주문 건수 :&nbsp;
+	                    			</td>
+	                    			<td id="secondTd"></td>
+	                    		</tr>
+	                    		<tr height="20"></tr>
+	                    		<tr>
+	                    			<td>
+	                    				<h4><i class="fa fa-chevron-circle-right"></i>&nbsp;</h4> 
+	                    			</td>
+	                    			<td>
+	                    				어제 기업 주문 건수 :&nbsp;
+	                    			</td>
+	                    			<td id="thirdTd"></td>
+	                    			
+	                    			<td width="30%"></td>
+	                    			
+	                    			<td>
+	                    				<h4><i class="fa fa-chevron-circle-right"></i>&nbsp;</h4> 
+	                    			</td>
+	                    			<td>
+	                    				어제 반품 건수 :&nbsp;
+	                    			</td>
+	                    			<td id="fourthTd"></td>
+	                    		</tr>
+	                    	</table>
+	                    	</td>
+	                    	</tr>
+	                    </table>
+                    	
+                      <!-- <p>
                         <name>Dan Rogers</name>
                         sent you a message.
                       </p>
                       <p class="small">3 hours ago</p>
-                      <p class="message">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-                      <form class="form-inline" role="form">
-                        <div class="form-group">
-                          <input type="text" class="form-control" id="exampleInputText" placeholder="Reply Dan">
-                        </div>
-                        <button type="submit" class="btn btn-default">Send</button>
-                      </form>
+                      <p class="message">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p> -->
+                   
                     </div>
                   </div>
                 </div>
                 <!-- /Message Panel-->
               </div>
               <!-- /col-md-8  -->
+              <%-- 
             </div>
             <div class="row">
               <!-- TWITTER PANEL -->
@@ -486,7 +621,7 @@
                   </script>
                   <h3>60% USED</h3>
                 </div>
-              </div>
+              </div> --%>
               <!-- /col-md-4 -->
             </div>
             <!-- /row -->
@@ -495,9 +630,9 @@
           <!-- **********************************************************************************************************************************************************
               RIGHT SIDEBAR CONTENT
               *********************************************************************************************************************************************************** -->
-          <div class="col-lg-3 ds">
+          <div class="col-lg-3 ds" style="height:100%">
             <!--COMPLETED ACTIONS DONUTS CHART-->
-            <div class="donut-main">
+            <!-- <div class="donut-main">
               <h4>COMPLETED ACTIONS & PROGRESS</h4>
               <canvas id="newchart" height="130" width="130"></canvas>
               <script>
@@ -513,7 +648,7 @@
                 var myDoughnut = new Chart(document.getElementById("newchart").getContext("2d")).Doughnut(doughnutData);
               </script>
             </div>
-            <!--NEW EARNING STATS -->
+            NEW EARNING STATS
             <div class="panel terques-chart">
               <div class="panel-body">
                 <div class="chart">
@@ -525,7 +660,7 @@
                   <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,564,455]"></div>
                 </div>
               </div>
-            </div>
+            </div> -->
             <!--new earning end-->
             <!-- RECENT ACTIVITIES SECTION -->
             <h4 class="centered mt"><font style="font-size:12pt;">이번달 이벤트</font></h4>
@@ -669,7 +804,7 @@
 		$.each(data.sellingStat, function(idx, ele) {
 			html += "<div class=\"bar\">";
 			html += "<div class=\"title\"><font style='font-size:12pt; font-weight:bold'>" + ele.title + "</font></div>";
-			html += "<div class=\"value tooltips\" data-original-title=\"" + ele.cnt + "\" data-toggle=\"tooltip\" data-placement=\"top\">" + ele.cnt/10000*100 + "%</div>";
+			html += "<div class=\"value tooltips\" data-original-title=\"" + ele.cnt + "\" data-toggle=\"tooltip\" data-placement=\"top\">" + ele.cnt/1000*100 + "%</div>";
 			html += "</div>";
 		});
 		/* $.each(data.sellingStat, function(idx, ele) {
@@ -681,26 +816,26 @@
 		
 		$("#sellingStatDiv").append(html);
 
-
-		var ageData = [ {
-		    value: data.ageStat[0].cnt,
-		    color: 'red'
+		console.log("data.ageStat", data.ageStat);
+		var ageData = [{
+		    value: data.eventStat[0].cnt,
+		    color: '#b97df0'
 		}
 		,{
-		    value: data.ageStat[1].cnt,
-		    color: 'orange'
+		    value: data.eventStat[1].cnt,
+		    color: '#5cb0fa'
 		}
 		,{
-		    value: data.ageStat[2].cnt,
-		    color: '#FF6B6B'
-		}
-		,{
-		    value: data.ageStat[3].cnt,
+		    value: data.eventStat[2].cnt,
 		    color: '#fdfdfd'
 		}
 		,{
-		    value: data.ageStat[4].cnt,
-		    color: 'yellow'
+		    value: data.eventStat[3].cnt,
+		    color: '#baf07d'
+		}
+		,{
+		    value: data.eventStat[4].cnt,
+		    color: '#f07d7d'
 		}
 		/* 
 	  ,{
@@ -715,11 +850,31 @@
 	  }*/
 		  ];
 
-
-		var text = "<h2><font style='font-size:20pt'>"+data.ageStat[0].cnt+"%</font>";
+		var lastyearEvnt = data.eventStat[0].title+"&nbsp;:&nbsp;";
+		lastyearEvnt += "<font style='color:#d2bff5;font-weight:bold;font-size:14pt'>"+data.eventStat[0].cnt+"%</font>&nbsp;&nbsp;&nbsp;&nbsp;" 
+		lastyearEvnt +=  data.eventStat[1].title+"&nbsp;:&nbsp;"
+		lastyearEvnt += "<font style='color:#bfdcf5;font-weight:bold;font-size:14pt'>"+data.eventStat[1].cnt+"%</font>&nbsp;&nbsp;&nbsp;&nbsp;"
+		lastyearEvnt +=  data.eventStat[2].title+"&nbsp;:&nbsp;"
+		lastyearEvnt += "<font style='color:#fdfdfd;font-weight:bold;font-size:14pt'>"+data.eventStat[2].cnt+"%</font><br>"
+		lastyearEvnt +=  data.eventStat[3].title+"&nbsp;:&nbsp;"
+		lastyearEvnt += "<font style='color:#baf07d;font-weight:bold;font-size:14pt'>"+data.eventStat[3].cnt+"%</font>&nbsp;&nbsp;&nbsp;&nbsp;"
+		lastyearEvnt += data.eventStat[4].title+"&nbsp;:&nbsp;"
+		lastyearEvnt += "<font style='color:#f07d7d;font-weight:bold;font-size:14pt'>"+data.eventStat[4].cnt+"%</font>&nbsp;&nbsp;&nbsp;&nbsp;"
+/* 		var lastyearEvnt ="<table border='1' cellpadding='0' style='cellpadding:0; margin:0;' width='100%'><tr><td><h5>"+ data.eventStat[0].title+"&nbsp;:&nbsp;";
+		lastyearEvnt += "<font style='color:#d286eb;font-weight:bold;font-size:15pt'>"+data.eventStat[0].cnt+"</font></h5></td>" 
+		lastyearEvnt += "<td><h5>"+ data.eventStat[1].title+"&nbsp;:&nbsp;"
+		lastyearEvnt += "<font style='color:#86b3eb;font-weight:bold;font-size:15pt'>"+data.eventStat[1].cnt+"</font></h5></td>"
+		lastyearEvnt += "<td><h5>"+ data.eventStat[2].title+"&nbsp;:&nbsp;"
+		lastyearEvnt += "<font style='color:#86ebce;font-weight:bold;font-size:15pt'>"+data.eventStat[2].cnt+"</font></h5></td></tr>"
+		lastyearEvnt += "<tr><td><h5>"+ data.eventStat[3].title+"&nbsp;:&nbsp;"
+		lastyearEvnt += "<font style='color:#fdfdfd;font-weight:bold;font-size:15pt'>"+data.eventStat[3].cnt+"</font></h5></td>"
+		lastyearEvnt += "<td><h5>"+ data.eventStat[4].title+"&nbsp;:&nbsp;"
+		lastyearEvnt += "<font style='color:#eb8697;font-weight:bold;font-size:15pt'>"+data.eventStat[4].cnt+"</font></h5></td></tr></table>" */
+		
+		/* var text = "<h2><font style='font-size:20pt'>"+data.ageStat[0].cnt+"%</font>";
 		text += "<font style='font-size:20pt; color:darkgray;'>/</font>"
-		text += "<font style='font-size:20pt; color:#1c9ca7;'>"+data.ageStat[2].cnt+"%</font></h2>" 
-		$("#text").append(text);
+		text += "<font style='font-size:20pt; color:#1c9ca7;'>"+data.ageStat[2].cnt+"%</font></h2>"  */
+		$("#text").append(lastyearEvnt);
         	  
 		var myDoughnut = new Chart(document.getElementById("ageStatCanvas").getContext("2d")).Doughnut(ageData);
 
@@ -746,9 +901,17 @@
 		
 		
 
-		/* var evnt_text = "<p><b>"+ + + + $ 17,980 Month Income + "</p>"
-		event_text
-		<p><b>$ 17,980</b><br/>Month Income</p> */
+/* 		var evnt_text = "<p><b><font style='font-size:12pt;'>어제 도서계약 건수 : "+ data.reg_cnt+ "건</font></p>";
+		evnt_text += "<p><b><font style='font-size:12pt;'>어제 주문 건수 : "+ data.order_cnt+ "건</font></p>";
+		evnt_text += "<p><b><font style='font-size:12pt;'>어제 반품 건수 : "+ data.return_cnt+ "건</font></p>";
+		evnt_text += "<p><b><font style='font-size:12pt;'>어제 기업 주문 건수 : "+ data.corp_order_cnt+ "건</font></p>";
+		$("#event_text").append(evnt_text); */
+		$("#firstTd").text( data.reg_cnt);
+		$("#secondTd").text(data.order_cnt);
+		$("#thirdTd").text(data.corp_order_cnt);
+		$("#fourthTd").text(data.return_cnt);
+		
+		/* <p><b>$ 17,980</b><br/>Month Income</p> */
 		/* var genderDonut = Morris.Donut({
 			element: 'gender-donut',
 			data: [
