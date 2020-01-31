@@ -58,7 +58,6 @@
    align:center;
 }
 body{
-
   /* background: #2f323a; */
   background: #444c57;
   color:white;
@@ -333,6 +332,10 @@ $(document).ready( function() {
       location.href="/group4erp/goClientLogin.do";
    }
    
+   function goChart(){
+	   location.href="/group4erp/goMyChart.do";
+   }
+   
 </script>
 
 <!-- style="display:none" -->
@@ -349,9 +352,9 @@ $(document).ready( function() {
 <form name="login_form" method="post" action="/group4erp/loginProc.do">
    <table width="90%">
       <tr>
-         <td>
-            <center><img src="/group4erp/resources/image/bst_logo.png" align="center" width="17%" height="50%"></center><!-- width="30%" -->
-            <center><b style="font-size:15pt; color:#F0C40F;">전사적 자원 관리 시스템</b></center>
+         <td><br><br><br>
+            <center><img src="/group4erp/resources/image/로고_가로ver.png" align="center" width="30%" height="65%"></center><!-- width="30%" -->
+            <center><b style="font-size:15pt; color:#f3bbbb;">전사적 자원 관리 시스템</b></center>
          </td>
 
       <tr>
@@ -504,6 +507,9 @@ $(document).ready( function() {
 
 
 
+<br>
+
+<input type="button" value="차트" onclick="goChart();">
 
 
 

@@ -114,7 +114,7 @@
 
       }
 
-
+/*
          if(month < 10 ) {month = "0"+month;}
          if (date<10){date = "0" + date;}
 
@@ -124,7 +124,7 @@
          var result = year + "년 " +month + "월 " + date + "일 ("+ week +") ";
          $("#nowtime").text('2019-09-09');         
          //return year + "년 " +month + "월 " + date + "일 ("+ week +") " + hour + "시 " + minute + "분 " +second + "초 ";
-      } */
+      }*/
 
 
       var cd = $("[name=addTr]").find("[name=dayoff_name]").val();
