@@ -14,6 +14,8 @@ public class ManyChartDTO {
 	private String leaveT;
 	private String cat_name_online;
 	private String peronlineorder;
+	private String cat_name_offline;
+	private String perofflineorder;
 	private String cat_name_off;
 	private String perofforder;
 	private String dep_name;
@@ -22,8 +24,62 @@ public class ManyChartDTO {
 	private String monthsort;
 	private String offtotmoney;
 	private String offmonthsort;
+	private String return_name;
+	private String perreturncnt;
+	private String credittot;
+	private String creditmonth;
+	private String debittot;
+	private String debitmonth;
 	
 	
+	public String getCat_name_offline() {
+		return cat_name_offline;
+	}
+	public void setCat_name_offline(String cat_name_offline) {
+		this.cat_name_offline = cat_name_offline;
+	}
+	public String getPerofflineorder() {
+		return perofflineorder;
+	}
+	public void setPerofflineorder(String perofflineorder) {
+		this.perofflineorder = perofflineorder;
+	}
+	public String getCredittot() {
+		return credittot;
+	}
+	public void setCredittot(String credittot) {
+		this.credittot = credittot;
+	}
+	public String getCreditmonth() {
+		return creditmonth;
+	}
+	public void setCreditmonth(String creditmonth) {
+		this.creditmonth = creditmonth;
+	}
+	public String getDebittot() {
+		return debittot;
+	}
+	public void setDebittot(String debittot) {
+		this.debittot = debittot;
+	}
+	public String getDebitmonth() {
+		return debitmonth;
+	}
+	public void setDebitmonth(String debitmonth) {
+		this.debitmonth = debitmonth;
+	}
+	public String getReturn_name() {
+		return return_name;
+	}
+	public void setReturn_name(String return_name) {
+		this.return_name = return_name;
+	}
+	public String getPerreturncnt() {
+		return perreturncnt;
+	}
+	public void setPerreturncnt(String perreturncnt) {
+		this.perreturncnt = perreturncnt;
+	}
 	public String getOfftotmoney() {
 		return offtotmoney;
 	}

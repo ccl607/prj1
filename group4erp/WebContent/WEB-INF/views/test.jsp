@@ -306,6 +306,9 @@ function showTime() {
               <li>
                 <a href="/group4erp/viewOurCompanyReport.do"><i class="fa fa-building-o"></i>회사현황</a>
               </li>
+              <li>
+                <a href="/group4erp/goMyChart.do"><i class="fa fa-bar-chart-o"></i>차트현황</a>
+              </li>
             </ul>
           </li>
         </ul>

@@ -123,4 +123,48 @@ public class ManyChartDAOImpl implements ManyChartDAO {
 		
 		return perOnlineOrder;
 	}
+public List<ManyChartOnlineDTO> getPerOfflineOrderAjax(String month_choice){
+		
+		List<ManyChartOnlineDTO> perOfflineOrder = this.sqlSession.selectList(
+				"com.group4.erp.dao.manyChartDAO.getPerOfflineOrderAjax"
+				,month_choice
+				);
+		
+		return perOfflineOrder;
+	}
+	
+	public List<Map<String, String>> getBestSellers(){
+		
+		List<Map<String, String>> bestSellers = this.sqlSession.selectList(
+				"com.group4.erp.dao.manyChartDAO.getBestSellers"
+				);
+		
+		return bestSellers;
+	}
+	
+	public List<ManyChartDTO> getPerReturn(){
+		
+		List<ManyChartDTO> perReturnCnt = this.sqlSession.selectList(
+				"com.group4.erp.dao.manyChartDAO.getPerReturnCnt"
+				);
+		
+		return perReturnCnt;
+	}
+	
+	public List<ManyChartDTO> getCreditTot(){
+		
+		List<ManyChartDTO> creditTot = this.sqlSession.selectList(
+				"com.group4.erp.dao.manyChartDAO.getCreditTot"
+				);
+		
+		return creditTot;
+	}
+	public List<ManyChartDTO> getDebitTot(){
+		
+		List<ManyChartDTO> debitTot = this.sqlSession.selectList(
+				"com.group4.erp.dao.manyChartDAO.getDebitTot"
+				);
+		
+		return debitTot;
+	}
 }

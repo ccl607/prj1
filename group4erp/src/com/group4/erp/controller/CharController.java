@@ -73,6 +73,15 @@ public class CharController {
 			List<ManyChartDTO> offMonthTotMoney = this.manyDAO.getOffMonthTotMoney();
 			mav.addObject("offMonthTotMoney", offMonthTotMoney);
 			
+			List<ManyChartDTO> perReturnCnt = this.manyDAO.getPerReturn();
+			mav.addObject("perReturnCnt", perReturnCnt);
+			
+			List<ManyChartDTO> creditTot = this.manyDAO.getCreditTot();
+			mav.addObject("creditTot", creditTot);
+			
+			List<ManyChartDTO> debitTot = this.manyDAO.getDebitTot();
+			mav.addObject("debitTot", debitTot);
+			
 		}catch(Exception e) {
 			System.out.println("<차트 불러오기 실패>");
 			System.out.println("예외 발생 =>"+e);
@@ -100,6 +109,46 @@ public class CharController {
 		}
 		
 		return perOnlineOrder;
+	}
+	
+	@RequestMapping(value="/goOfflineOrderProc.do")
+	@ResponseBody
+	public List<ManyChartOnlineDTO> goOfflineOrderProc(
+			@RequestParam(value = "month_choice", required = false) String month_choice
+			) {
+		System.out.println("month_choice =>" + month_choice);
+		
+		List<ManyChartOnlineDTO> perOfflineOrder = null;
+		
+		try {
+			
+			perOfflineOrder = this.manyDAO.getPerOfflineOrderAjax(month_choice);
+			
+		}catch(Exception e) {
+			System.out.println("<온라인 비율 비동기 실패>");
+			System.out.println("예외 발생 =>"+e);
+		}
+		
+		return perOfflineOrder;
+	}
+	
+	@RequestMapping(value="/goBestBook.do")
+	public ModelAndView goBestBook() {
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("manyCharts2.jsp");
+		
+		try {
+			
+			List<Map<String, String>> bestSellers = this.manyDAO.getBestSellers();
+			mav.addObject("bestSellers", bestSellers);
+			
+		}catch(Exception e) {
+			System.out.println("<베스트셀러 불러오기 실패>");
+			System.out.println("예외 발생=> "+e);
+		}
+		
+		return mav;
 	}
 	
 }

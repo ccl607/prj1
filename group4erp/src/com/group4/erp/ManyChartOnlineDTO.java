@@ -5,7 +5,6 @@ public class ManyChartOnlineDTO {
 	private String cat_name_online;
 	private String peronlineorder;
 	
-	
 	public String getCat_name_online() {
 		return cat_name_online;
 	}

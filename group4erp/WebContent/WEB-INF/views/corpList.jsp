@@ -149,7 +149,7 @@
 
 		} 
 */
-		var thisTr = $(idx).parent().parent();
+		var thisTr = $(idx).parent();
 		var delTr = $(".corpListTable [name=updateCorpInfo]");
 		
 		if(delTr.size() > 0) {
@@ -648,21 +648,19 @@
 						</c:otherwise>
 					
 					</c:choose>
-					<th>비고</th>
 					</thead>
 					<tbody>
 					<c:forEach items='${corpList}' var="corpList" varStatus="loopTagStatus">
 						<tr style="cursor:pointer" onClick="viewCorpInfo(${empSal.emp_no});">
 							<td align=center class="delCheckBox"><input type="checkbox" name="delCheckBox" value="${corpList.corp_no}"></td>
 							<td align=center>${corpListCnt-corpList.RNUM+1}</td>
-							<td align=center>${corpList.corp_no}</td>
-							<td align=center>${corpList.corp_name}</td>
-							<td align=center>${corpList.ceo_name}</td>
-							<td align=center>${corpList.corp_business_name}</td> 
-							<td>${corpList.corp_addr}</td> 
-							<td align=center>${corpList.corp_tel} </td> 
-							<td align=center>${corpList.corp_fax} </td> 
-							<td align=center><input type="button" name="updateCorpBtn" value="수정" onClick="updateCorpInfo(this, 'update', '${corpList.corp_no}', '${corpList.corp_name}', '${corpList.ceo_name}', '${corpList.corp_business_area}', '${corpList.corp_addr}', '${corpList.corp_tel}', '${corpList.corp_fax}');"> </td> 
+							<td align=center onClick="updateCorpInfo(this, 'update', '${corpList.corp_no}', '${corpList.corp_name}', '${corpList.ceo_name}', '${corpList.corp_business_area}', '${corpList.corp_addr}', '${corpList.corp_tel}', '${corpList.corp_fax}');">${corpList.corp_no}</td>
+							<td align=center onClick="updateCorpInfo(this, 'update', '${corpList.corp_no}', '${corpList.corp_name}', '${corpList.ceo_name}', '${corpList.corp_business_area}', '${corpList.corp_addr}', '${corpList.corp_tel}', '${corpList.corp_fax}');">${corpList.corp_name}</td>
+							<td align=center onClick="updateCorpInfo(this, 'update', '${corpList.corp_no}', '${corpList.corp_name}', '${corpList.ceo_name}', '${corpList.corp_business_area}', '${corpList.corp_addr}', '${corpList.corp_tel}', '${corpList.corp_fax}');">${corpList.ceo_name}</td>
+							<td align=center onClick="updateCorpInfo(this, 'update', '${corpList.corp_no}', '${corpList.corp_name}', '${corpList.ceo_name}', '${corpList.corp_business_area}', '${corpList.corp_addr}', '${corpList.corp_tel}', '${corpList.corp_fax}');">${corpList.corp_business_name}</td> 
+							<td onClick="updateCorpInfo(this, 'update', '${corpList.corp_no}', '${corpList.corp_name}', '${corpList.ceo_name}', '${corpList.corp_business_area}', '${corpList.corp_addr}', '${corpList.corp_tel}', '${corpList.corp_fax}');">${corpList.corp_addr}</td> 
+							<td align=center onClick="updateCorpInfo(this, 'update', '${corpList.corp_no}', '${corpList.corp_name}', '${corpList.ceo_name}', '${corpList.corp_business_area}', '${corpList.corp_addr}', '${corpList.corp_tel}', '${corpList.corp_fax}');">${corpList.corp_tel} </td> 
+							<td align=center onClick="updateCorpInfo(this, 'update', '${corpList.corp_no}', '${corpList.corp_name}', '${corpList.ceo_name}', '${corpList.corp_business_area}', '${corpList.corp_addr}', '${corpList.corp_tel}', '${corpList.corp_fax}');">${corpList.corp_fax} </td> 
 						</tr>
 						
 					</c:forEach>

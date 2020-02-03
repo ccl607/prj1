@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.group4.erp.CorpSearchDTO;
+import com.group4.erp.ManyChartDTO;
 import com.group4.erp.OrderDTO;
 import com.group4.erp.SalesInfoDTO;
 import com.group4.erp.WarehousingSearchDTO;
+import com.group4.erp.dao.ManyChartDAO;
 import com.group4.erp.BestKwdDTO;
 import com.group4.erp.BestKwdSearchDTO;
 import com.group4.erp.ChartDTO;
@@ -31,6 +33,9 @@ public class AnalysisController {
 	
 	@Autowired
 	AnalysisService analysisService;
+	
+	@Autowired
+	private ManyChartDAO manyDAO;
 	
 	@RequestMapping(value="/viewBestKeywdAnalysis.do")
 	public ModelAndView viewBestKeywdAnalysis(HttpSession session, BestKwdSearchDTO bestKwdSearchDTO, String rank) {
@@ -53,7 +58,7 @@ public class AnalysisController {
 			
 			String bestKwd_chart_data = "[";
 			bestKwd_chart_data += "['날짜', '횟수']";
-				
+			
 			List<BestKwdDTO> bestKeywdInfo = this.analysisService.getKeywdSrchCntChart();
 			
 			for(int i=0; i<bestKeywdInfo.size(); i++) {
@@ -64,6 +69,8 @@ public class AnalysisController {
 				bestKwd_chart_data += "] ";
 			}
 			bestKwd_chart_data += "]";
+			
+			
 			
 			//보류
 			//List<BestKwdDTO> bestKeywdChart = this.analysisService.getBestKwdListChart(bestKwdSearchDTO);
@@ -203,6 +210,13 @@ public class AnalysisController {
 		}
 		
 		catInventory_chart_data += "] ";
+		
+		List<ManyChartDTO> deptEmpCnt = this.manyDAO.getDeptEmpCnt();
+		mav.addObject("deptEmpCnt", deptEmpCnt);
+		
+		ManyChartDTO perLeave = this.manyDAO.getPerLeave();
+		mav.addObject("perLeave", perLeave);
+		
 		
 		mav.addObject("bookCategoryList", bookCategoryList);
 		mav.addObject("employee_chart_data", employee_chart_data);

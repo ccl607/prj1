@@ -101,7 +101,7 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered">
-            <a href="profile.html"><img src="${ctRootImg}/ui-sam.jpg" class="img-circle" width="80"></a>
+            <a href="profile.html"><img src="/group4erp/resources/image/logo_sidebar.png" width="80"></a>
           </p>
           <h4 class="centered"><b><font style="color:lightgray">${emp_name} ${jikup}님</font></b></h4>
           <li class="mt">

@@ -33,4 +33,12 @@ public interface ManyChartDAO {
 	List<ManyChartDTO> getOffMonthTotMoney();
 
 	List<ManyChartOnlineDTO> getPerOnlineOrderAjax(String month_choice);
+	List<ManyChartOnlineDTO> getPerOfflineOrderAjax(String month_choice);
+	
+	List<Map<String, String>> getBestSellers();
+	
+	List<ManyChartDTO> getPerReturn();
+	
+	List<ManyChartDTO> getCreditTot();
+	List<ManyChartDTO> getDebitTot();
 }

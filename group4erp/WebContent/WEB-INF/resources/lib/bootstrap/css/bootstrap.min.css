@@ -8,13 +8,21 @@
 html {
 	font-family: sans-serif;
 	-webkit-text-size-adjust: 100%;
-	-ms-text-size-adjust: 100%
+	-ms-text-size-adjust: 100%;
 }
 
 body {
-	margin: 0
+	margin: 0;
 }
 /* 제대로 고정이 되게 */
+footer {
+	position:fixed;
+   left:0px;
+   bottom:0px;
+   height:75px;
+   width:100%;
+   z-index:1;
+}
 article, aside, details, figcaption, figure, footer, header, hgroup,
 	main, menu, nav, section, summary {
 	display: block
