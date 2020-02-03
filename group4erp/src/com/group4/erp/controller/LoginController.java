@@ -17,6 +17,7 @@ import com.group4.erp.ChartDTO;
 import com.group4.erp.CommonChartDTO;
 import com.group4.erp.EmpApprovalCheckDTO;
 import com.group4.erp.EmployeeDTO;
+import com.group4.erp.dao.MainDAO;
 import com.group4.erp.service.AnalysisService;
 import com.group4.erp.service.LoginService;
 import com.group4.erp.service.MainService;
@@ -30,6 +31,8 @@ public class LoginController {
 	private MainService mainService;
 	@Autowired
 	AnalysisService analysisService;
+	@Autowired
+	MainDAO mainDAO;
 
 	@RequestMapping(value = "/loginForm.do")
 	public ModelAndView loginForm() {
@@ -133,6 +136,9 @@ public class LoginController {
 		CommonChartDTO returnStat = mainService.getReturnStat();
 		mav.addObject("returnStat", returnStat);
 		System.out.println("returnStat => " +returnStat);
+		
+		List<Map<String, String>> bestSellers = this.mainDAO.getBestSellers();
+        mav.addObject("bestSellers", bestSellers);
 		
 		
 		

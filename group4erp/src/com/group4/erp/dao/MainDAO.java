@@ -14,5 +14,6 @@ public interface MainDAO {
 	List<Map<String, String>> getMonthEvnt();
 	CommonChartDTO getOrderStat();
 	CommonChartDTO getReturnStat();
+	List<Map<String, String>> getBestSellers();
 
 }

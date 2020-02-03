@@ -53,6 +53,13 @@ public class MainDAOImpl implements MainDAO {
 		return this.sqlSession.selectOne("com.group4.erp.dao.MainDAO.selectReturn");
 	}
 	
+	@Override
+	public List<Map<String, String>> getBestSellers(){
+      List<Map<String, String>> bestSellers = this.sqlSession.selectList(
+            "com.group4.erp.dao.MainDAO.getBestSellers"
+            );
+      return bestSellers;
+   }
 	
 	
 	

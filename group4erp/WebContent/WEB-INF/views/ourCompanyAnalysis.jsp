@@ -109,7 +109,7 @@
             "startup": true,
               duration: 1000,
               easing: 'out',
-            }
+        }
       };
 
       var categoryReg_chart = new google.visualization.ColumnChart(document.getElementById('categoryRegChart'));

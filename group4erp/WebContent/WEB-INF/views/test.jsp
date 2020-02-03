@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="/WEB-INF/views/common.jsp" %>
+
+<script src = "https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     
 <!DOCTYPE html>
 <html lang="ko">
@@ -56,7 +59,7 @@
    google.charts.load('current', {'packages' : ['corechart'] } );
 
    google.charts.setOnLoadCallback(drawChart);
-
+   google.charts.setOnLoadCallback(drawChartSellingStat);
 
 
    function drawChart() {
@@ -108,6 +111,239 @@
    }
 
 
+
+   
+
+
+</script>
+<style>
+:root {
+  --blue : #1B9DD9;
+  --grey : #F5F6FA;
+  --light-grey : #707070;
+  --dark-grey : #5F5F5F;
+  --border-radius : 20px;
+  --green : #BCCF11;
+  --red : #E20D18;
+  --yellow : #FEC107;
+  --silver : #C1C1C1;
+  --bronze : #AC7D18;
+}
+
+html, body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color : var(--grey);
+}
+
+#app {
+  height : 80em;
+  width : 10vw;
+  /* margin-top : 1em; */
+  display : grid;
+}
+
+.slider-container {
+  border-radius : 10px;
+  display : flex;
+  width : 15em;
+  margin-left: auto;
+  margin-right: auto;
+  background-color : white;
+  color : var(--dark-grey);
+}
+
+.slider-container .option {
+  border-radius : 10px;
+  width : 5em;
+  margin : 0em;
+  padding : .5em;
+  text-align : center;
+}
+
+.slider-container .option.highlighted {
+  background-color : var(--red);
+  color : white;
+}
+
+.podium-places-container {
+  display: flex;
+  width : 50%;
+  margin-left: auto;
+  margin-right : auto;
+  justify-content : center;
+}
+
+.podium {
+  display : grid;
+  grid-template-columns: 1fr 3fr;
+  width : 15em;
+  background-color : white;
+  margin : 2.5em;
+  border-radius : 20px;
+  color : white;
+}
+
+.podium .position {
+  border-right-style: solid;
+  border-color: var(--grey);
+  border-width : .4em;
+
+}
+
+.podium .position {
+  width : 3em;
+  position : relative;
+}
+
+.podium.gold .position {
+  width : 5em;
+}
+
+.podium .class-information {
+ padding : 0em;
+}
+
+.podium.bronze, .podium.silver {
+  width : 13.5em;
+  height : 7em;
+  margin-top : 5em;
+}
+
+.podium.silver .position div,
+.podium.bronze .position div {
+  position : absolute;
+  top : .2em;
+  left : .1em;
+  font-size : 4em;
+}
+
+.podium.gold .position div {
+  position : absolute;
+  top : .1em;
+  left : .1em;
+  font-size : 6em;
+}
+
+
+
+.podium.bronze .class-information .title, .podium.silver .class-information .title {
+  margin-top : .5em;
+  font-size : 1.1em;
+}
+
+.podium.bronze .class-information .steps, .podium.silver .class-information .steps {
+  margin-top : .5em;
+  font-size : 1.1em;
+}
+
+.podium.gold .class-information .title {
+  margin-top : .5em;
+  font-size : 1.4em;
+}
+
+.podium.gold .class-information .steps {
+  margin-top : .5em;
+  font-size : 1.4em;
+}
+
+
+
+.podium.bronze {
+  background-color : var(--bronze);
+}
+
+.podium.silver {
+  background-color : var(--silver);
+}
+
+.podium.gold {
+  background-color : var(--yellow);
+  height : 9em;
+  width : 20em;
+}
+
+
+.list-item {
+
+  width : 80%;
+ margin-left: auto;
+  margin-right: auto;
+  background-color : white;
+  margin-bottom : 1em;
+  border-radius : 20px;
+  height : 3em;
+  position : relative;
+
+}
+
+.list-item .position {
+  position : absolute;
+  left : 3em;
+}
+
+
+.list-item .position {
+  position : absolute;
+  left : 1.5em;
+  top : .4em;
+  font-size : 2.5em;
+  color : var(--red);
+}
+
+.list-item .class-information {
+  
+  position : absolute;
+  left : 15em;
+  top : .5em;
+}
+
+.list-item .steps {
+  position : absolute;
+  right : 2em;
+  top : .4em;
+  font-size : 2.5em;
+  color : var(--red);
+}
+
+.list-item .class-information .title {
+  font-size : 1.5em;
+  color : var(--red);
+}
+
+.list-item .class-information .year {
+  margin-top : .25em;
+}
+
+.leaderboards-container{
+	height:30%
+}
+
+.nullDiv{
+	margin-top:0;
+	margin-bottom:0;
+	padding-top:0;
+	padding-bottom:0;
+	
+}
+
+
+.list-item.highlighted, 
+.list-item.highlighted .class-information .year,
+.list-item.highlighted .class-information .title,
+.list-item.highlighted .steps,
+{
+  background-color : var(--red);
+  color : white !important;
+}
+</style>
+<script>
+  window.console = window.console || function(t) {};
+</script>
+<script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
 </script>
 </head>
 
@@ -293,9 +529,12 @@
           <div class="col-lg-9 main-chart">
             <!--CUSTOM CHART START -->
             <div class="border-head">
-              <h3>월별 판매건수(온/오프라인)</h3>
+              <h3>월별 판매 부수(온/오프라인 합산)</h3>
             </div>
-            <div class="custom-bar-chart" id="sellingStatDiv">
+            <div id="sellingStat" style="background-color:#f5f6fa">
+            	
+            </div>
+            <!-- <div class="custom-bar-chart" id="sellingStatDiv">
               <ul class="y-axis">
                 <li><span>10.000</span></li>
                 <li><span>8.000</span></li>
@@ -304,7 +543,7 @@
                 <li><span>2.000</span></li>
                 <li><span>0</span></li>
               </ul>
-<!--               <div class="bar">
+              <div class="bar">
                 <div class="title">JAN</div>
                 <div class="value tooltips" data-original-title="8.500" data-toggle="tooltip" data-placement="top">85%</div>
               </div>
@@ -331,10 +570,147 @@
               <div class="bar">
                 <div class="title">JUL</div>
                 <div class="value tooltips" data-original-title="7.500" data-toggle="tooltip" data-placement="top">75%</div>
-              </div> -->
-            </div>
+              </div>
+            </div> -->
             <!--custom chart end-->
             <div class="row mt">
+              
+              
+              <!-- DIRECT MESSAGE PANEL -->
+               <div class="col-md-8 mb">
+                <div class="message-p pn">
+                  <div class="message-header" style="margin-bottom:0px; background-color:#444c57">
+                    <h5><font style="color:white">Yesterday summary</font></h5>
+                  </div>
+                  <div class="row">
+                   
+                    <div class="col-md-12">
+						<%-- <%@ include file="/WEB-INF/views/manyCharts2.jsp" %> --%>
+						<div id="app" style='height:20%; padding-top:0; margin-top:0;'></div>
+
+						<script src='https://cdnjs.cloudflare.com/ajax/libs/react/0.13.0/react.min.js'></script>
+						<script id="rendered-js">
+						let title = 'Blackbirds';
+						let yearGroup = 'Year 3';
+						let steps = '1,345';
+						
+						let app =
+						React.createElement("div", { className: "leaderboards-container" },
+						/*
+						React.createElement("div", { className: "slider-container" },
+						React.createElement("div", { className: "option" }, "Daily"),
+						
+						React.createElement("div", { className: "option highlighted" }, "Momth")),
+						
+						React.createElement("div", { className: "option" }, "Termly")),
+						*/
+						
+						React.createElement("div", { className: "podium-places-container" },
+						React.createElement("div", null,
+						React.createElement("div", { className: "podium silver" },
+						React.createElement("div", { className: "position" },
+						React.createElement("div", null, "2")),
+						
+						
+						
+						React.createElement("div", { className: "class-information" },
+						React.createElement("div", { className: "title" },
+						'${bestSellers[1].book_name}'),
+						
+						React.createElement("div", { className: "year-group" },
+						'${bestSellers[1].cat_name}'),
+						
+						React.createElement("div", { className: "steps" },
+						'${bestSellers[1].soldcnt}'+'권')))),
+						
+						React.createElement("div", null,
+						React.createElement("div", { className: "podium gold" },
+						React.createElement("div", { className: "position" },
+						React.createElement("div", null, "1")),
+						
+						
+						
+						React.createElement("div", { className: "class-information" },
+						React.createElement("div", { className: "title" },
+						'${bestSellers[0].book_name}'),
+						
+						React.createElement("div", { className: "year-group" },
+						      '${bestSellers[0].cat_name}'),
+						
+						React.createElement("div", { className: "steps" },
+						      '${bestSellers[0].soldcnt}'+'권')))),
+						
+						
+						React.createElement("div", null,
+						React.createElement("div", { className: "podium bronze" },
+						React.createElement("div", { className: "position" },
+						React.createElement("div", null, "3")),
+						
+						
+						
+						React.createElement("div", { className: "class-information" },
+						React.createElement("div", { className: "title" },
+						      '${bestSellers[2].book_name}'),
+						
+						React.createElement("div", { className: "year-group" },
+						      '${bestSellers[2].cat_name}'),
+						
+						React.createElement("div", { className: "steps" },
+						      '${bestSellers[2].soldcnt}'+'권'))))));
+						
+						
+						
+						/* React.createElement("div", { className: "places-list-container" },
+						React.createElement("div", { className: "list-item" },
+						React.createElement("div", { className: "position" }, "4"),
+						
+						
+						React.createElement("div", { className: "class-information" },
+						React.createElement("div", { className: "title" },
+								'${bestSellers[3].book_name}'),
+						
+						React.createElement("div", { className: "year" },
+								'${bestSellers[3].cat_name}')),
+						
+						
+						React.createElement("div", { className: "steps" },
+								'${bestSellers[3].soldcnt}'+'권')),
+						
+						
+						
+						React.createElement("div", { className: "list-item" },
+						React.createElement("div", { className: "position" }, "5"),
+						
+						
+						React.createElement("div", { className: "class-information" },
+						React.createElement("div", { className: "title" },
+								'${bestSellers[4].book_name}'),
+						
+						React.createElement("div", { className: "year" },
+								'${bestSellers[4].cat_name}')),
+						
+						
+						React.createElement("div", { className: "steps" },
+								'${bestSellers[4].soldcnt}'+'권')))); */
+						
+						React.render(app, document.getElementById('app'));
+						//# sourceURL=pen.js
+						    </script>
+                      <!-- <p>
+                        <name>Dan Rogers</name>
+                        sent you a message.
+                      </p>
+                      <p class="small">3 hours ago</p>
+                      <p class="message">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p> -->
+                   
+                    </div>
+                  </div>
+                </div>
+                <!-- /Message Panel-->
+              </div>
+              <!-- /col-md-8  -->
+              
+              
               <!-- SERVER STATUS PANELS -->
               <div class="col-md-4 col-sm-4 mb">
                 <div class="grey-panel pn donut-chart">
@@ -544,117 +920,18 @@
 		                  		</tr>
 		                  	</table>
 		                  </c:if>
-		                  
-		                  
                   	<!-- <div width="100%" id="monthlyBookRegChart"></div> -->
                   	</td></tr>
                   </table>
-                  
                   <!-- <div class="chart mt">
                     <div class="sparkline" data-type="line" data-resize="true" data-height="75" data-width="90%" data-line-width="1" data-line-color="#fff" data-spot-color="#fff" data-fill-color="" data-highlight-line-color="#fff" data-spot-radius="4" data-data="[200,135,667,333,526,996,564,123,890,464,655]"></div>
                   </div> -->
-                  
-                  
                   <div id="event_text" align="left" style="padding-left:20; padding-top:10;">
                  <!--  <p><b>$ 17,980</b><br/>Month Income</p> -->
                   </div>
-                  
-                  
-                  
-                  
-                  
-                  
                 </div>
                 <!-- /grey-panel -->
               </div>
-              
-              
-              
-              
-              
-              
-              
-              
-              <!-- DIRECT MESSAGE PANEL -->
-               <div class="col-md-8 mb">
-                <div class="message-p pn">
-                  <div class="message-header">
-                    <h5>Yesterday summary</h5>
-                  </div>
-                  <div class="row">
-                   
-                    <div class="col-md-12">
-                    	<table width="100%">
-                    		<tr>
-                    		<td width="20%">
-                    		<table ><tr><td></td></tr></table>
-                    		</td>
-                    		<td>
-	                    	<table id="yesterdaySum">
-	                    		<tr height="30"></tr>
-	                    		<tr>
-	                    			<td>
-	                    				<h4><i class="fa fa-chevron-circle-right"></i>&nbsp;</h4> 
-	                    			</td>
-	                    			<td>
-	                    				어제 도서계약 건수 :&nbsp;
-	                    			</td>
-	                    			<td id="firstTd"></td>
-	                    			
-	                    			<td width="30%"></td>
-	                    			
-	                    			<td>
-	                    				<h4><i class="fa fa-chevron-circle-right"></i>&nbsp;</h4> 
-	                    			</td>
-	                    			<td >
-	                    				어제 주문 건수 :&nbsp;
-	                    			</td>
-	                    			<td id="secondTd"></td>
-	                    		</tr>
-	                    		<tr height="20"></tr>
-	                    		<tr>
-	                    			<td>
-	                    				<h4><i class="fa fa-chevron-circle-right"></i>&nbsp;</h4> 
-	                    			</td>
-	                    			<td>
-	                    				어제 기업 주문 건수 :&nbsp;
-	                    			</td>
-	                    			<td id="thirdTd"></td>
-	                    			
-	                    			<td width="30%"></td>
-	                    			
-	                    			<td>
-	                    				<h4><i class="fa fa-chevron-circle-right"></i>&nbsp;</h4> 
-	                    			</td>
-	                    			<td>
-	                    				어제 반품 건수 :&nbsp;
-	                    			</td>
-	                    			<td id="fourthTd"></td>
-	                    		</tr>
-	                    	</table>
-	                    	</td>
-	                    	</tr>
-	                    </table>
-                    	
-                      <!-- <p>
-                        <name>Dan Rogers</name>
-                        sent you a message.
-                      </p>
-                      <p class="small">3 hours ago</p>
-                      <p class="message">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p> -->
-                   
-                    </div>
-                  </div>
-                </div>
-                <!-- /Message Panel-->
-              </div>
-              <!-- /col-md-8  -->
-              
-              
-              
-              
-              
-              
             </div>
             
             
@@ -668,20 +945,67 @@
             
             
             
-            
+            <!-- <div style="width:30%; height:15%; background-color:#FEC107; border-radius : 25px;">
+            	test
+            </div> -->
             
             
             
             
             <!-- /row -->
             <div class="row">
-              <!-- WEATHER PANEL -->
-              <div class="col-md-4 mb">
-                <div class="weather pn">
-                  <i class="fa fa-cloud fa-4x"></i>
-                  <h2>11º C</h2>
-                  <h4>BUDAPEST</h4>
+              <!-- SERVER STATUS PANELS -->
+              <div class="col-md-4 col-sm-4 mb">
+                <div class="grey-panel pn donut-chart">
+                  <div class="grey-header">
+                    <h5><!-- <i class="fa fa-bell-o"></i> -->Yesterday summary</h5>
+                  </div>
+                  
+                  
+                  <table id="yesterdaySum">
+	                    		<tr>
+	                    			<td rowspan="4" width="30%"></td>
+	                    			<td>
+	                    				<h4><i class="fa fa-pencil-square"></i>&nbsp;</h4> 
+	                    			</td>
+	                    			<td id="firstTd">
+	                    				
+	                    			</td>
+	                    		</tr>
+	                    		<tr>
+	                    			<td>
+	                    				<h4><i class="fa fa-shopping-cart"></i>&nbsp;</h4> 
+	                    			</td>
+	                    			<td id="secondTd">
+	                    				<!-- 어제 주문 건수 :&nbsp; -->
+	                    			</td>
+	                    		</tr>
+	                    		<!-- <tr height="20"></tr> -->
+	                    		<tr>
+	                    			<td>
+	                    				<h4><i class="fa fa-building-o"></i>&nbsp;</h4> 
+	                    			</td>
+	                    			<td id="thirdTd">
+	                    				<!-- 어제 기업 주문 건수 :&nbsp; -->
+	                    			</td>
+	                    			<!-- <td width="30%"></td> -->
+	                    		</tr>
+	                    		<tr>
+	                    			<td>
+	                    				<h4><i class="fa fa-reply"></i>&nbsp;</h4> 
+	                    			</td>
+	                    			<td id="fourthTd">
+	                    				<!-- 어제 반품 건수 :&nbsp; -->
+	                    			</td>
+	                    		</tr>
+	                    	</table>
+	                    	</td>
+	                    	</tr>
+	                    </table>
+
+
                 </div>
+                <!-- /grey-panel -->
               </div>
               <!-- /col-md-4-->
               
@@ -972,13 +1296,12 @@
   <script type="text/javascript">
     $(document).ready(function() {
     	getChartsData();
-
-
         
       $("#date-popover").popover({
         html: true,
         trigger: "manual"
       });
+      
       $("#date-popover").hide();
       $("#date-popover").click(function(e) {
         $(this).hide();
@@ -1023,15 +1346,112 @@
      }
 
 	function gridCharts(data) {
-		console.log("gridCharts : ", data);
+		//console.log("gridCharts : ", data);
+			
+			var sellingStat_data = google.visualization.arrayToDataTable([
+				['Month', '판매 부수']
+				,[data.sellingStat[0].title, data.sellingStat[0].cnt]
+				,[data.sellingStat[1].title, data.sellingStat[1].cnt]
+				,[data.sellingStat[2].title, data.sellingStat[2].cnt]
+				,[data.sellingStat[3].title, data.sellingStat[3].cnt]
+				,[data.sellingStat[4].title, data.sellingStat[4].cnt]
+				,[data.sellingStat[5].title, data.sellingStat[5].cnt]
+				,[data.sellingStat[6].title, data.sellingStat[6].cnt]
+				,[data.sellingStat[7].title, data.sellingStat[7].cnt]
+				,[data.sellingStat[8].title, data.sellingStat[8].cnt]
+				,[data.sellingStat[9].title, data.sellingStat[9].cnt]
+				,[data.sellingStat[10].title, data.sellingStat[10].cnt]
+				,[data.sellingStat[11].title, data.sellingStat[11].cnt]
+			]);
+	
+			var sellingStat_option = {
+					title: '월별 도서 판매 부수',
+			         //width :700, 
+			         height: 400,
+			         colors:['#e68f8f','#e68f8f'],
+			         animation:{
+			            "startup": true,
+			              duration: 1000,
+			              easing: 'out',
+			        },
+			        annotations: {
+			        	boxStyle: {
+			        	      // Color of the box outline.
+			        	      stroke: '#888',
+			        	      // Thickness of the box outline.
+			        	      strokeWidth: 1,
+			        	      // x-radius of the corner curvature.
+			        	      rx: 50,
+			        	      // y-radius of the corner curvature.
+			        	      ry: 50
+			        	}
+					}
+			        	
+			};
 
-		var html = "";
+
+
+
+			/* var monthlyBookReg_data_options = {   
+			         //title: '월별 도서 계약 건수',
+			         //width :, 
+			         //height: 300,
+			         colors:['#fdfdfd','#fdfdfd'],
+			         lineWidth: 4,
+			         backgroundColor: {
+			             fill: '#FF0000',
+			             fillOpacity: 0
+			           },
+			            hAxis: {
+			            	textStyle:{color: '#fdfdfd'},
+			        	   baselineColor: 'none',
+			        	   ticks: []
+			        	 }, 
+			        	 vAxis: {
+			        	   baselineColor: 'none',
+			        	   ticks: [],
+			        	   textStyle: {
+			                   color: 'red'
+			               },
+			               titleTextStyle: {
+			                   color: 'red'
+			               }
+			        	 },
+			        	 legend: {
+			        	        textStyle: {
+			        	            color: 'white'
+			        	        }
+			        	    },
+			         animation:{
+			            "startup": true,
+			              duration: 1000,
+			              easing: 'out',
+			            }
+			      }; */
+
+
+			
+
+
+
+
+
+
+
+
+
+			
+	
+			var sellingStat_chart = new google.visualization.ColumnChart(document.getElementById('sellingStat'));
+			sellingStat_chart.draw(sellingStat_data, sellingStat_option);
+		
+		/* var html = "";
 		$.each(data.sellingStat, function(idx, ele) {
 			html += "<div class=\"bar\">";
 			html += "<div class=\"title\"><font style='font-size:12pt; font-weight:bold'>" + ele.title + "</font></div>";
 			html += "<div class=\"value tooltips\" data-original-title=\"" + ele.cnt + "\" data-toggle=\"tooltip\" data-placement=\"top\">" + ele.cnt/1000*100 + "%</div>";
 			html += "</div>";
-		});
+		}); */
 		/* $.each(data.sellingStat, function(idx, ele) {
 			html += "<div class=\"bar\">";
 			html += "<div class=\"title\"><font style='font-size:12pt; font-weight:bold'>" + ele.title + "</font></div>";
@@ -1039,7 +1459,7 @@
 			html += "</div>";
 		}); */
 		
-		$("#sellingStatDiv").append(html);
+		//$("#sellingStatDiv").append(html);
 
 		console.log("data.ageStat", data.ageStat);
 		var ageData = [{
@@ -1131,10 +1551,10 @@
 		evnt_text += "<p><b><font style='font-size:12pt;'>어제 반품 건수 : "+ data.return_cnt+ "건</font></p>";
 		evnt_text += "<p><b><font style='font-size:12pt;'>어제 기업 주문 건수 : "+ data.corp_order_cnt+ "건</font></p>";
 		$("#event_text").append(evnt_text); */
-		$("#firstTd").text( data.reg_cnt);
-		$("#secondTd").text(data.order_cnt);
-		$("#thirdTd").text(data.corp_order_cnt);
-		$("#fourthTd").text(data.return_cnt);
+		$("#firstTd").html("어제 도서계약 건수 :&nbsp;<font style='font-weight:bold; font-size:15pt'; color:black>"+data.reg_cnt+"</font>건");
+		$("#secondTd").html("어제 주문 건수 :&nbsp;<font style='font-weight:bold; font-size:15pt'; color:black>"+data.order_cnt+"</font>건");
+		$("#thirdTd").html("어제 기업 주문 건수 :&nbsp;<font style='font-weight:bold; font-size:15pt'; color:black>"+data.corp_order_cnt+"</font>건");
+		$("#fourthTd").html("어제 반품 건수 :&nbsp;<font style='font-weight:bold; font-size:15pt'; color:black>"+data.return_cnt+"</font>건");
 		
 		/* <p><b>$ 17,980</b><br/>Month Income</p> */
 		/* var genderDonut = Morris.Donut({
