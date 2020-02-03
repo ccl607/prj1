@@ -7,6 +7,8 @@ public class MainChartsDTO {
 	private List<CommonChartDTO> ageStat;
 	private List<CommonChartDTO> genderStat;
 	private List<CommonChartDTO> eventStat;
+	private List<CommonChartDTO> orderStat;
+	private List<CommonChartDTO> returnStat;
 	private int reg_cnt = 0;
 	private int return_cnt = 0;
 	private int order_cnt = 0;
@@ -75,6 +77,23 @@ public class MainChartsDTO {
 
 	public void setCorp_order_cnt(int corp_order_cnt) {
 		this.corp_order_cnt = corp_order_cnt;
+	}
+	
+	
+	public List<CommonChartDTO> getOrderStat() {
+		return orderStat;
+	}
+
+	public void setOrderStat(List<CommonChartDTO> orderStat) {
+		this.orderStat = orderStat;
+	}
+
+	public List<CommonChartDTO> getReturnStat() {
+		return returnStat;
+	}
+
+	public void setReturnStat(List<CommonChartDTO> returnStat) {
+		this.returnStat = returnStat;
 	}
 
 	@Override

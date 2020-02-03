@@ -339,24 +339,213 @@
               <div class="col-md-4 col-sm-4 mb">
                 <div class="grey-panel pn donut-chart">
                   <div class="grey-header">
-                    <h5>2019 계획대비 실적 현황</h5>
+                    <h5><b>${orderStat.title} 계획대비 실적 현황</b></h5>
                   </div>
-                  <table width="90%">
+                  <table width="95%">
                   	<tr><td>&nbsp;</td></tr>
                   	<tr>
-                  		<td width="15%"></td>
+                  		<td width="10%"></td>
                   		<td>
                   			
 	                  	<!-- <div class="task-info">
 		                    <div class="desc">Dashio Admin Panel</div>
 		                    <div class="percent">40%</div>
 		                  </div> -->
-		                                    판매율<!-- <font style="font-size:8pt;">(단위:100%=30,000건)</font> --> 
-		                  <div class="progress progress-striped">
-		                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:100%">
-		                      <span class="sr-only">100% Complete (success)</span>
-		                    </div>
-		                  </div>
+
+		                  
+		                  
+		                  <c:if test="${empty orderStat}">
+		                  	판매율
+		                  	<table>
+		                  		<tr>
+		                  			<td width="100%">
+		                  				<div class="progress progress-striped">
+				                  		<font style="font-size:8pt; color:orange;">&nbsp;※판매 건수가 없습니다.</font>
+				                   			<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+				                     			<span class="sr-only">0%</span>
+				                    		</div>
+				                  		</div>
+		                  			</td>
+		                  			<td>&nbsp;&nbsp;</td>
+		                  			<td width="20%"><div class="percent">0%</div></td>
+		                  		</tr>
+		                  	</table>
+		                  </c:if> 
+		                  
+		                  <c:if test="${!empty orderStat and orderStat.cnt<=50}">
+		                   	판매율<!-- <font style="font-size:8pt;">(단위:100%=30,000건)</font> --> 
+		                   	<table>
+		                  		<tr>
+		                  			<td width="100%">
+		                  				<div class="progress progress-striped">
+					                    	<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="${orderStat.cnt}" aria-valuemin="0" aria-valuemax="100" style="width:${orderStat.cnt}%">
+					                      		<span class="sr-only">${orderStat.cnt}</span>
+					                    	</div>
+					                  	</div>
+		                  			</td>
+		                  			<td>&nbsp;&nbsp;</td>
+		                  			<td valign="top" width="20%"><div class="percent">${orderStat.cnt}%</div></td>
+		                  		</tr>
+		                  	</table>
+		                  </c:if>
+		                  
+		                  
+		                  <c:if test="${!empty orderStat and orderStat.cnt>50 and orderStat.cnt<=70}">
+		                  	판매율<!-- <font style="font-size:8pt;">(단위:100%=30,000건)</font> --> 
+		                   	<table>
+		                  		<tr>
+		                  			<td width="100%">
+		                  				<div class="progress progress-striped">
+					                    	<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="${orderStat.cnt}" aria-valuemin="0" aria-valuemax="100" style="width:${orderStat.cnt}%">
+					                      		<span class="sr-only">${orderStat.cnt}</span>
+					                    	</div>
+					                  	</div>
+		                  			</td>
+		                  			<td>&nbsp;&nbsp;</td>
+		                  			<td valign="top" width="20%"><div class="percent">${orderStat.cnt}%</div></td>
+		                  		</tr>
+		                  	</table>
+		                  </c:if>
+		                  
+		                  
+		                  <c:if test="${!empty orderStat and orderStat.cnt>70 and orderStat.cnt<=100}">
+		                   	판매율<!-- <font style="font-size:8pt;">(단위:100%=30,000건)</font> --> 
+		                  	<table>
+		                  		<tr>
+		                  			<td width="100%">
+					                  	<div class="progress progress-striped">
+					                    	<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${orderStat.cnt}" aria-valuemin="0" aria-valuemax="100" style="width:${orderStat.cnt}%">
+					                      		<span class="sr-only">${orderStat.cnt}</span>
+					                    	</div>
+					                  	</div>
+		                  			</td>
+		                  			<td>&nbsp;&nbsp;</td>
+		                  			<td valign="top" width="20%"><div class="percent">${orderStat.cnt}%</div></td>
+		                  		</tr>
+		                  	</table>
+		                  </c:if>
+		                  
+		                  
+		                  <c:if test="${!empty orderStat and orderStat.cnt>=100}">
+		                   	판매율<!-- <font style="font-size:8pt;">(단위:100%=30,000건)</font> --> 
+		                  	<table>
+		                  		<tr>
+		                  			<td width="100%">
+					                  	<div class="progress progress-striped">
+					                    	<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+					                      		<span class="sr-only">100</span>
+					                    	</div>
+					                  	</div>
+		                  			</td>
+		                  			<td>&nbsp;&nbsp;</td>
+		                  			<td valign="top" width="20%"><div class="percent">${orderStat.cnt}%</div></td>
+		                  		</tr>
+		                  	</table>
+		                  </c:if>
+		                  
+		                                    
+                  	<!-- <div width="100%" id="monthlyBookRegChart"></div> -->
+                  	</td></tr>
+
+                  	<tr height="50%"><td>&nbsp;</td></tr>
+                  	<tr>
+                  		<td width="10%"></td>
+                  		<td>
+                  			
+	                  	<!-- <div class="task-info">
+		                    <div class="desc">Dashio Admin Panel</div>
+		                    <div class="percent">40%</div>
+		                  </div> -->
+		                  <c:if test="${empty returnStat}">
+		                  	반품율
+		                  	<table>
+		                  		<tr>
+		                  			<td width="100%">
+		                  				<div class="progress progress-striped">
+				                  		<font style="font-size:8pt; color:orange;">&nbsp;※반품 건수가 없습니다.</font>
+				                   			<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+				                     			<span class="sr-only">0%</span>
+				                    		</div>
+				                  		</div>
+		                  			</td>
+		                  			<td>&nbsp;&nbsp;</td>
+		                  			<td valign="top" width="20%"><div class="percent">0%</div></td>
+		                  		</tr>
+		                  	</table>
+		                  </c:if> 
+		                  
+		                  
+		                  <c:if test="${!empty returnStat and returnStat.cnt<=30}">
+		                   	반품율<!-- <font style="font-size:8pt;">(단위:100%=30,000건)</font> --> 
+		                   	<table>
+		                  		<tr>
+		                  			<td width="100%">
+		                  				<div class="progress progress-striped">
+					                    	<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${returnStat.cnt}" aria-valuemin="0" aria-valuemax="100" style="width:${returnStat.cnt}%">
+					                      		<span class="sr-only">${returnStat.cnt}</span>
+					                    	</div>
+					                  	</div>
+		                  			</td>
+		                  			<td>&nbsp;&nbsp;</td>
+		                  			<td valign="top" width="20%"><div class="percent">${returnStat.cnt}%</div></td>
+		                  		</tr>
+		                  	</table>
+		                  </c:if>
+		                  
+		                  
+		                  <c:if test="${!empty returnStat and returnStat.cnt>30 and returnStat.cnt<=60}">
+		                  	반품율<!-- <font style="font-size:8pt;">(단위:100%=30,000건)</font> --> 
+		                   	<table>
+		                  		<tr>
+		                  			<td width="100%">
+		                  				<div class="progress progress-striped">
+					                    	<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="${returnStat.cnt}" aria-valuemin="0" aria-valuemax="100" style="width:${returnStat.cnt}%">
+					                      		<span class="sr-only">${returnStat.cnt}</span>
+					                    	</div>
+					                  	</div>
+		                  			</td>
+		                  			<td>&nbsp;&nbsp;</td>
+		                  			<td valign="top" width="20%"><div class="percent">${returnStat.cnt}%</div></td>
+		                  		</tr>
+		                  	</table>
+		                  </c:if>
+		                  
+		                  
+		                  <c:if test="${!empty returnStat and returnStat.cnt>60 and returnStat.cnt<=100}">
+		                   	반품율<!-- <font style="font-size:8pt;">(단위:100%=30,000건)</font> --> 
+		                  	<table>
+		                  		<tr>
+		                  			<td width="100%">
+					                  	<div class="progress progress-striped">
+					                    	<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="${returnStat.cnt}" aria-valuemin="0" aria-valuemax="100" style="width:${returnStat.cnt}%">
+					                      		<span class="sr-only">${returnStat.cnt}</span>
+					                    	</div>
+					                  	</div>
+		                  			</td>
+		                  			<td>&nbsp;&nbsp;</td>
+		                  			<td valign="top" width="20%"><div class="percent">${returnStat.cnt}%</div></td>
+		                  		</tr>
+		                  	</table>
+		                  </c:if>
+		                  
+		                  <c:if test="${!empty returnStat and returnStat.cnt>100}">
+		                   	반품율<!-- <font style="font-size:8pt;">(단위:100%=30,000건)</font> --> 
+		                  	<table>
+		                  		<tr>
+		                  			<td width="100%">
+					                  	<div class="progress progress-striped">
+					                    	<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+					                      		<span class="sr-only">100</span>
+					                    	</div>
+					                  	</div>
+		                  			</td>
+		                  			<td>&nbsp;&nbsp;</td>
+		                  			<td valign="top" width="20%"><div class="percent">${returnStat.cnt}%</div></td>
+		                  		</tr>
+		                  	</table>
+		                  </c:if>
+		                  
+		                  
                   	<!-- <div width="100%" id="monthlyBookRegChart"></div> -->
                   	</td></tr>
                   </table>
@@ -378,81 +567,14 @@
                 </div>
                 <!-- /grey-panel -->
               </div>
-              <!-- /col-md-4-->
-              <div class="col-md-4 col-sm-4 mb">
-                <div class="darkblue-panel pn donut-chart">
-                  <div class="darkblue-header">
-                    <h5>회원  성비</h5>
-                  </div>
-                  <canvas id="genderStatCanvas" height="120" width="120"></canvas>
-                  <div class="row">
-                    <div class="col-sm-6 col-xs-6 goleft">
-                    <br>
-                      <p>여자 / 남자 : </p>
-                    </div>
-                    <div class="col-sm-6 col-xs-6" id="genderText">
-                      <!-- <h2><font style="font-size:20pt">21%</font>
-                      	  <font style="font-size:20pt; color:darkgray;">/</font> 
-                      	  <font style="font-size:20pt; color:#1c9ca7;">21%</font>
-                      </h2> -->
-                    </div>
-                  </div>
-                </div>
               
               
-<!--                 <div class="darkblue-panel pn">
-                  <div class="darkblue-header">
-                    <h5>회원 남녀 비율</h5>
-                  </div>
-                  <canvas id="genderStatCanvas" height="120" width="120"></canvas>
-                  <p>April 17, 2014</p>
-                  <footer>
-                    <div class="pull-left">
-                      <h5><i class="fa fa-hdd-o"></i> 17 GB</h5>
-                    </div>
-                    <div class="pull-right">
-                      <h5>60% Used</h5>
-                    </div>
-                  </footer>
-                </div> -->
-                <!--  /darkblue panel -->
-              </div>
-              <!-- /col-md-4 -->
-              <div class="col-md-4 col-sm-4 mb">
-                <!-- REVENUE PANEL -->
-                <div class="green-panel pn">
-                  <div class="green-header">
-                    <h5>2019 이벤트 분포 현황</h5>
-                  </div>
-                  <canvas id="ageStatCanvas" height="120" width="120"></canvas>
-                  <div class="row">
-                    <!-- <div class="col-sm-6 col-xs-6 goleft" id="text1"> -->
-                    <div class="col-sm-12 col-xs-12 goleft" id="text1">
-                    </div>
-                    <div class="col-sm-12 col-xs-12" id="text">
-                    	<br>
-                      <!-- <h2><font style="font-size:20pt">21%</font>
-                      	  <font style="font-size:20pt; color:darkgray;">/</font> 
-                      	  <font style="font-size:20pt; color:#1c9ca7;">21%</font>
-                      </h2> -->
-                    </div>
-                  </div>
-                  
-                </div>
-              </div>
-              <!-- /col-md-4 -->
-            </div>
-            <!-- /row -->
-            <div class="row">
-              <!-- WEATHER PANEL -->
-              <div class="col-md-4 mb">
-                <div class="weather pn">
-                  <i class="fa fa-cloud fa-4x"></i>
-                  <h2>11º C</h2>
-                  <h4>BUDAPEST</h4>
-                </div>
-              </div>
-              <!-- /col-md-4-->
+              
+              
+              
+              
+              
+              
               <!-- DIRECT MESSAGE PANEL -->
                <div class="col-md-8 mb">
                 <div class="message-p pn">
@@ -527,6 +649,109 @@
                 <!-- /Message Panel-->
               </div>
               <!-- /col-md-8  -->
+              
+              
+              
+              
+              
+              
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <!-- /row -->
+            <div class="row">
+              <!-- WEATHER PANEL -->
+              <div class="col-md-4 mb">
+                <div class="weather pn">
+                  <i class="fa fa-cloud fa-4x"></i>
+                  <h2>11º C</h2>
+                  <h4>BUDAPEST</h4>
+                </div>
+              </div>
+              <!-- /col-md-4-->
+              
+              <!-- /col-md-4-->
+              <div class="col-md-4 col-sm-4 mb">
+                <div class="darkblue-panel pn donut-chart">
+                  <div class="darkblue-header">
+                    <h5>회원  성비</h5>
+                  </div>
+                  <canvas id="genderStatCanvas" height="120" width="120"></canvas>
+                  <div class="row">
+                    <div class="col-sm-6 col-xs-6 goleft">
+                    <br>
+                      <p>여자 / 남자 : </p>
+                    </div>
+                    <div class="col-sm-6 col-xs-6" id="genderText">
+                      <!-- <h2><font style="font-size:20pt">21%</font>
+                      	  <font style="font-size:20pt; color:darkgray;">/</font> 
+                      	  <font style="font-size:20pt; color:#1c9ca7;">21%</font>
+                      </h2> -->
+                    </div>
+                  </div>
+                </div>
+              
+              
+<!--                 <div class="darkblue-panel pn">
+                  <div class="darkblue-header">
+                    <h5>회원 남녀 비율</h5>
+                  </div>
+                  <canvas id="genderStatCanvas" height="120" width="120"></canvas>
+                  <p>April 17, 2014</p>
+                  <footer>
+                    <div class="pull-left">
+                      <h5><i class="fa fa-hdd-o"></i> 17 GB</h5>
+                    </div>
+                    <div class="pull-right">
+                      <h5>60% Used</h5>
+                    </div>
+                  </footer>
+                </div> -->
+                <!--  /darkblue panel -->
+              </div>
+              <!-- /col-md-4 -->
+              <div class="col-md-4 col-sm-4 mb">
+                <!-- REVENUE PANEL -->
+                <div class="green-panel pn">
+                  <div class="green-header">
+                    <h5>2019 이벤트 분포 현황</h5>
+                  </div>
+                  <canvas id="ageStatCanvas" height="120" width="120"></canvas>
+                  <div class="row">
+                    <!-- <div class="col-sm-6 col-xs-6 goleft" id="text1"> -->
+                    <div class="col-sm-12 col-xs-12 goleft" id="text1">
+                    </div>
+                    <div class="col-sm-12 col-xs-12" id="text">
+                    	<br>
+                      <!-- <h2><font style="font-size:20pt">21%</font>
+                      	  <font style="font-size:20pt; color:darkgray;">/</font> 
+                      	  <font style="font-size:20pt; color:#1c9ca7;">21%</font>
+                      </h2> -->
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+              <!-- /col-md-4 -->
+              
+              
+              
+              
               <%-- 
             </div>
             <div class="row">
@@ -747,7 +972,6 @@
   <script type="text/javascript">
     $(document).ready(function() {
     	getChartsData();
-    	
 
 
         
@@ -790,6 +1014,7 @@
 		   , type: "get"
 		   ,success : function(data){
 			   gridCharts(data);
+			   
 		   } 
 		   , error : function(){
 		      alert("서버 접속 실패");

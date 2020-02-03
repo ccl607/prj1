@@ -21,11 +21,12 @@ public class MainController {
 		MainChartsDTO mainChartsDTO = null;
 		try {
 			mainChartsDTO = mainService.getMainCharts();
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		System.out.println("mainChartsDTO => " + mainChartsDTO);
 		return mainChartsDTO;
 	}
 }

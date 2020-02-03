@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.group4.erp.ChartDTO;
+import com.group4.erp.CommonChartDTO;
 import com.group4.erp.EmpApprovalCheckDTO;
 import com.group4.erp.EmployeeDTO;
 import com.group4.erp.service.AnalysisService;
@@ -109,6 +110,7 @@ public class LoginController {
 
 		ModelAndView mav = new ModelAndView();
 		List<Map<String, String>> monthEvnt = mainService.getMonthEvnt();
+		mav.addObject("monthEvnt", monthEvnt);
 		
 		List<ChartDTO> monthlyBookRegChart = this.analysisService.getMonthlyBookRegChart();
 		String monthlyBook_reg_chart_data = "[";
@@ -122,11 +124,20 @@ public class LoginController {
 			monthlyBook_reg_chart_data += "] ";
 		}
 		monthlyBook_reg_chart_data += "]";
-		//System.out.println("monthEvnt=>" + monthEvnt);
-		mav.addObject("monthEvnt", monthEvnt);
 		mav.addObject("monthlyBook_reg_chart_data", monthlyBook_reg_chart_data);
+		
+		CommonChartDTO orderStat = mainService.getOrderStat();
+		mav.addObject("orderStat", orderStat);
+		System.out.println("orderStat => " + orderStat);
+		
+		CommonChartDTO returnStat = mainService.getReturnStat();
+		mav.addObject("returnStat", returnStat);
+		System.out.println("returnStat => " +returnStat);
+		
+		
+		
+		
 		mav.setViewName("test.jsp");
-		// mav.addObject("subMenu", "mainPage");
 		return mav;
 	}
 

@@ -12,5 +12,7 @@ public interface MainDAO {
 	List<CommonChartDTO> getEventStat();
 	List<CommonChartDTO> getGenderStat();
 	List<Map<String, String>> getMonthEvnt();
+	CommonChartDTO getOrderStat();
+	CommonChartDTO getReturnStat();
 
 }

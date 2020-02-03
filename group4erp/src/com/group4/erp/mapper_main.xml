@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.group4.erp.dao.MainDAO">
+	<!--==========-->
+	<!-- 월별 판매 건수 -->
+	<!--==========-->
 	<select id="selectSellingStat" resultType="com.group4.erp.CommonChartDTO">
 		select
 		    count(order_no) as "cnt"
@@ -11,6 +14,9 @@
 		order by 2 desc
 	</select>
 	
+	<!--===========-->
+	<!-- 회원 나이대 분포 -->
+	<!--===========-->
 	<select id="selectAgeStat" resultType="com.group4.erp.CommonChartDTO">
 	<![CDATA[
 		select
@@ -73,6 +79,10 @@
 		 ]]>
 	</select>
 	
+	
+	<!--===========-->
+	<!-- 이벤트 분포 정보 -->
+	<!--===========-->
 	<select id="selectEventStat" resultType="com.group4.erp.CommonChartDTO">
 		select
 		    round(count(e.evnt_cd)*100/(select count(*) from event_info where to_char(evnt_end_dt, 'yyyy') = to_char(sysdate-365, 'yyyy')), 0) as "cnt"
@@ -83,6 +93,10 @@
 		order by count(e.evnt_cd) desc
 	</select>
 	
+	
+	<!--=======-->
+	<!-- 회원 성비 -->
+	<!--=======-->
 	<select id="selectGenderStat" resultType="com.group4.erp.CommonChartDTO">
 		select
 		    round(count(cus_no)*100/(select count(*) from customer where cus_gender is not null), 0) as "cnt"
@@ -92,6 +106,9 @@
 		group by cus_gender
 	</select>
 	
+	<!--============-->
+	<!-- 어제 summary -->
+	<!--============-->
 	<select id="selectYesterdayStat" resultType="com.group4.erp.CommonChartDTO">
 		select
 		    (select count(*) from book where to_date(to_char(reg_dt, 'YYYY-MM-DD'), 'YYYY-MM-DD') = to_date(to_char(sysdate-1, 'YYYY-MM-DD'),'YYYY-MM-DD')) as "reg_cnt"
@@ -101,14 +118,48 @@
 		from dual;
 	</select>
 	
+	<!--==============-->
+	<!-- 이번달 이벤트 text -->
+	<!--==============-->
 	<select id="selectMonthEvnt" resultType="java.util.HashMap">
 		select
-    		(select c.event_type from code_event c where c.event_cd = evnt_cd)  as "event_type"
-    		,evnt_title as "evnt_title"
-    		,to_char(evnt_start_dt, 'YYYY-MM-DD (DY)' ,'nls_date_language=Korean') as "evnt_start_dt"
-   	 		,to_char(evnt_end_dt, 'YYYY-MM-DD (DY)' ,'nls_date_language=Korean') as "evnt_end_dt"
+		    (select c.event_type from code_event c where c.event_cd = evnt_cd)  as "event_type"
+		    ,evnt_title as "evnt_title"
+		    ,evnt_start_dt as "evnt_start_dt"
+		    ,evnt_end_dt as "evnt_end_dt"
+		    ,to_char(evnt_start_dt, 'YYYYMM')
+		    ,to_char(sysdate, 'YYYYMM')
 		from event_info
-		where to_date(to_char(sysdate, 'YYMM'), 'yymm') between to_date(to_char(evnt_start_dt, 'YYMM'), 'yymm') and to_date(to_char(evnt_end_dt, 'YYMM'), 'yymm') and evnt_end_dt > sysdate
-		order by evnt_start_dt desc
+		where ( to_date(to_char(sysdate, 'YYMM'), 'yymm') between to_date(to_char(evnt_start_dt, 'YYMM'), 'yymm') and to_date(to_char(evnt_end_dt, 'YYMM'), 'yymm') ) and evnt_end_dt >= sysdate
+		order by evnt_start_dt asc, evnt_end_dt desc
 	</select>
+	
+	<!--==================-->
+	<!-- 판매율 progress bar -->
+	<!--==================-->
+	<select id="selectOrder" resultType="com.group4.erp.CommonChartDTO">
+		select
+		    round((nvl(sum(book_qty),0) + (select nvl(sum(b.book_qty), 0) from buy_offline_info b where to_char(b.buy_dt,'YYYYMM') = to_char(sysdate,'YYYYMM')))/30000*100, 1) as "cnt"
+		    ,to_char(order_dt, 'yy.mm') "title"
+		from order_info
+		where order_no not in (select order_no from return_sale_info) and to_char(order_dt,'YYYYMM') = to_char(sysdate,'YYYYMM')
+		group by to_char(order_dt, 'yy.mm')
+
+	</select>
+	
+	<!--==================-->
+	<!-- 반품율 progress bar -->
+	<!--==================-->
+	<select id="selectReturn" resultType="com.group4.erp.CommonChartDTO">
+		select
+		    round(sum(return_qty)/3000*100,1) as "cnt"
+		    ,to_char(return_order_dt, 'YY.MM') as "title"
+		from return_sale_info
+		where to_char(return_order_dt,'YYYYMM') = to_char(sysdate,'YYYYMM')
+		group by to_char(return_order_dt, 'YY.MM')
+	</select>
+	
+	
+	
+	
 </mapper>

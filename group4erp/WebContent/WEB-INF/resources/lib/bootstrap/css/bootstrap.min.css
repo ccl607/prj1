@@ -5659,7 +5659,7 @@ to {
 }
 
 .progress-bar-info {
-	background-color: #de6414
+	background-color: #19d49c
 }
 
 .progress-striped .progress-bar-info {
@@ -5675,7 +5675,7 @@ to {
 }
 
 .progress-bar-warning {
-	background-color: #f0ad4e
+	background-color: #efc205
 }
 
 .progress-striped .progress-bar-warning {
@@ -5691,7 +5691,7 @@ to {
 }
 
 .progress-bar-danger {
-	background-color: #d9534f
+	background-color: #d94f4f
 }
 
 .progress-striped .progress-bar-danger {

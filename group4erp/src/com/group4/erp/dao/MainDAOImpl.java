@@ -43,4 +43,18 @@ public class MainDAOImpl implements MainDAO {
 		return monthEvnt;
 	}
 
+	@Override
+	public CommonChartDTO getOrderStat() {
+		return this.sqlSession.selectOne("com.group4.erp.dao.MainDAO.selectOrder");
+	}
+
+	@Override
+	public CommonChartDTO getReturnStat() {
+		return this.sqlSession.selectOne("com.group4.erp.dao.MainDAO.selectReturn");
+	}
+	
+	
+	
+	
+
 }

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.group4.erp.CommonChartDTO;
 import com.group4.erp.MainChartsDTO;
 import com.group4.erp.dao.MainDAO;
 
@@ -30,5 +31,21 @@ public class MainServiceImpl implements MainService {
 		List<Map<String, String>> monthEvnt = mainDAO.getMonthEvnt();
 		return monthEvnt;
 	}
+
+	@Override
+	public CommonChartDTO getOrderStat() {
+		CommonChartDTO orderStat = mainDAO.getOrderStat();
+		return orderStat;
+	}
+
+	@Override
+	public CommonChartDTO getReturnStat() {
+		CommonChartDTO returnStat = mainDAO.getReturnStat();
+		return returnStat;
+	}
+	
+	
+	
+	
 
 }
