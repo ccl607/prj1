@@ -334,7 +334,7 @@
                 <div class="validate"></div>
               </div>
               <div class="form-group">
-                <input type="text" name="emp_eng_name" class="form-control" id="contact-name" placeholder="사원영문명">
+                <input type="text" name="emp_eng_name" class="form-control" id="contact-name" placeholder="사원 영문명">
                 <div class="validate"></div>
               </div>
                <div class="input-group input-large">
@@ -412,10 +412,10 @@
                      <tr>
                         <td width="100%">
                           <div class="fileBox" align="left">   <!-- style="position:absolute;left:22%; -->
-                     <input align="left" type="text" class="fileName" readonly="readonly">&nbsp;&nbsp;
-                     <label style="cursor:pointer" for="uploadBtn" class="btn_file" align="left"><i class="fa fa-paperclip"></i> 사진</label>
-                     <input type="file" id="uploadBtn" class="uploadBtn" name="uploadBtn">
-                     </div>
+                     		<input align="left" type="text" class="fileName" readonly="readonly">&nbsp;&nbsp;
+                     		<label style="cursor:pointer" for="uploadBtn" class="btn_file" align="left"><i class="fa fa-paperclip"></i> 사진</label>
+                     		<input type="file" id="uploadBtn" class="uploadBtn" name="uploadBtn">
+                     	</div>
                         </td>
                      </tr>
                      <!-- <label class="col-sm-2 col-sm-2 control-label">Placeholder</label> -->

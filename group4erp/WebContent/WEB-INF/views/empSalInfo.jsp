@@ -192,7 +192,10 @@
           <p class="centered">
             <a href="profile.html"><img src="${ctRootImg}/ui-sam.jpg" class="img-circle" width="80"></a>
           </p>
-          <h4 class="centered"><b><font style="color:lightgray">${emp_name} ${jikup}님</font></b></h4>
+          <h4 class="centered"><b><font style="color:lightgray"> ${emp_name} ${jikup}님</font></b></h4>
+
+         	
+         	
           <li class="mt">
             <a href="/group4erp/goMainTest.do">
               <i class="fa fa-dashboard"></i>
@@ -339,7 +342,14 @@
        <table width=99%>
            <tr>
               <td width=20%> <h3><i class="fa fa-angle-right"></i> ${timeDTO.now_year}년도&nbsp;${timeDTO.now_month}월분 급여지급내역</h3> </td>
-              <td width=50% align="center"><h3> 직책 : ${jikup}	&nbsp;&nbsp; 성명 :${emp_name} </h3> </td>
+              <td width=50% align="center">
+              				<c:if test="${selectedEmp eq emp_no}">
+          						 <h3> 직책 : ${jikup}	&nbsp;&nbsp; 성명 :${emp_name} </h3>
+          					</c:if>
+          					<c:if test="${selectedEmp != emp_no }">
+          						 <h3> 직책 : ${selectedEmp_jikup}	&nbsp;&nbsp; 성명 : ${selectedEmp_name} </h3>
+          					</c:if>
+              </td>
                 <td align=right><h3><i class="fa fa-arrow-left" onclick="goBack();" style="cursor:pointer;"></i></h3> </td>
              </tr>
       </table>

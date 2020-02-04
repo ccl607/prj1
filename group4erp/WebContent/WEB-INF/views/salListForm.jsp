@@ -98,8 +98,10 @@
             )
          );
    
-      inputData('[name=rowCntPerPage]',"${salListSearchDTO.rowCntPerPage}");
-      inputData('[name=selectPageNo]',"${salListSearchDTO.selectPageNo}");
+		inputData('[name=rowCntPerPage]',"${salListSearchDTO.rowCntPerPage}");
+		inputData('[name=selectPageNo]',"${salListSearchDTO.selectPageNo}");
+		inputData("[name=searchKeyword]", "${salListSearchDTO.searchKeyword}");
+
    });
    
    function drawChart() {
@@ -136,7 +138,7 @@
    }
 
    function viewEmpSalInfo(emp_no) {
-      
+
       inputData('[name=emp_no]', emp_no);
       document.salListForm.submit();
    }
@@ -417,7 +419,7 @@
                <td width="20%">
                <th>
                <td width="30%" >
-                  <button  type="button" class="btn btn-default" onclick="goSearch();"><input type="image" src="/group4erp/resources/image/magnifying-glass.png" style="width:13; height:13;" ><font style="font-size:9pt;" >검색</font></button>
+                  <button type="button" class="btn btn-default" onclick="goSearch();"><input type="image" src="/group4erp/resources/image/magnifying-glass.png" style="width:13; height:13;" ><font style="font-size:9pt;" >검색</font></button>
                   &nbsp;
                   <button type="button" class="btn btn-default" onclick="goSearchAll();"><input type="image" src="/group4erp/resources/image/searchA.png" style="width:13; height:13;"><font style="font-size:9pt;">모두검색</font></button>
                   &nbsp;

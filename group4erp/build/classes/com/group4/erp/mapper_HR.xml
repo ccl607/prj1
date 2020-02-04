@@ -210,6 +210,7 @@
         from employee e  
     	where 1=1
     	and worktime_cd != 6
+    	<include refid="empSalWhere" />
     	order by e.emp_no asc
 	) zzz ) where <![CDATA[ RNUM>=${selectPageNo*rowCntPerPage-rowCntPerPage+1} and RNUM<=${selectPageNo*rowCntPerPage} ]]>
 	
@@ -218,8 +219,10 @@
 	<select id='getEmpSalInfo' parameterType="com.group4.erp.SalListSearchDTO" resultType="com.group4.erp.SalaryDTO">
 	select * from(select zzz.*, rownum RNUM from(
 		select 
-			to_char(salary_dt, 'yyyy.mm.dd')|| '('||to_char(salary_dt, 'dy', 'nls_date_language=Korean' )||')' "salary_dt",
-			emp_no "emp_no",
+			to_char(s.salary_dt, 'yyyy.mm.dd')|| '('||to_char(s.salary_dt, 'dy', 'nls_date_language=Korean' )||')' "salary_dt",
+			s.emp_no "emp_no",
+			(select e.emp_name from employee e where e.emp_no=s.emp_no) "emp_name",
+			(select j.jikup from code_jikup j where j.jikup_cd = (select ee.jikup_cd from employee ee where ee.emp_no=s.emp_no) ) "jikup",
 <!-- 
 			to_char(real_sal,'999,999,999,999')||'원' "real_sal",
 			to_char(month_sal,'999,999,999,999')||'원' "month_sal",
@@ -231,23 +234,23 @@
 			to_char(emp_insurance,'999,999,999,999')||'원' "emp_insurance",
 			to_char(deduct,'999,999,999,999')||'원' "deduct" -->
 
-			real_sal "real_sal",
-			month_sal "month_sal",
-			mess_allowance "mess_allowance",
-			bus_trip_bonus "bonus",
-			sum_payable "sum_payable",
-			pension "pension",
-			health "health",
-			emp_insurance "emp_insurance",
-			deduct "deduct"
-		from state_of_payment			  
+			s.real_sal "real_sal",
+			s.month_sal "month_sal",
+			s.mess_allowance "mess_allowance",
+			s.bus_trip_bonus "bonus",
+			s.sum_payable "sum_payable",
+			s.pension "pension",
+			s.health "health",
+			s.emp_insurance "emp_insurance",
+			s.deduct "deduct"
+		from state_of_payment s			  
     	where 1=1
-    	and emp_no = '${emp_no}'  
+    	and s.emp_no = '${emp_no}'
     	<if test="sort!=null and sort.length() > 0" >
 			order by ${sort}
 		</if>
 		<if test="sort==null">
-			order by salary_dt desc
+			order by s.salary_dt desc
 		</if>
     	
     ) zzz ) where <![CDATA[ RNUM>=${selectPageNo*rowCntPerPage-rowCntPerPage+1} and RNUM<=${selectPageNo*rowCntPerPage} ]]>

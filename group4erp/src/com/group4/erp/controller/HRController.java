@@ -126,11 +126,7 @@ public class HRController {
 	         }
 	         sal_chart_data += "]";
 
-	         System.out.println(sal_chart_data);
-	         // obj.put("chartName", "직원평균연봉정보");
-
-	         mav.addObject("sal_chart_data", sal_chart_data);
-	         
+	         mav.addObject("sal_chart_data", sal_chart_data);         
 
 	         mav.setViewName("main.jsp");
 	         mav.addObject("salListSearchDTO", salListSearchDTO);
@@ -150,14 +146,17 @@ public class HRController {
 	
 	//급여명세서(개인별) 조회 기능
 	@RequestMapping(value="/viewEmpSalInfo.do")
-	public ModelAndView viewEmpSalInfo(HttpSession session, SalListSearchDTO salListSearchDTO) {
+	public ModelAndView viewEmpSalInfo(HttpSession session, SalListSearchDTO salListSearchDTO, String emp_no) {
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("main.jsp");
 		mav.addObject("subMenu", "viewEmpSalInfo");
 		mav.addObject("navigator", "[인사관리] → [급여지급내역]");
 	
-		String emp_no = (String)session.getAttribute("emp_id");
+		if(emp_no==null) {
+			emp_no = (String)session.getAttribute("emp_id");
+		} 
+		 
 		int my_emp_no = Integer.parseInt(emp_no);
 
 		salListSearchDTO.setMy_emp_no(my_emp_no);
@@ -183,14 +182,12 @@ public class HRController {
 			if(myPayCheckCnt<beginRowNo) salListSearchDTO.setSelectPageNo(1);
 			
 		}
-
-
-		System.out.println("급여 컨트롤러 시작");
 		
 		List<SalaryDTO> myPayCheckList = this.hrservice.getSalaryInfo(salListSearchDTO);
 		
-		System.out.println("컨트롤러 급여명세서 조회 성공");
-		
+		mav.addObject("selectedEmp", myPayCheckList.get(0).getEmp_no());
+		mav.addObject("selectedEmp_name", myPayCheckList.get(0).getEmp_name());
+		mav.addObject("selectedEmp_jikup", myPayCheckList.get(0).getJikup());
 		
 		mav.addObject("myPayCheckList", myPayCheckList);
 		//mav.addObject("salListSearchDTO", salListSearchDTO);

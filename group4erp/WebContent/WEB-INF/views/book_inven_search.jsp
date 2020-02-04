@@ -153,9 +153,6 @@ $(document).ready(function(){
 		   document.book_inventory_search_form.reset();
 	   }
 
-
-	   
-	   
 </script>
 
 

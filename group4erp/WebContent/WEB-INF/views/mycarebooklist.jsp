@@ -635,11 +635,11 @@
 			         <tr>   
 			         <td align=center>${myWorkListAllCnt-(myWorkSearchDTO.selectPageNo*myWorkSearchDTO.rowCntPerPage-myWorkSearchDTO.rowCntPerPage+1+loopTagStatus.index)+1}
 			            <td align=center>${MyCareBookList.ISBN13}
-			            <td align=left>${MyCareBookList.BOOK_NAME}
-			            <td align=center>${MyCareBookList.CAT_NAME}
-			            <td align=center>${MyCareBookList.BOOK_PRICE}
+			            <td align=left>${MyCareBookList.book_name}
+			            <td align=center>${MyCareBookList.cat_name}
+			            <td align=center>${MyCareBookList.book_price}
 			            <td align=center>${MyCareBookList.ISBN_cnt}
-			            <td align=center>${MyCareBookList.BRANCH_NAME}
+			            <td align=center>${MyCareBookList.branch_name}
 			            <td align=center>
 			               <c:if test="${MyCareBookList.ISBN_cnt < 100}">
 			                  <button type='button' class='btn btn-default' onClick="booKInvenFill(this,'${MyCareBookList.ISBN13}');"><input type='image' src='/group4erp/resources/image/order_book.png' width='12' height='12'>발주</button> 
