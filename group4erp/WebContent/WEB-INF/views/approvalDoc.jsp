@@ -31,7 +31,6 @@
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
-<<<<<<< HEAD
 
   <SCRIPT>
   	$(document).ready(function(){
@@ -39,13 +38,6 @@
   	});
   </SCRIPT>
 
-=======
-  <SCRIPT>
-  	$(document).ready(function(){
-  		showTime();
-  	});
-  </SCRIPT>
->>>>>>> refs/remotes/b_cmj/b_cmj
 </head>
 
 <body>

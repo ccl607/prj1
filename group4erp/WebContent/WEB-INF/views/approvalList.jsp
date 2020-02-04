@@ -47,25 +47,6 @@
 
 .searchTable td{
 	height: 32px;
-<<<<<<< HEAD
-    padding-left: 7;
-}
-
-.searchTable th {
-	height: 32px;
-    padding-right: 7;
-    
-}
-
-.searchTable-bordered td,
-.searchTable-bordered th {
-    border: 1px solid #ddd !important;
-}
-
-.tableth th{
-	text-align: right;
-	font-weight: bold;
-=======
     background-color: #fff !important;
     padding-left: 7;
 }
@@ -80,7 +61,7 @@
 .searchTable-bordered td,
 .searchTable-bordered th {
     border: 1px solid #ddd !important;
->>>>>>> refs/remotes/b_cmj/b_cmj
+
 }
 
 </style>

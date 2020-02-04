@@ -83,18 +83,11 @@
 </head>
 <body><center>	
 	<form class="DayOffApprovalDoc" method="post">
-<<<<<<< HEAD
 		<table class="searchTable tableth" cellpadding="5" cellspacing="5" width="50%" align="center">
-=======
-		<table cellpadding="5" cellspacing="5" width="700" align="center">
->>>>>>> refs/remotes/b_cmj/b_cmj
-		
+
 		<tr>
-<<<<<<< HEAD
 			<td align="right" ><table name="jikup" border="1" cellpadding="5" cellspacing="0"><tr><td width="90" align="center" style="font-weight: bold;">기안자 </td><td  width="90" align="center" style="font-weight: bold;">부서장</td><td width="90" align="center" style="font-weight: bold;">대표이사 </td> </tr> 
-=======
-			<td align="right" ><table name="jikup" border="1" cellpadding="5" cellspacing="0"><tr><td width="90" align="center">기안자 </td><td  width="90" align="center">부서장</td><td width="90" align="center">대표이사 </td> </tr> 
->>>>>>> refs/remotes/b_cmj/b_cmj
+
 														<tr><td align="center">${myDayOffApplyInfo.emp_name} </td><td align="center">
 																											<% String mgr_no = (String)session.getAttribute("mgr_emp_no"); 
 																													String emp = (String)session.getAttribute("emp_id");
@@ -141,11 +134,8 @@
 					<th>휴가 기간</td><td colspan="2">${myDayOffApplyInfo.start_dayoff} ~ ${myDayOffApplyInfo.end_dayoff} ${myDayOffApplyInfo.using_dayoff }일간</td>
 				</tr>
 				<tr>
-<<<<<<< HEAD
 					<th width="100">메모</td><td colspan="3"><textarea name="e_work_comment" cols="40" rows="10" placeholder="반려할 시 사유를 기입해주세요."></textarea></td>
-=======
-					<td width="100">메모</td><td colspan="3"><textarea name="e_work_comment" cols="40" rows="10" placeholder="반려할 시 사유를 기입해주세요."></textarea></td>
->>>>>>> refs/remotes/b_cmj/b_cmj
+
 				</tr>	
 			</table><br>
 			<h4>위와 같이 휴가를 신청하오니 검토 부탁드립니다.</h4>	
