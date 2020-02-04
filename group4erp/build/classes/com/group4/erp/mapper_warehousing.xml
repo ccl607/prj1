@@ -85,7 +85,6 @@
               or upper(w.order_inven_no) like upper('%${wh_keyword}%')
          )
 
-
 		</if>
 		
 	</sql> 

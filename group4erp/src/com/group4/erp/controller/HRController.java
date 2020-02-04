@@ -126,6 +126,7 @@ public class HRController {
 	         }
 	         sal_chart_data += "]";
 
+
 	         mav.addObject("sal_chart_data", sal_chart_data);         
 
 	         mav.setViewName("main.jsp");

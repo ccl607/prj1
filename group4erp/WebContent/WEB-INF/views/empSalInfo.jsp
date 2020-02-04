@@ -75,6 +75,7 @@
 		$('[name=rowCntPerPageDown]').change(function(){
 	         $('[name=rowCntPerPage]').val($(this).val());
 
+
 			goSearch();
 		});
 
@@ -130,272 +131,66 @@
 
 </head>
 
-<body>
-<section id="container">
-    <!-- **********************************************************************************************************************************************************
-        TOP BAR CONTENT & NOTIFICATIONS
-        *********************************************************************************************************************************************************** -->
-    <!--header start-->
-    <header class="header black-bg">
-      <div class="sidebar-toggle-box">
-        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-      </div>
-      <!--logo start-->
-      <a href="/group4erp/goMainTest.do" class="logo"><b>BOOKST<span>.ERP</span></b></a>
-      <!--logo end-->
-      <div class="nav notify-row" id="top_menu">
-        <!--  notification start -->
-        <ul class="nav top-menu">
-          <!-- settings start -->
-          <!-- notification dropdown end -->
-          <li><!-- 
-            <table>
-               <tr>
-                  <td align="left"> <font style="color:#D8E8E4;"><h4><span id="nowTime" align="right"></span> </h4></font></td>
-               </tr>
-            </table> -->
-          </li>
-        </ul>
-        <!--  notification end -->
-      </div>
-      <div class="top-menu">
-        <ul class="nav pull-right top-menu">
-          <!-- <li>
-            <a class="goBackss" href="javascript:goBack();">뒤로 가기</a>
-          </li> -->
-          <li>
-             <a class="logout" href="/group4erp/logout.do">Logout</a>
-          </li>
-        </ul>
-      </div>
-      <div class="top-menu">
-        <ul class="nav pull-right top-menu">
-          <!-- <li>
-            <a class="goBackss" href="javascript:goBack();">뒤로 가기</a>
-          </li> -->
-          <li style="margin-top: 10px; margin-right: 20px;">
-             <font style="color:#D8E8E4;"><h4><span id="nowTime" align="right"></span> </h4></font>
-          </li>
-        </ul>
-      </div>
-      
-    </header>
-    <!--header end-->
-    <!-- **********************************************************************************************************************************************************
-        MAIN SIDEBAR MENU
-        *********************************************************************************************************************************************************** -->
-    <!--sidebar start-->
-    <aside>
-      <div id="sidebar" class="nav-collapse ">
-        <!-- sidebar menu start-->
-        <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered">
-            <a href="profile.html"><img src="${ctRootImg}/ui-sam.jpg" class="img-circle" width="80"></a>
-          </p>
-          <h4 class="centered"><b><font style="color:lightgray"> ${emp_name} ${jikup}님</font></b></h4>
+<body><center>
+	
+	<h1>[급여 지급 내역]</h1><br>
+	직책 : ${jikup}	&nbsp;&nbsp; 성명 :${emp_name}  <br>
+	
+	<form name="empSalForm" method="post" action="/group4erp/viewEmpSalInfo.do">
+		<input type="hidden" name="selectPageNo">
+		<input type="hidden" name="sort">
 
-         	
-         	
-          <li class="mt">
-            <a href="/group4erp/goMainTest.do">
-              <i class="fa fa-dashboard"></i>
-              <span>메인페이지</span>
-              </a>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-desktop"></i>
-              <span>업무 관리</span>
-              </a>
-            <ul class="sub">
-              <li>
-                <a href="/group4erp/goMyCareBookList.do"><i class="fa fa-book"></i>담당 도서 조회</a>
-              </li>
-              <li>
-                <a href="/group4erp/businessTripList.do"><i class="fa fa-briefcase"></i>출장 신청</a>
-              </li>
-              <!-- 
-              <li>
-                <a href="/group4erp/goMyWorkTime.do"><i class="fa fa-list"></i>근태 조회</a>
-              </li>
-              <li>
-               -->
-              <li>
-                <a href="/group4erp/viewApprovalList.do"><i class="fa fa-pencil"></i>문서 결재</a>
-              </li>
-              <li>
-                <a href="/group4erp/goEmpDayOffjoin.do"><i class="fa fa-edit"></i>휴가 신청</a>
-              </li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-shopping-cart"></i>
-              <span>재고 관리</span>
-              </a>
-            <ul class="sub">
-              <li>
-                <a href="/group4erp/goBookList.do"><i class="fa fa-info-circle"></i>도서정보조회</a>
-              </li>
-              <li>
-                <a href="/group4erp/goReleaseList.do"><i class="fa fa-list"></i>출고현황조회</a>
-              </li>
-              <li>
-                <a href="/group4erp/goWarehousingList.do"><i class="fa fa-list"></i>입고현황조회</a>
-              </li>
-              <li>
-                <a href="/group4erp/goReturnOrderList.do"><i class="fa fa-list"></i>반품현황조회</a>
-              </li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-calendar"></i>
-              <span>마케팅 관리</span>
-              </a>
-            <ul class="sub">
-              <li>
-                <a href="/group4erp/viewSalesInfoList.do"><i class="fa fa-money"></i>판매현황</a>
-              </li>
-              <li>
-                <a href="/group4erp/viewEventList.do"><i class="fa fa-gift"></i>이벤트행사 현황</a>
-              </li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a class="active" href="javascript:;">
-              <i class="fa fa-users"></i>
-              <span>인사 관리</span>
-              </a>
-            <ul class="sub">
-              <li>
-                <a href="/group4erp/viewEmpList.do"><i class="fa fa-info-circle"></i>직원정보</a>
-              </li>
-                   <!-- 인사부장만 급여지급대장 조회 메뉴를 볼 수 있다. -->
-                   <c:if test="${emp_id eq '600001'}">
-                   		<li class="active">
-              				<a href="/group4erp/viewSalList.do"><i class="fa fa-file"></i>급여지급대장 조회</a>
-              			</li>	
-              			<li class="active">
-              				<a href="/group4erp/viewEmpSalInfo.do"><i class="fa fa-file"></i>급여명세서 조회</a>
-              			</li>	
-                   </c:if>
-                   
-                   <c:if test="${emp_id != '600001'}">
-                   		<li class="active">
-              				<a href="/group4erp/viewEmpSalInfo.do"><i class="fa fa-file"></i>급여명세서 조회</a>
-              			</li>	
-                   </c:if>
-                   
-              <!-- 
-              <li>
-                <a href="/group4erp/viewEmpWorkStateList.do"><i class="fa fa-list"></i>직원별 근무현황</a>
-              </li>
-               -->
-              <li>
-                <a href="/group4erp/viewEmpDayOffList.do"><i class="fa fa-list"></i>직원별 휴가 현황</a>
-              </li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-krw"></i>
-              <span>회계 관리</span>
-              </a>
-            <ul class="sub">
-              <li class="active">
-                <a href="/group4erp/viewTranSpecIssueList.do"><i class="fa fa-list"></i>거래명세서 조회</a>
-              </li>
-              <li>
-                <a href="/group4erp/viewTranSpecList.do"><i class="fa fa-file-text"></i>사업자 거래내역 조회</a>
-              </li>
-              <li>
-                <a href="/group4erp/viewCorpList.do"><i class="fa fa-link"></i>거래처 현황 조회</a>
-              </li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class=" fa fa-bar-chart-o"></i>
-              <span>전략 분석</span>
-              </a>
-            <ul class="sub">
-              <li>
-                <a href="/group4erp/viewBestKeywdAnalysis.do"><i class="fa fa-search"></i>키워드 검색 자료 조회</a>
-              </li>
-              <li>
-                <a href="/group4erp/viewOurCompanyReport.do"><i class="fa fa-building-o"></i>회사현황</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-        <!-- sidebar menu end-->
-      </div>
-    </aside>
-    <!--sidebar end-->
-    <!-- **********************************************************************************************************************************************************
-        MAIN CONTENT
-        *********************************************************************************************************************************************************** -->
-    <!--main content start-->
-    <section id="main-content">
-      <section class="wrapper" style="text-align:left;">
-       <table width=99%>
-           <tr>
-              <td width=20%> <h3><i class="fa fa-angle-right"></i> ${timeDTO.now_year}년도&nbsp;${timeDTO.now_month}월분 급여지급내역</h3> </td>
-              <td width=50% align="center">
-              				<c:if test="${selectedEmp eq emp_no}">
-          						 <h3> 직책 : ${jikup}	&nbsp;&nbsp; 성명 :${emp_name} </h3>
-          					</c:if>
-          					<c:if test="${selectedEmp != emp_no }">
-          						 <h3> 직책 : ${selectedEmp_jikup}	&nbsp;&nbsp; 성명 : ${selectedEmp_name} </h3>
-          					</c:if>
-              </td>
-                <td align=right><h3><i class="fa fa-arrow-left" onclick="goBack();" style="cursor:pointer;"></i></h3> </td>
-             </tr>
-      </table>
-        <div class="row">
-          
-      <form name="empSalForm" method="post" action="/group4erp/viewEmpSalInfo.do">
-         <!-- <div class="divcss"> -->
- 
-         <!-- 
-         <input type="image" src="/group4erp/resources/image/magnifying-glass.png" width="20" height="20" value="검색" onclick="goSearchBookInven();">  
-         <a href="javascript:goSearchBookInven();">검색</a>&nbsp;&nbsp;
-         <input type="button" value="모두검색" onclick="goAllSearchBookInven();">&nbsp;&nbsp;
-         <input type="button" value="초기화" onclick="goAllReset();">
-          -->
-         <!-- </div> -->
-         
-         <input type="hidden" name="selectPageNo">
-         <input type="hidden" name="rowCntPerPage" value='${salListSearchDTO.rowCntPerPage}'>
-         <!-- header sort를 하기 위한 hidden Tag -->
-         <input type="hidden" name="sort">
-         </form>
-          <!-- /col-md-12 -->
-          <div class="col-md-12 mt">
-            <div class="content-panel">
-            <div class="adv-table">
-            <table border=0 width=98%>
-               <tr>
-                  <td><h4><i class="fa fa-angle-right"></i> 지급일 : ${timeDTO.now_year}년 ${timeDTO.now_month}월 5일 </h4>
-                  <td align=right>[단위] : 원 / [전체] : ${myPayCheckCnt}건&nbsp;&nbsp;&nbsp;&nbsp;
-                  <select name="rowCntPerPageDown">
-                        <option value="10">10</option>
-                        <option value="15">15</option>
-                        <option value="20">20</option>
-                        <option value="25">25</option>
-                        <option value="30">30</option>
-                  </select> 행보기
-            </table>
-            <table><tr><td height="10"></td></tr></table>
-         </form>
-         
-         <table class="table table-striped table-advance table-hover table-bordered" name="salListTable" width="100%" border=0 cellspacing=0 cellpadding=5>   
-         
-         
-         <thead>
-         
-         <tr align="center">
+	
+		<table class="tab" cellpadding="5" cellspacing="5">
+			<tr>			
+				<td align="right">
+	        	[전체] : ${myPayCheckCnt}건&nbsp;&nbsp;&nbsp;&nbsp;
+	           	 <select name="rowCntPerPage">
+	              		<option value="10">10</option>
+	               		<option value="15">15</option>
+	               		<option value="20">20</option>
+	               		<option value="25">25</option>
+	               		<option value="30">30</option>
+	            	</select> 행보기
+	    		</td>
+		<table>
+			<tr height=10>
+				<td></td>
+
+			</tr>
+
+			</form>
+			<tr>
+				<td>
+					<table class="empSalInfo tab" cellpadding="5" cellspacing="5">
+
+		</table>
+			
+		<input type="hidden" name="selectPageNo">
+		<input type="hidden" name="sort">
+
+		
+	
+	
+	<table name="outerBorder" cellpadding="5" cellspacing="5">
+		<tr>			
+			<td align="right">
+	        [전체] : ${myPayCheckCnt}개&nbsp;&nbsp;&nbsp;&nbsp;
+	            <select name="rowCntPerPage">
+	               <option value="10">10</option>
+	               <option value="15">15</option>
+	               <option value="20">20</option>
+	               <option value="25">25</option>
+	               <option value="30">30</option>
+	            </select> 행보기 
+	    	</td>
+		</tr>
+		
+		<tr>
+			<td>
+				<table class="empSalInfo tab" name="empSalInfo" cellpadding="5" cellspacing="5">	
+					<tr align="center">
+
 						<th rowspan="2">번호</th>
 						
 						<c:choose>
@@ -527,7 +322,7 @@
 					</tr>
       </thead>
          <tbody>
-         <c:forEach items='${myPayCheckList}' var="myPayCheckList" varStatus="loopTagStatus">
+        	<c:forEach items='${myPayCheckList}' var="myPayCheckList" varStatus="loopTagStatus">
 						<tr align="center">	
 							<td>${myPayCheckCnt - myPayCheckList.RNUM +1}</td>
 							<td>${myPayCheckList.salary_dt}</td>
@@ -551,28 +346,20 @@
 							<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${myPayCheckList.real_sal}" />원</td>
 
 						</tr>
-		
 					 </c:forEach>
-         </tbody>
-      </table>
-      <!-- &nbsp;&nbsp;<h6>단위 [원]</h6> -->
-      <br>
-      <!-- <input type="button" value="신규사원등록" onClick="insertNewEmp();"> -->
-      <br><br>
-      <div align=center>&nbsp;<span class="pagingNumber"></span>&nbsp;</div>
-         
-         <br>
-         
-         
-         
-         
-         
-         
-            </div>
-          </div>
-          <!-- /col-md-12 -->
-        </div>
-        <br>
+				</table>
+			</td>
+		</tr>
+	
+	</table>
+
+	<div>&nbsp; <span class="pagingNumber"></span>&nbsp;</div>
+
+	</form>
+
+	<h5>귀하의 노고에 감사드립니다.</h5>
+	<input type="button" value="뒤로 가기" onClick="javascript:history.go(-1);">
+</center>
 
 
         

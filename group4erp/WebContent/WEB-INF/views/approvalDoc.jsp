@@ -31,6 +31,7 @@
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
+<<<<<<< HEAD
 
   <SCRIPT>
   	$(document).ready(function(){
@@ -38,6 +39,13 @@
   	});
   </SCRIPT>
 
+=======
+  <SCRIPT>
+  	$(document).ready(function(){
+  		showTime();
+  	});
+  </SCRIPT>
+>>>>>>> refs/remotes/b_cmj/b_cmj
 </head>
 
 <body>
@@ -58,7 +66,6 @@
         <ul class="nav top-menu">
           <!-- settings start -->
           <!-- notification dropdown end -->
-
           <li><!-- 
             <table>
                <tr>
@@ -122,11 +129,9 @@
               <li>
                 <a href="/group4erp/businessTripList.do"><i class="fa fa-briefcase"></i>출장 신청</a>
               </li>
-              <!-- 
               <li>
                 <a href="/group4erp/goMyWorkTime.do"><i class="fa fa-list"></i>근태 조회</a>
               </li>
-              -->
               <li>
                 <a href="/group4erp/viewApprovalList.do"><i class="fa fa-pencil"></i>문서 결재</a>
               </li>
@@ -179,13 +184,11 @@
                 <a href="/group4erp/viewEmpList.do"><i class="fa fa-info-circle"></i>직원정보</a>
               </li>
               <li>
-              	<a href="/group4erp/viewEmpSalInfo.do"><i class="fa fa-file"></i>급여명세서 조회</a>
-              </li>	
-              <!-- 
+                <a href="/group4erp/viewSalList.do"><i class="fa fa-file"></i>급여명세서 조회</a>
+              </li>
               <li>
                 <a href="/group4erp/viewEmpWorkStateList.do"><i class="fa fa-list"></i>직원별 근무현황</a>
               </li>
-               -->
               <li>
                 <a href="/group4erp/viewEmpDayOffList.do"><i class="fa fa-list"></i>직원별 휴가 현황</a>
               </li>
@@ -233,8 +236,7 @@
     <!--main content start-->
      <section id="main-content">
       <section class="wrapper site-min-height">
-        <h3><i class="fa fa-angle-right"></i> 결재 정보</h3>
-
+        <h3><i class="fa fa-angle-right"></i> Blank Page</h3>
         <div class="row mt">
           <div class="col-lg-12">
             <!-- 이벤트 행사 신청 결재 -->

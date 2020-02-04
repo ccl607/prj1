@@ -137,7 +137,6 @@ public class ApprovalServiceImpl implements ApprovalService {
 		return bTripApprovalCnt;
 	}
 
-
 	@Override
 	public int deleteBTripApproval(ApprovalDTO approvalDTO) {
 		// TODO Auto-generated method stub

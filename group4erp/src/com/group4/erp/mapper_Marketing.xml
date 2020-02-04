@@ -110,6 +110,7 @@
 			<if test="sort==null or sort==''">
 			order by 1 desc
 			</if>
+
 		) zzz) 
 		where RNUM&gt;=${selectPageNo * rowCntPerPage - rowCntPerPage +1} and RNUM&lt;=${selectPageNo * rowCntPerPage}
 	</select>

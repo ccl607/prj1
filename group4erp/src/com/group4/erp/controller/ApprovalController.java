@@ -398,11 +398,12 @@ public class ApprovalController {
 			
 		} catch(Exception e) {
 			System.out.println("deleteEvntApprovalProc() 메소드에서 예외 발생 >>> "+e);
+
 		}
 				
 		return approvalUpCnt;
 	}
-	
+
 	
 	@RequestMapping(value="/deleteBTripApprovalProc.do", 
 			method=RequestMethod.POST, 

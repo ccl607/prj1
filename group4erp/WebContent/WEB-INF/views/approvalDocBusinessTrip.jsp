@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>출장 신청 결재</title>
 
+
 <style>
 
 .searchTable{
@@ -140,6 +141,7 @@
 				</tr>
 				<tr>
 					<th width="100">메모</td><td colspan="3"><textarea name="e_work_comment" cols="40" rows="10" placeholder="반려할 시 사유를 기입해주세요."></textarea></td>
+
 
 				</tr>	
 			</table><br>

@@ -55,11 +55,8 @@
           border: 1px solid #ddd !important;
       }
      </style>
-  
 
-   <script type="text/javascript"></script>
-   
-   
+    
    <script type="text/javascript">
    $(document).ready(function(){
 
@@ -100,6 +97,8 @@
 		inputData('[name=selectPageNo]',"${salListSearchDTO.selectPageNo}");
 		inputData("[name=searchKeyword]", "${salListSearchDTO.searchKeyword}");
 
+
+<<<<<<< HEAD
    });
    
    function drawChart() {
@@ -126,6 +125,7 @@
       document.empSalSearchForm.submit();
    }
 
+
    function goSearchAll() {
       document.empSalSearchForm.reset();
 
@@ -133,20 +133,45 @@
       $('[name=empSalSearchForm] [name=rowCntPerPage]').val("15");
       
       goSearch();
+
+   });
+   
+   function drawChart() {
+      //console.log("${sal_chart_data} ", ${sal_chart_data});
+      var data = google.visualization.arrayToDataTable(${sal_chart_data});
+      var options = {
+            title: '직급별 평균 연봉',
+            width :1400, 
+            height: 700,
+            lineWidth:20,
+            colors:['#4ECDC4','#4ECDC4'],
+            animation:{
+               "startup": true,
+                 duration: 1000,
+                 easing: 'out',
+               }
+      };
+      
+      var chart = new google.visualization.BarChart(document.getElementById('salaryChart'));
+      chart.draw(data, options);
    }
+   
 
    function viewEmpSalInfo(emp_no) {
-
+      
       inputData('[name=emp_no]', emp_no);
       document.salListForm.submit();
+
    }
+
+	function goChart() {
+	   location.replace("/group4erp/viewEmpAvgSalChart.do");
+	}
+
 
    function goApproval() {
       alert("결재");
-   }
 
-   function goChart() {
-      location.replace("/group4erp/viewEmpAvgSalChart.do");
    }
 
    function goPayCheck() {
@@ -168,23 +193,10 @@
 
             } else {
                alert("서버쪽 DB 연동 실패!");
-            }
-         }
+    		}
+         });
+	}
 
-         //서버의 응답을 못 받았을 경우 실행할 익명함수 설정
-         , error : function() {      //서버의 응답을 못받았을 경우 실행할 익명함수 설정
-            alert("서버 접속 실패!");
-         }   
-      });
-
-   }
-
-
-
-
-
-   
-      
 
 </script>
 
@@ -206,13 +218,14 @@
         <!--  notification start -->
         <ul class="nav top-menu">
           <!-- settings start -->
+
           <!-- notification dropdown end -->
-          <li><!-- 
+          <li>
             <table>
                <tr>
-                  <td align="left"> <font style="color:#D8E8E4;"><h4><span id="nowTime" align="right"></span> </h4></font></td>
+                  <td align="left"> <font style="color:#D8E8E4;"><h5><span id="nowTime" align="right"></span> </h5></font></td>
                </tr>
-            </table> -->
+            </table>
           </li>
         </ul>
         <!--  notification end -->
@@ -223,21 +236,10 @@
             <a class="goBackss" href="javascript:goBack();">뒤로 가기</a>
           </li> -->
           <li>
-             <a class="logout" href="/group4erp/logout.do">Logout</a>
+            <a class="logout" href="/group4erp/logout.do">Logout</a>
           </li>
         </ul>
       </div>
-      <div class="top-menu">
-        <ul class="nav pull-right top-menu">
-          <!-- <li>
-            <a class="goBackss" href="javascript:goBack();">뒤로 가기</a>
-          </li> -->
-          <li style="margin-top: 10px; margin-right: 20px;">
-             <font style="color:#D8E8E4;"><h4><span id="nowTime" align="right"></span> </h4></font>
-          </li>
-        </ul>
-      </div>
-      
     </header>
     <!--header end-->
     <!-- **********************************************************************************************************************************************************
@@ -251,7 +253,7 @@
           <p class="centered">
             <a href="profile.html"><img src="${ctRootImg}/ui-sam.jpg" class="img-circle" width="80"></a>
           </p>
-          <h4 class="centered"><b><font style="color:lightgray">${emp_name} ${jikup}님</font></b></h4>
+          <h5 class="centered">Sam Soffes</h5>
           <li class="mt">
             <a href="/group4erp/goMainTest.do">
               <i class="fa fa-dashboard"></i>
@@ -270,12 +272,9 @@
               <li>
                 <a href="/group4erp/businessTripList.do"><i class="fa fa-briefcase"></i>출장 신청</a>
               </li>
-              <!-- 
               <li>
                 <a href="/group4erp/goMyWorkTime.do"><i class="fa fa-list"></i>근태 조회</a>
               </li>
-              <li>
-               -->
               <li>
                 <a href="/group4erp/viewApprovalList.do"><i class="fa fa-pencil"></i>문서 결재</a>
               </li>
@@ -327,28 +326,12 @@
               <li>
                 <a href="/group4erp/viewEmpList.do"><i class="fa fa-info-circle"></i>직원정보</a>
               </li>
-             
-                   <c:if test="${emp_id eq '600001'}">
-                   		<li class="active">
-              				<a href="/group4erp/viewSalList.do"><i class="fa fa-file"></i>급여지급대장 조회</a>
-              			</li>	
-              			<li class="active">
-              				<a href="/group4erp/viewEmpSalInfo.do"><i class="fa fa-file"></i>급여명세서 조회</a>
-              			</li>	
-                   </c:if>
-                   
-                   <c:if test="${emp_id != '600001'}">
-                   		<li class="active">
-              				<a href="/group4erp/viewEmpSalInfo.do"><i class="fa fa-file"></i>급여명세서 조회</a>
-              			</li>	
-                   </c:if>
-              	
-             
-              <!-- 
+              <li class="active">
+                <a href="/group4erp/viewSalList.do"><i class="fa fa-file"></i>급여명세서 조회</a>
+              </li>
               <li>
                 <a href="/group4erp/viewEmpWorkStateList.do"><i class="fa fa-list"></i>직원별 근무현황</a>
               </li>
-               -->
               <li>
                 <a href="/group4erp/viewEmpDayOffList.do"><i class="fa fa-list"></i>직원별 휴가 현황</a>
               </li>
@@ -417,7 +400,7 @@
                <td width="20%">
                <th>
                <td width="30%" >
-                  <button type="button" class="btn btn-default" onclick="goSearch();"><input type="image" src="/group4erp/resources/image/magnifying-glass.png" style="width:13; height:13;" ><font style="font-size:9pt;" >검색</font></button>
+                  <button  type="button" class="btn btn-default" onclick="goSearch();"><input type="image" src="/group4erp/resources/image/magnifying-glass.png" style="width:13; height:13;" ><font style="font-size:9pt;" >검색</font></button>
                   &nbsp;
                   <button type="button" class="btn btn-default" onclick="goSearchAll();"><input type="image" src="/group4erp/resources/image/searchA.png" style="width:13; height:13;"><font style="font-size:9pt;">모두검색</font></button>
                   &nbsp;

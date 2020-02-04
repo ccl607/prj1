@@ -141,7 +141,6 @@
 		) zzz ) where <![CDATA[ RNUM>=${selectPageNo*rowCntPerPage-rowCntPerPage+1} and RNUM<=${selectPageNo*rowCntPerPage} ]]>  -->
 
 	</select>
-	
 
 	<sql id="MyCareBookSearch">
 		<if test="searchCategory=='전체'">
@@ -192,7 +191,7 @@
 		 	and is_print = #{is_print}
 		 </if>
 	</sql>
-	
+
 	
 	<select id='getCategoryList' resultType="java.util.HashMap">
 		select

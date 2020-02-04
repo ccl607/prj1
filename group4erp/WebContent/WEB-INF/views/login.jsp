@@ -332,10 +332,7 @@ $(document).ready( function() {
       location.href="/group4erp/goClientLogin.do";
    }
    
-   function goChart(){
-	   location.href="/group4erp/goMyChart.do";
-   }
-   
+
 </script>
 
 <!-- style="display:none" -->
@@ -499,34 +496,6 @@ $(document).ready( function() {
 <input type="button" value="마케팅부장" name="easyLogin" style="color:black;" onclick="goCEOLogin('마케팅부장');">&nbsp;
 <input type="button" value="사업부장" name="easyLogin" style="color:black;" onclick="goCEOLogin('사업부장');">&nbsp;
 <input type="button" value="인사부장" name="easyLogin" style="color:black;" onclick="goCEOLogin('인사부장');">&nbsp;
-
-
-
-
-
-<br>
-
-<input type="button" value="차트" onclick="goChart();">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   <!-- js placed at the end of the document so the pages load faster -->

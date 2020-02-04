@@ -211,6 +211,7 @@
     	where 1=1
     	and worktime_cd != 6
     	<include refid="empSalWhere" />
+
     	order by e.emp_no asc
 	) zzz ) where <![CDATA[ RNUM>=${selectPageNo*rowCntPerPage-rowCntPerPage+1} and RNUM<=${selectPageNo*rowCntPerPage} ]]>
 	
@@ -251,6 +252,7 @@
 		</if>
 		<if test="sort==null">
 			order by s.salary_dt desc
+
 		</if>
     	
     ) zzz ) where <![CDATA[ RNUM>=${selectPageNo*rowCntPerPage-rowCntPerPage+1} and RNUM<=${selectPageNo*rowCntPerPage} ]]>

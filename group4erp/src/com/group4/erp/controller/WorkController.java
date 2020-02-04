@@ -53,11 +53,8 @@ public class WorkController {
 				//검색할 시작행 번호 구하기
 				int beginRowNo = (selectPageNo*rowCntPerPage-rowCntPerPage+1);
 				//만약 검색한 총 개수가 검색할 시작행 번호보다 작으면 선택한페이지 번호를 1로 세팅하기
-				if(getbusinessTripListAllCnt<beginRowNo){
-					businessTripSearchDTO.setSelectPageNo(1);
-					}
-				
-				
+
+				if(getbusinessTripListAllCnt<beginRowNo) businessTripSearchDTO.setSelectPageNo(1);
 
 				if(businessTripDTO.getLogin_emp_id()== null){
 					businessTripDTO.setLogin_emp_id((String)session.getAttribute("emp_id"));

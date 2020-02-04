@@ -33,7 +33,7 @@
 
 $(document).ready(function() {
 
-	startTime();
+	showTime();
    $("#bestKwdAnalysis").hide();
    
    $("[name=rank]").change(function() {
@@ -82,6 +82,9 @@ google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
    var data = google.visualization.arrayToDataTable(${bestKwd_chart_data});
 
+   console.log("bestKwd_chart_data", ${bestKwd_chart_data});
+   console.log("data", data);
+   
    var options = {
          title: '일별 키워드 검색 건수',
          width :1200, 
@@ -154,12 +157,15 @@ function openBestKwdData() {
 
 
 </script>
-<<<<<<< HEAD
+
 </head>
 <body><%-- <center>
 =======
 <%-- <center>
 >>>>>>> refs/remotes/b_kth/b_kth
+=======
+<%-- <center>
+>>>>>>> refs/remotes/b_cmj/b_cmj
    <h1>[키워드 검색 분석 자료]</h1><br>
    
    <form name="keywordSearchForm" method="post" action="/group4erp/searchKeywordInfo.do">
@@ -201,7 +207,6 @@ function openBestKwdData() {
 
    
 </center> --%>
-
 
 <body>
   <section id="container">
@@ -284,11 +289,9 @@ function openBestKwdData() {
               <li>
                 <a href="/group4erp/businessTripList.do"><i class="fa fa-briefcase"></i>출장 신청</a>
               </li>
-              <!-- 
               <li>
                 <a href="/group4erp/goMyWorkTime.do"><i class="fa fa-list"></i>근태 조회</a>
               </li>
-               -->
               <li>
                 <a href="/group4erp/viewApprovalList.do"><i class="fa fa-pencil"></i>문서 결재</a>
               </li>
@@ -340,14 +343,12 @@ function openBestKwdData() {
               <li>
                 <a href="/group4erp/viewEmpList.do"><i class="fa fa-info-circle"></i>직원정보</a>
               </li>
-              <li class="active">
-              	<a href="/group4erp/viewEmpSalInfo.do"><i class="fa fa-file"></i>급여명세서 조회</a>
+              <li>
+                <a href="/group4erp/viewSalList.do"><i class="fa fa-file"></i>급여명세서 조회</a>
               </li>
-              <!-- 
               <li>
                 <a href="/group4erp/viewEmpWorkStateList.do"><i class="fa fa-list"></i>직원별 근무현황</a>
               </li>
-               -->
 
               <li>
                 <a href="/group4erp/viewEmpDayOffList.do"><i class="fa fa-list"></i>직원별 휴가 현황</a>

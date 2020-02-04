@@ -31,11 +31,11 @@
    $(document).ready(function() {
 	
 	   startTime();
-	   
+
+
       $("[name=category]").change(function() {
          var cnt = $(this).filter(":checked").length;
          var cat_cd ='';
-
 
          if(cnt==1) {
             //change 이벤트가 발생한 체크박스의 형제들의 체크를 모두 풀기
@@ -58,6 +58,64 @@
 
 
    function drawHireOrResignChart() {
+
+      var hireOrResign_chart_data = google.visualization.arrayToDataTable(${empHireOrResign_data});
+      var hireOrResign_chart_options = {
+         title: '직원 변동 현황',
+         width :700, 
+         height: 300,
+         lineWidth: 4,
+         colors:['#f0ad4e', '#ed5564', '#4eccc4'],
+         /* '#4eccc4','#4eccc4' */
+         animation:{
+            "startup": true,
+              duration: 1000,
+              easing: 'out',
+            }
+      };
+
+
+      var hireOrResign_chart = new google.visualization.LineChart(document.getElementById('empHireOrResignChart'));
+                         
+      hireOrResign_chart.draw(hireOrResign_chart_data, hireOrResign_chart_options);
+
+   }
+
+   function drawEmployeeCntChart() {
+      var employee_chart_data = google.visualization.arrayToDataTable(${employee_chart_data});
+      var employee_chart_options = {
+         title: '직원 현황(직급별)',
+         width :700, 
+         height: 300,
+         colors:['#FF6464','#FF6464'],
+         opacity: 0.5,
+         animation:{
+            "startup": true,
+              duration: 1000,
+              easing: 'out',
+            }
+      };
+
+      var employee_chart = new google.visualization.ColumnChart(document.getElementById('employeeChart'));
+
+      employee_chart.draw(employee_chart_data, employee_chart_options);
+   }
+
+   function drawBarChart() {
+      var category_reg_chart_data = google.visualization.arrayToDataTable(${bookCategory_reg_chart_data});
+      var category_data_options = {
+         title: '분야별 도서 계약 건수',
+         width :700, 
+         height: 300,
+         colors:['#82F9B7','#82F9B7'],
+         animation:{
+            "startup": true,
+              duration: 1000,
+              easing: 'out',
+        }
+      };
+
+   function drawHireOrResignChart() {
       var hireOrResign_chart_data = google.visualization.arrayToDataTable(${empHireOrResign_data});
       var hireOrResign_chart_options = {
          title: '직원 변동 현황',
@@ -75,10 +133,10 @@
       };
 
 
+
       var hireOrResign_chart = new google.visualization.LineChart(document.getElementById('empHireOrResignChart'));
                          
       hireOrResign_chart.draw(hireOrResign_chart_data, hireOrResign_chart_options);
-
 
    }
 
@@ -123,6 +181,7 @@
       categoryReg_chart.draw(category_reg_chart_data, category_data_options);
    
    }
+
 
    function drawCategoryChart() {
       var category_reg_chart_data = google.visualization.arrayToDataTable(${bookCategory_reg_chart_data});
@@ -303,12 +362,12 @@ function drawLineChart() {
         <ul class="nav top-menu">
           <!-- settings start -->
           <!-- notification dropdown end -->
-          <li><!-- 
+          <li>
             <table>
                <tr>
-                  <td align="left"> <font style="color:#D8E8E4;"><h4><span id="nowTime" align="right"></span> </h4></font></td>
+                  <td align="left"> <font style="color:#D8E8E4;"><h5><span id="nowTime" align="right"></span> </h5></font></td>
                </tr>
-            </table> -->
+            </table>
           </li>
         </ul>
         <!--  notification end -->
@@ -319,23 +378,14 @@ function drawLineChart() {
             <a class="goBackss" href="javascript:goBack();">뒤로 가기</a>
           </li> -->
           <li>
-             <a class="logout" href="/group4erp/logout.do">Logout</a>
+            <a class="logout" href="/group4erp/logout.do">Logout</a>
           </li>
         </ul>
       </div>
-      <div class="top-menu">
-        <ul class="nav pull-right top-menu">
-          <!-- <li>
-            <a class="goBackss" href="javascript:goBack();">뒤로 가기</a>
-          </li> -->
-          <li style="margin-top: 10px; margin-right: 20px;">
-             <font style="color:#D8E8E4;"><h4><span id="nowTime" align="right"></span> </h4></font>
-          </li>
-        </ul>
-      </div>
-      
     </header>
     <!--header end-->
+
+
     <!-- **********************************************************************************************************************************************************
         MAIN SIDEBAR MENU
         *********************************************************************************************************************************************************** -->
@@ -347,7 +397,7 @@ function drawLineChart() {
           <p class="centered">
             <a href="profile.html"><img src="${ctRootImg}/ui-sam.jpg" class="img-circle" width="80"></a>
           </p>
-          <h4 class="centered"><b><font style="color:lightgray">${emp_name} ${jikup}님</font></b></h4>
+          <h5 class="centered">Sam Soffes</h5>
           <li class="mt">
             <a href="/group4erp/goMainTest.do">
               <i class="fa fa-dashboard"></i>
@@ -366,12 +416,9 @@ function drawLineChart() {
               <li>
                 <a href="/group4erp/businessTripList.do"><i class="fa fa-briefcase"></i>출장 신청</a>
               </li>
-              <!-- 
               <li>
                 <a href="/group4erp/goMyWorkTime.do"><i class="fa fa-list"></i>근태 조회</a>
               </li>
-              <li>
-               -->
               <li>
                 <a href="/group4erp/viewApprovalList.do"><i class="fa fa-pencil"></i>문서 결재</a>
               </li>
@@ -426,11 +473,9 @@ function drawLineChart() {
               <li>
                 <a href="/group4erp/viewSalList.do"><i class="fa fa-file"></i>급여명세서 조회</a>
               </li>
-              <!-- 
               <li>
                 <a href="/group4erp/viewEmpWorkStateList.do"><i class="fa fa-list"></i>직원별 근무현황</a>
               </li>
-               -->
               <li>
                 <a href="/group4erp/viewEmpDayOffList.do"><i class="fa fa-list"></i>직원별 휴가 현황</a>
               </li>

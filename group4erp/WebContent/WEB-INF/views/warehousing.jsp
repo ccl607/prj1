@@ -61,6 +61,48 @@
 
 .searchTable{
 	border-collapse: 1px collapse !important;
+
+}
+
+.searchTable td{
+	height: 32px;
+    background-color: #fff !important;
+    padding-left: 7;
+}
+
+.searchTable th {
+	height: 32px;
+    background-color: #fff !important;
+    padding-right: 7;
+    
+}
+
+.searchTable-bordered td,
+.searchTable-bordered th {
+    border: 1px solid #ddd !important;
+}
+
+.table th{
+	text-align: center;
+	font-weight: bold;
+}
+.table-bordered thead{
+	/* border-top:5px solid #4ECDC4; 
+	border-bottom:2px solid #FF6B6B;
+	border-bottom:3px solid #444c57;
+	background-color: rgba( 0, 192, 196, 0.5 );
+	background-color: rgba( 245, 171, 171, 0.5 );
+	background-color: rgba( 9, 244, 126, 0.5 );
+	background-color: rgba( 78, 205, 196, 0.5 );
+	background-color: rgba( 28, 28, 28, 0.5 );
+	background-color: rgba( 96, 143, 251, 1 );*/
+	background-color: rgba( 0, 0, 0, 0.8 );
+	border:1px solid rgba( 0, 0, 0, 0.8 );
+	font-weight: bold;
+	color:white;
+	/* border-bottom:2px solid darkgray;
+	border-top:2px solid darkgray; */
+
 }
 
 .searchTable td{
@@ -105,7 +147,7 @@
 			}); */
 
 			startTime();
-			
+
 			 $('[name=rowCntPerPageDown]').change(function(){
 				 $('[name=rowCntPerPage]').val( $(this).val() );
 				 goWhSearch();
@@ -326,6 +368,8 @@
 				document.warehousingSearchForm.reset();
 		}
 
+		console.log("${requestScope.warehousingList}");
+
 	</script>
 
 <body>
@@ -347,12 +391,12 @@
           <!-- settings start -->
 
           <!-- notification dropdown end -->
-          <li><!-- 
+          <li>
      		 <table>
         		 <tr>
-        		 	<td align="left"> <font style="color:#D8E8E4;"><h4><span id="nowTime" align="right"></span> </h4></font></td>
+        		 	<td align="left"> <font style="color:#D8E8E4;"><h5><span id="nowTime" align="right"></span> </h5></font></td>
          		</tr>
-      		</table> -->
+      		</table>
           </li>
         </ul>
         <!--  notification end -->
@@ -363,21 +407,10 @@
             <a class="goBackss" href="javascript:goBack();">뒤로 가기</a>
           </li> -->
           <li>
-          	<a class="logout" href="/group4erp/logout.do">Logout</a>
+            <a class="logout" href="/group4erp/logout.do">Logout</a>
           </li>
         </ul>
       </div>
-      <div class="top-menu">
-        <ul class="nav pull-right top-menu">
-          <!-- <li>
-            <a class="goBackss" href="javascript:goBack();">뒤로 가기</a>
-          </li> -->
-          <li style="margin-top: 10px; margin-right: 20px;">
-          	<font style="color:#D8E8E4;"><h4><span id="nowTime" align="right"></span> </h4></font>
-          </li>
-        </ul>
-      </div>
-      
     </header>
     <!--header end-->
     <!-- **********************************************************************************************************************************************************
@@ -391,7 +424,7 @@
           <p class="centered">
             <a href="profile.html"><img src="${ctRootImg}/ui-sam.jpg" class="img-circle" width="80"></a>
           </p>
-          <h4 class="centered"><b><font style="color:lightgray">${emp_name} ${jikup}님</font></b></h4>
+          <h5 class="centered">Sam Soffes</h5>
           <li class="mt">
             <a href="/group4erp/goMainTest.do">
               <i class="fa fa-dashboard"></i>
@@ -410,12 +443,9 @@
               <li>
                 <a href="/group4erp/businessTripList.do"><i class="fa fa-briefcase"></i>출장 신청</a>
               </li>
-              <!-- 
               <li>
                 <a href="/group4erp/goMyWorkTime.do"><i class="fa fa-list"></i>근태 조회</a>
               </li>
-              <li>
-               -->
               <li>
                 <a href="/group4erp/viewApprovalList.do"><i class="fa fa-pencil"></i>문서 결재</a>
               </li>
@@ -470,11 +500,9 @@
               <li>
                 <a href="/group4erp/viewSalList.do"><i class="fa fa-file"></i>급여명세서 조회</a>
               </li>
-              <!-- 
               <li>
                 <a href="/group4erp/viewEmpWorkStateList.do"><i class="fa fa-list"></i>직원별 근무현황</a>
               </li>
-               -->
               <li>
                 <a href="/group4erp/viewEmpDayOffList.do"><i class="fa fa-list"></i>직원별 휴가 현황</a>
               </li>
@@ -694,13 +722,14 @@
         <!-- /row -->
       </section>
     </section>
+
    <div id="contecnt" style="display:none;">
-		<table width=99%> <tr> <td width=30%> <td width=40% align=center>
-			⏷<br>[상세 정보]<br>
-			<td width=30% align=right>
-			<h3 align=right><i class='fa fa-times' onclick='closeDiv(this);' style='cursor:pointer;'></i>&nbsp;&nbsp;</h3>
+  		<table border=0 width=99%>
+	 			<tr>
+	 				<td align=right>
+	 					<h3><i class="fa fa-times" onclick="closeDiv(this);" style="cursor:pointer;"></i></h3>
 		</table>
-		<table class="searchTable searchTable-bordered tableth" width="50%" id="contentTable" align=center>
+		<table class="table tableth table-advance table-bordered" id="contentTable" align=center>
 			<tr>
 				<th class="thcolor">주문자</th>  
 				<th class="thcolor">발주신청일 </th> 

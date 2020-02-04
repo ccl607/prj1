@@ -4,10 +4,12 @@
 <!DOCTYPE html>
 <html>
 <% 
+
    //String emp_name = (String)session.getAttribute("emp_name"); 
    //String emp_no = (String)session.getAttribute("emp_id");
    //String mgr = (String)session.getAttribute("mgr"); 
    //String dep_no = (String)session.getAttribute("dep_no"); 
+
  %>
 <head>
 <meta charset="UTF-8">

@@ -26,7 +26,6 @@ public class TranSpecDTO {
 	private String searchKeyword;
 	private int selectPageNo=1;
 	private int rowCntPerPage=10;
-	
 
 	public int getTradeTot() {
 		return tradeTot;
@@ -35,7 +34,6 @@ public class TranSpecDTO {
 	public void setTradeTot(int tradeTot) {
 		this.tradeTot = tradeTot;
 	}
-
 
 	public String getRNUM() {
 		return RNUM;
