@@ -29,9 +29,8 @@
 <script type="text/javascript">
 
    $(document).ready(function() {
-	
+	      
 	   startTime();
-
 
       $("[name=category]").change(function() {
          var cnt = $(this).filter(":checked").length;
@@ -46,15 +45,20 @@
          } 
       });
    });
-      
+   
 
    google.charts.load('current', {'packages' : ['corechart'] } );
 
-   google.charts.setOnLoadCallback(drawChart);
-   google.charts.setOnLoadCallback(drawBarChart);
+
+   //google.charts.setOnLoadCallback(drawChart);
+   //google.charts.setOnLoadCallback(drawBarChart);
+
    google.charts.setOnLoadCallback(drawEmployeeCntChart);
    google.charts.setOnLoadCallback(drawHireOrResignChart);
-   google.charts.setOnLoadCallback(drawCategoryChart);
+   //google.charts.setOnLoadCallback(drawCategoryChart);
+   google.charts.setOnLoadCallback(drawDeptEmpCntChart);
+   google.charts.setOnLoadCallback(drawDayoffChart);
+   google.charts.setOnLoadCallback(drawPieCategoryChart);
 
 
    function drawHireOrResignChart() {
@@ -120,7 +124,7 @@
       var hireOrResign_chart_options = {
          title: '직원 변동 현황',
          width :700, 
-         height: 300,
+         height: 400,
          lineWidth: 4,
          colors:['#f0ad4e', '#ed5564', '#4eccc4'],
          /* '#4eccc4','#4eccc4' */
@@ -140,13 +144,12 @@
 
    }
 
-
    function drawEmployeeCntChart() {
       var employee_chart_data = google.visualization.arrayToDataTable(${employee_chart_data});
       var employee_chart_options = {
          title: '직원 현황(직급별)',
-         width :700, 
-         height: 300,
+         width :800, 
+         height: 400,
          colors:['#FF6464','#FF6464'],
          opacity: 0.5,
          animation:{
@@ -161,7 +164,91 @@
 
       employee_chart.draw(employee_chart_data, employee_chart_options);
    }
-
+   
+   function drawDeptEmpCntChart() {
+	      var employee_chart_data = google.visualization.arrayToDataTable([
+	    	  ['부서명', '인원수']
+	    	  <c:forEach items="${requestScope.deptEmpCnt}" var="deptEmpCnt" varStatus="loopTagStatus">
+					,[ '${deptEmpCnt.dep_name}', ${deptEmpCnt.depCnt} ]
+		  	  </c:forEach>
+	      ]);
+	      //#ac92ec
+	      var employee_chart_options = {
+    	         title: '직원 현황(부서별)',
+    	         width :800, 
+    	         height: 400,
+    	         colors:['#22242a','#00c5de'],
+    	         opacity: 0.5,
+    	         animation:{
+    	            "startup": true,
+    	              duration: 1000,
+    	              easing: 'out',
+    	            },
+    	         vAxis: {minValue:0,maxValue:20}
+    	      };
+	      
+	      var employee_chart = new google.visualization.ColumnChart(document.getElementById('employeeChartDept'));
+	      
+	      employee_chart.draw(employee_chart_data, employee_chart_options);
+   }
+   
+   function drawDayoffChart(){
+	   var data5 = google.visualization.arrayToDataTable([
+	    	['카테고리', '비율']
+	    	,['비휴직', ${perLeave.leaveF}]
+	    	,['휴직', ${perLeave.leaveT}]
+	    ]);
+	   
+	   var options5 = {
+	      title: '휴직자 비율',
+	      width :700,
+	      height: 400,
+	      is3D: true
+	    };
+	   
+	   var chart5 = new google.visualization.PieChart(document.getElementById('drawDayoffChart'));
+	   
+	   chart5.draw(data5, options5);
+   }
+   
+   
+   function drawPieCategoryChart(){
+	   
+	   var data = google.visualization.arrayToDataTable([
+	    	['카테고리', '비율']
+	    	<c:forEach items="${requestScope.perBookCat}" var="bookcat" varStatus="loopTagStatus">
+		  		,['${bookcat.cat_name}', ${bookcat.perNum}]
+	  	    </c:forEach>
+	    ]);
+	    var data2 = google.visualization.arrayToDataTable([
+	    	['카테고리', '비율']
+	    	<c:forEach items="${requestScope.perCorpArea}" var="corparea" varStatus="loopTagStatus">
+		  		,['${corparea.business_area_name}', ${corparea.perCorp}]
+	  	    </c:forEach>
+	    ]);
+	    
+	    var options = {
+   	      title: '분야 별 도서 비율',
+	   	   width :700,
+	      height: 400,
+	      is3D: true
+   	    };
+   	    var options2 = {
+   	      title: '거래처 분야 비율',
+	   	   width :700,
+	      height: 400,
+	      is3D: true
+   	    };
+   	    
+	   	 var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+	     var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
+		   
+	     
+	     chart.draw(data, options);
+	     chart2.draw(data2, options2);
+   }
+   
+/*
    function drawBarChart() {
       var category_reg_chart_data = google.visualization.arrayToDataTable(${bookCategory_reg_chart_data});
       var category_data_options = {
@@ -255,7 +342,7 @@
       });
 
    }
-
+*/
 
 /*google.charts.load('current', {'packages' : ['corechart'] } );
 
@@ -287,63 +374,7 @@ function drawLineChart() {
 
 </script>
 </head>
-<body><%-- <center>
-   <h1>[회사 현황]</h1>
-   
-   <form name="categoryBookChart" method="post" action="/group4erp/viewCategoryChart.do">
-      <table class="ourCompanyTb" cellpadding="5" cellspacing="5" align="center">
-      <tr>
-         <td align="center">직원 현황(직급별)<br><!-- <div id="employeeChart" style="width: 700px; height: 300px;"> </div> --></td>
-         <td align="center">총원 변동 현황(기간별)<br><div id="empHireOrResignChart" style="width: 700px; height: 300px;"> </div></td>
-      </tr>
-      
-      <tr>
-         <td align="center">월별도서계약건수<br><div id="monthlyBookRegChart" style="width: 700px; height: 300px;"> </div></td>
-         <td align="center">종류별 도서 계약 건수<br>
-            <c:forEach items="${bookCategoryList}" var="bookCategoryList" varStatus="loopTagStatus">
-               <c:if test="${bookCategoryList.cat_cd eq 6}">
-                  <br>
-               </c:if>
-               <input type="checkbox" name="category" value='${bookCategoryList.cat_cd}' >${bookCategoryList.cat_name} &nbsp;
-               
-            </c:forEach>
-            
-         <div id="categoryRegChart" style="width: 700px; height: 300px;"> </div></td>
-      </tr>
-   
-   </table>
-   <input type="hidden" name="cat_cd">
-   </form>
-   
-
-</center> --%>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<body>
 
 <section id="container">
     <!-- **********************************************************************************************************************************************************
@@ -397,7 +428,7 @@ function drawLineChart() {
           <p class="centered">
             <a href="profile.html"><img src="${ctRootImg}/ui-sam.jpg" class="img-circle" width="80"></a>
           </p>
-          <h5 class="centered">Sam Soffes</h5>
+          <h5 class="centered">${emp_name} ${jikup}님</h5>
           <li class="mt">
             <a href="/group4erp/goMainTest.do">
               <i class="fa fa-dashboard"></i>
@@ -510,6 +541,9 @@ function drawLineChart() {
               <li class="active" >
                 <a href="/group4erp/viewOurCompanyReport.do"><i class="fa fa-building-o"></i>회사현황</a>
               </li>
+              <li>
+                <a href="/group4erp/goMyChart.do"><i class="fa fa-bar-chart-o"></i>차트현황</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -533,7 +567,6 @@ function drawLineChart() {
                 <h4><i class="fa fa-angle-right"></i> 직급별 직원현황</h4>
                 <div class="panel-body">
                   <div id="employeeChart"> </div>
-                  <!-- <div id="hero-graph" class="graph"></div> -->
                 </div>
               </div>
             </div>
@@ -542,7 +575,6 @@ function drawLineChart() {
                 <h4><i class="fa fa-angle-right"></i> 기간별 총원 변동 현황</h4>
                 <div class="panel-body">
                    <div id="empHireOrResignChart"> </div>
-                     <!-- <div id="hero-bar" class="graph"></div> -->
                 </div>
               </div>
             </div>
@@ -550,26 +582,35 @@ function drawLineChart() {
           <div class="row mt">
             <div class="col-lg-6">
               <div class="content-panel">
-                <h4><i class="fa fa-angle-right"></i> 월별 도서 계약 건수</h4>
+                <h4><i class="fa fa-angle-right"></i> 부서별 직원현황</h4>
                 <div class="panel-body">
-                   <div id="monthlyBookRegChart"></div>
-                     <!-- <div id="hero-area" class="graph"></div> -->
+                   <div id="employeeChartDept"></div>
                 </div>
               </div>
             </div>
             <div class="col-lg-6">
               <div class="content-panel">
-                <h4><i class="fa fa-angle-right"></i> 분야별 도서 계약 건수</h4>
+                <h4><i class="fa fa-angle-right"></i> 휴직자 비율</h4>
                 <div class="panel-body">
-                   <c:forEach items="${bookCategoryList}" var="bookCategoryList" varStatus="loopTagStatus">
-                  <c:if test="${bookCategoryList.cat_cd eq 6}">
-                     <br>
-                  </c:if>
-                  <input type="checkbox" name="category" value='${bookCategoryList.cat_cd}' >${bookCategoryList.cat_name} &nbsp;
-               </c:forEach>
-            
-               <div id="categoryRegChart"> </div>
-                  <!-- <div id="hero-donut" class="graph"></div> -->
+               <div id="drawDayoffChart"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt">
+            <div class="col-lg-6">
+              <div class="content-panel">
+                <h4><i class="fa fa-angle-right"></i> 분야 별 도서 현황</h4>
+                <div class="panel-body">
+                   <div id="piechart"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="content-panel">
+                <h4><i class="fa fa-angle-right"></i> 분야 별 거래처 현황</h4>
+                <div class="panel-body">
+               <div id="piechart2"></div>
                 </div>
               </div>
             </div>
@@ -586,41 +627,26 @@ function drawLineChart() {
     <footer class="site-footer">
       <div class="text-center">
         <p>
-          &copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
+			KOSMO 자바&빅데이터 과정 팀프로젝트
         </p>
         <div class="credits">
+        <font style="font-size:12pt;">
+        ⓒ Copyrights <strong>조충래, 김태현, 박현우, 이동하, 임남희, 최민지</strong>
+         </font>
           <!--
             You are NOT allowed to delete the credit link to TemplateMag with free version.
             You can delete the credit link only if you bought the pro version.
             Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
             Licensing information: https://templatemag.com/license/
           -->
-          Created with Dashio template by <a href="https://templatemag.com/">TemplateMag</a>
         </div>
-        <a href="morris.html#" class="go-top">
+        <a href="basic_table.html#" class="go-top">
           <i class="fa fa-angle-up"></i>
           </a>
       </div>
     </footer>
     <!--footer end-->
   </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- js placed at the end of the document so the pages load faster -->
 <script src="${ctRootlib}/jquery/jquery.min.js"></script>
 <script src="${ctRootlib}/bootstrap/js/bootstrap.min.js"></script>

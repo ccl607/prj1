@@ -122,9 +122,7 @@
    
       var options1 = {
             title: '일반 고객 주문 건수(분야별)',
-
             width :900, 
-
             height: 300,
             animation: { //차트가 뿌려질때 실행될 애니메이션 효과
                 
@@ -169,7 +167,7 @@
    
       var options3 = {
             //title: '일반고객 주문 건수(일자별)',
-            width: 700,
+            width: 1000,
             height:300,
             animation: { //차트가 뿌려질때 실행될 애니메이션 효과
                     startup: true,
@@ -324,7 +322,7 @@
           <p class="centered">
             <a href="profile.html"><img src="${ctRootImg}/ui-sam.jpg" class="img-circle" width="80"></a>
           </p>
-          <h5 class="centered">Sam Soffes</h5>
+          <h5 class="centered">${emp_name} ${jikup}님</h5>
           <li class="mt">
             <a href="/group4erp/goMainTest.do">
               <i class="fa fa-dashboard"></i>
@@ -479,7 +477,7 @@
         <div class="content-panel">
           <h4><i class="fa fa-angle-right"></i>  일반고객 주문 건수(일자별)</h4>
           <div class="panel-body">
-            <div id="dailyOrderChart" style="width: 700px; height: 300px;"> </div>
+            <div id="dailyOrderChart" align="left" style="width: 1000px; height: 300px;"> </div>
           </div>
         </div>
         

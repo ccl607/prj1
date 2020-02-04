@@ -107,6 +107,7 @@
                 ,b.reg_dt "REG_DT"             
             from book b)
             where emp_no = '${emp_no}'
+
 			 <if test="is_print!=null and is_print.length()>0">
 			 	and is_print = #{is_print}
 			 </if>
@@ -118,6 +119,7 @@
 			</if>
 		) zzz ) where <![CDATA[ RNUM>=${selectPageNo*rowCntPerPage-rowCntPerPage+1} and RNUM<=${selectPageNo*rowCntPerPage} ]]>	
 			<include refid="MyCareBookSearch" />	 	
+
 
 		<!-- select * from(select zzz.*, rownum RNUM from(
 			select

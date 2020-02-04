@@ -198,7 +198,7 @@ $(document).ready(function(){
           <p class="centered">
             <a href="profile.html"><img src="${ctRootImg}/ui-sam.jpg" class="img-circle" width="80"></a>
           </p>
-          <h5 class="centered">Sam Soffes</h5>
+          <h5 class="centered">${emp_name} ${jikup}님</h5>
           <li class="mt">
             <a href="/group4erp/goMainTest.do">
               <i class="fa fa-dashboard"></i>
@@ -383,7 +383,9 @@ $(document).ready(function(){
 			<table><tr><td height="10"></td></tr></table>
              <table class="table table-striped table-advance table-hover table-bordered" name=mycarebookTable width="90%" border=0 cellspacing=0 cellpadding=5>
              <thead>
-				<tr>						
+				<tr>
+					<th>번호</th>
+
 						<c:choose>
 							<c:when test="${param.sort=='1 desc'}">
 								<th style="cursor:pointer" onClick="$('[name=sort]').val(''); goSearch();  "> ▼ 발급번호</th>
@@ -446,9 +448,9 @@ $(document).ready(function(){
 					</thead>
 					<tbody>
 					<c:forEach items='${tranSpecIssueList}' var="tranSpecIssueList" varStatus="loopTagStatus">
+
 							<tr align=center>
 							<td align=center>${tranSpecIssueCnt-(tranSpecSearchDTO.selectPageNo*tranSpecSearchDTO.rowCntPerPage-tranSpecSearchDTO.rowCntPerPage+1+loopTagStatus.index)+1}</td>
-
 							<td>${tranSpecIssueList.issue_no}</td>
 							<td>${tranSpecIssueList.corp_no}</td>
 							<td>${tranSpecIssueList.corp_name}</td>

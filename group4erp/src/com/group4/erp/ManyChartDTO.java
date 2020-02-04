@@ -2,91 +2,119 @@ package com.group4.erp;
 
 public class ManyChartDTO {
 
-	private String cat_name;
-	private double perNum;
-	private String business_area_name;
-	private double perCorp;
-	private String off_line;
-	private String on_line;
-	private String memberY;
-	private String memberN;
-	private String leaveF;
-	private String leaveT;
-	private String cat_name_online;
-	private String peronlineorder;
+	private String cat_name_offline;
+	private String perofflineorder;
+	private String cat_name_off;
+	private String perofforder;
+	private String dep_name;
+	private String depCnt;
+	private String totmoneyM;
+	private String monthsort;
+	private String offtotmoney;
+	private String offmonthsort;
+	private String return_name;
+	private String perreturncnt;
+	private String credittot;
+	private String creditmonth;
+	private String debittot;
+	private String debitmonth;
 	
 	
-	public String getCat_name_online() {
-		return cat_name_online;
+	public String getCat_name_offline() {
+		return cat_name_offline;
 	}
-	public void setCat_name_online(String cat_name_online) {
-		this.cat_name_online = cat_name_online;
+	public void setCat_name_offline(String cat_name_offline) {
+		this.cat_name_offline = cat_name_offline;
 	}
-	public String getPeronlineorder() {
-		return peronlineorder;
+	public String getPerofflineorder() {
+		return perofflineorder;
 	}
-	public void setPeronlineorder(String peronlineorder) {
-		this.peronlineorder = peronlineorder;
+	public void setPerofflineorder(String perofflineorder) {
+		this.perofflineorder = perofflineorder;
 	}
-	public String getLeaveF() {
-		return leaveF;
+	public String getCredittot() {
+		return credittot;
 	}
-	public void setLeaveF(String leaveF) {
-		this.leaveF = leaveF;
+	public void setCredittot(String credittot) {
+		this.credittot = credittot;
 	}
-	public String getLeaveT() {
-		return leaveT;
+	public String getCreditmonth() {
+		return creditmonth;
 	}
-	public void setLeaveT(String leaveT) {
-		this.leaveT = leaveT;
+	public void setCreditmonth(String creditmonth) {
+		this.creditmonth = creditmonth;
 	}
-	public String getMemberY() {
-		return memberY;
+	public String getDebittot() {
+		return debittot;
 	}
-	public void setMemberY(String memberY) {
-		this.memberY = memberY;
+	public void setDebittot(String debittot) {
+		this.debittot = debittot;
 	}
-	public String getMemberN() {
-		return memberN;
+	public String getDebitmonth() {
+		return debitmonth;
 	}
-	public void setMemberN(String memberN) {
-		this.memberN = memberN;
+	public void setDebitmonth(String debitmonth) {
+		this.debitmonth = debitmonth;
 	}
-	public String getOff_line() {
-		return off_line;
+	public String getReturn_name() {
+		return return_name;
 	}
-	public void setOff_line(String off_line) {
-		this.off_line = off_line;
+	public void setReturn_name(String return_name) {
+		this.return_name = return_name;
 	}
-	public String getOn_line() {
-		return on_line;
+	public String getPerreturncnt() {
+		return perreturncnt;
 	}
-	public void setOn_line(String on_line) {
-		this.on_line = on_line;
+	public void setPerreturncnt(String perreturncnt) {
+		this.perreturncnt = perreturncnt;
 	}
-	public String getBusiness_area_name() {
-		return business_area_name;
+	public String getOfftotmoney() {
+		return offtotmoney;
 	}
-	public void setBusiness_area_name(String business_area_name) {
-		this.business_area_name = business_area_name;
+	public void setOfftotmoney(String offtotmoney) {
+		this.offtotmoney = offtotmoney;
 	}
-	public double getPerCorp() {
-		return perCorp;
+	public String getOffmonthsort() {
+		return offmonthsort;
 	}
-	public void setPerCorp(double perCorp) {
-		this.perCorp = perCorp;
+	public void setOffmonthsort(String offmonthsort) {
+		this.offmonthsort = offmonthsort;
 	}
-	public String getCat_name() {
-		return cat_name;
+	public String getTotmoneyM() {
+		return totmoneyM;
 	}
-	public void setCat_name(String cat_name) {
-		this.cat_name = cat_name;
+	public void setTotmoneyM(String totmoneyM) {
+		this.totmoneyM = totmoneyM;
 	}
-	public double getPerNum() {
-		return perNum;
+	public String getMonthsort() {
+		return monthsort;
 	}
-	public void setPerNum(double perNum) {
-		this.perNum = perNum;
+	public void setMonthsort(String monthsort) {
+		this.monthsort = monthsort;
+	}
+	public String getDep_name() {
+		return dep_name;
+	}
+	public void setDep_name(String dep_name) {
+		this.dep_name = dep_name;
+	}
+	public String getDepCnt() {
+		return depCnt;
+	}
+	public void setDepCnt(String depCnt) {
+		this.depCnt = depCnt;
+	}
+	public String getCat_name_off() {
+		return cat_name_off;
+	}
+	public void setCat_name_off(String cat_name_off) {
+		this.cat_name_off = cat_name_off;
+	}
+	public String getPerofforder() {
+		return perofforder;
+	}
+	public void setPerofforder(String perofforder) {
+		this.perofforder = perofforder;
 	}
 	
 }

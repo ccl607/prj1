@@ -405,7 +405,7 @@ input::placeholder {
                      <a href="/group4erp/goMainTest.do"><img src="${ctRootImg}/ui-sam.jpg"
                         class="img-circle" width="80"></a>
                   </p>
-                  <h5 class="centered">Sam Soffes</h5>
+                  <h5 class="centered">${emp_name} ${jikup}님</h5>
                   <li class="mt"><a href="index.html"> <i
                         class="fa fa-dashboard"></i> <span>메인페이지</span>
                   </a></li>
@@ -745,6 +745,28 @@ input::placeholder {
       </table> --%>
                   </form>
          </section>
+         
+         <footer class="site-footer">
+      <div class="text-center">
+        <p>
+			KOSMO 자바&빅데이터 과정 팀프로젝트
+        </p>
+        <div class="credits">
+        <font style="font-size:12pt;">
+        ⓒ Copyrights <strong>조충래, 김태현, 박현우, 이동하, 임남희, 최민지</strong>
+         </font>
+          <!--
+            You are NOT allowed to delete the credit link to TemplateMag with free version.
+            You can delete the credit link only if you bought the pro version.
+            Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
+            Licensing information: https://templatemag.com/license/
+          -->
+        </div>
+        <a href="basic_table.html#" class="go-top">
+          <i class="fa fa-angle-up"></i>
+          </a>
+      </div>
+    </footer>
     </section>
 <br>
                   <c:if test="${employeeInfoUpDTO.salary==0}">

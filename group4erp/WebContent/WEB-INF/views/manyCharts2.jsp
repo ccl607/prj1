@@ -14,7 +14,7 @@
   --grey : #F5F6FA;
   --light-grey : #707070;
   --dark-grey : #5F5F5F;
-  --border-radius : 20px;
+  --border-radius : 45px;
   --green : #BCCF11;
   --red : #E20D18;
   --yellow : #FEC107;
@@ -30,14 +30,14 @@ html, body {
 }
 
 #app {
-  height : 80em;
-  width : 10vw;
-  /* margin-top : 1em; */
+  height : 100em;
+  width : 50vw;
+  margin-top : 0em;
   display : grid;
 }
 
 .slider-container {
-  border-radius : 10px;
+  border-radius : 25px;
   display : flex;
   width : 15em;
   margin-left: auto;
@@ -47,7 +47,7 @@ html, body {
 }
 
 .slider-container .option {
-  border-radius : 10px;
+  border-radius : 25px;
   width : 5em;
   margin : 0em;
   padding : .5em;
@@ -61,7 +61,7 @@ html, body {
 
 .podium-places-container {
   display: flex;
-  width : 50%;
+  width : 200px;
   margin-left: auto;
   margin-right : auto;
   justify-content : center;
@@ -73,7 +73,7 @@ html, body {
   width : 15em;
   background-color : white;
   margin : 2.5em;
-  border-radius : 20px;
+  border-radius : 40px;
   color : white;
 }
 
@@ -159,13 +159,13 @@ html, body {
 
 .list-item {
 
-  width : 80%;
- margin-left: auto;
+  width : 75%;
+  margin-left: auto;
   margin-right: auto;
   background-color : white;
   margin-bottom : 1em;
-  border-radius : 20px;
-  height : 3em;
+  border-radius : 45px;
+  height : 5em;
   position : relative;
 
 }
@@ -208,10 +208,6 @@ html, body {
   margin-top : .25em;
 }
 
-.leaderboards-container{
-	height:30%
-}
-
 
 .list-item.highlighted, 
 .list-item.highlighted .class-information .year,
@@ -223,8 +219,22 @@ html, body {
 }
 </style>
 
+<script>
+/* 
+var book_name = [];
+var cat_name = [];
+var soldcnt = [];
 
-
+for(var i=0 ; i<5 ; i++){
+	book_name.push(${bestSellers[i].book_name});
+	cat_name.push(${bestSellers[i].cat_name});
+	soldcnt.push(${bestSellers[i].soldcnt});
+}
+ */
+ function goBack(){
+	 history.go(-1);
+ }
+</script>
 <script>
   window.console = window.console || function(t) {};
 </script>
@@ -235,7 +245,16 @@ html, body {
 </script>
 </head>
 <body>
+<br>
+<table width=100%>
+<tr><td align=center>
+<input type="button" value="뒤로가기" onclick="goBack();">
+</table>
+<br>
+
+<div id="piechart5" style="width: 700px; height: 600px;">
 <div id="app"></div>
+</div>
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/react/0.13.0/react.min.js'></script>
 <script id="rendered-js">
@@ -305,46 +324,12 @@ React.createElement("div", { className: "year-group" },
 		'${bestSellers[2].cat_name}'),
 
 React.createElement("div", { className: "steps" },
-		'${bestSellers[2].soldcnt}'+'권'))))),
-
-
-
-React.createElement("div", { className: "places-list-container" },
-React.createElement("div", { className: "list-item" },
-React.createElement("div", { className: "position" }, "4"),
-
-
-React.createElement("div", { className: "class-information" },
-React.createElement("div", { className: "title" },
-		'${bestSellers[3].book_name}'),
-
-React.createElement("div", { className: "year" },
-		'${bestSellers[3].cat_name}')),
-
-
-React.createElement("div", { className: "steps" },
-		'${bestSellers[3].soldcnt}'+'권')),
-
-
-
-React.createElement("div", { className: "list-item" },
-React.createElement("div", { className: "position" }, "5"),
-
-
-React.createElement("div", { className: "class-information" },
-React.createElement("div", { className: "title" },
-		'${bestSellers[4].book_name}'),
-
-React.createElement("div", { className: "year" },
-		'${bestSellers[4].cat_name}')),
-
-
-React.createElement("div", { className: "steps" },
-		'${bestSellers[4].soldcnt}'+'권'))));
+		'${bestSellers[2].soldcnt}'+'권'))))));
 
 React.render(app, document.getElementById('app'));
 //# sourceURL=pen.js
     </script>
+<input type="button" name="joinBtn" value="저장" onClick="checkLoginInfo();">&nbsp;
 
 </body>
 </html>

@@ -250,6 +250,7 @@ ul.top-menu > li > .goBackss {
     height: 100%;
     position: fixed;
     background: #2f323a;
+    z-index:1000;
 }
 
 #sidebar h5 {
@@ -418,6 +419,7 @@ ul.sidebar-menu li a.active i {
 /* MAIN CONTENT CONFIGURATION */
 #main-content {
     margin-left: 210px;
+    margin-bottom:60px;
 }
 
 .header, .footer {
@@ -1203,8 +1205,8 @@ PANELS CONFIGURATIONS
 }
 .message-p .message-header {
 	background: #dcdfe3;
-	padding: 3px;
-	margin-bottom: 15px;
+	padding: 2px;
+	margin-bottom: 10px;
 	text-align: center;
 }
 .message-p h5 {
@@ -3339,9 +3341,13 @@ ul.chat-available-user li a:hover {
 
 /*footer*/
 .site-footer {
+    
     background: #4ECDC4;
     color: #fff;
     padding: 15px 0;
+
+    /*position: fixed;*/
+
 }
 
 .site-footer p {
@@ -3503,4 +3509,4 @@ ul.chat-available-user li a:hover {
 #copyrights a {
   color: #fff;
 }
->>>>>>> refs/remotes/b_cmj/b_cmj
+
