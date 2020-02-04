@@ -332,6 +332,10 @@ $(document).ready( function() {
       location.href="/group4erp/goClientLogin.do";
    }
    
+   function goChart(){
+	   location.href="/group4erp/goMyChart.do";
+   }
+   
 </script>
 
 <!-- style="display:none" -->
@@ -500,7 +504,9 @@ $(document).ready( function() {
 
 
 
+<br>
 
+<input type="button" value="차트" onclick="goChart();">
 
 
 

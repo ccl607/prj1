@@ -70,8 +70,6 @@
       google.charts.setOnLoadCallback(drawChart);
       console.log("end chart");
       
-   
-      headerSort("salListTable", 0);
 
       setTableTrBgColor(
             "salListTable",   //테이블 class 값
