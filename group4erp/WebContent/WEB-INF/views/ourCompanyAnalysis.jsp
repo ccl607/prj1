@@ -47,6 +47,7 @@
    //google.charts.setOnLoadCallback(drawCategoryChart);
    google.charts.setOnLoadCallback(drawDeptEmpCntChart);
    google.charts.setOnLoadCallback(drawDayoffChart);
+   google.charts.setOnLoadCallback(drawPieCategoryChart);
 
 
    function drawHireOrResignChart() {
@@ -78,7 +79,7 @@
       var employee_chart_data = google.visualization.arrayToDataTable(${employee_chart_data});
       var employee_chart_options = {
          title: '직원 현황(직급별)',
-         width :700, 
+         width :800, 
          height: 400,
          colors:['#FF6464','#FF6464'],
          opacity: 0.5,
@@ -102,12 +103,12 @@
 					,[ '${deptEmpCnt.dep_name}', ${deptEmpCnt.depCnt} ]
 		  	  </c:forEach>
 	      ]);
-	      
+	      //#ac92ec
 	      var employee_chart_options = {
     	         title: '직원 현황(부서별)',
-    	         width :700, 
+    	         width :800, 
     	         height: 400,
-    	         colors:['#FF6464','#FF6464'],
+    	         colors:['#22242a','#00c5de'],
     	         opacity: 0.5,
     	         animation:{
     	            "startup": true,
@@ -139,6 +140,43 @@
 	   var chart5 = new google.visualization.PieChart(document.getElementById('drawDayoffChart'));
 	   
 	   chart5.draw(data5, options5);
+   }
+   
+   
+   function drawPieCategoryChart(){
+	   
+	   var data = google.visualization.arrayToDataTable([
+	    	['카테고리', '비율']
+	    	<c:forEach items="${requestScope.perBookCat}" var="bookcat" varStatus="loopTagStatus">
+		  		,['${bookcat.cat_name}', ${bookcat.perNum}]
+	  	    </c:forEach>
+	    ]);
+	    var data2 = google.visualization.arrayToDataTable([
+	    	['카테고리', '비율']
+	    	<c:forEach items="${requestScope.perCorpArea}" var="corparea" varStatus="loopTagStatus">
+		  		,['${corparea.business_area_name}', ${corparea.perCorp}]
+	  	    </c:forEach>
+	    ]);
+	    
+	    var options = {
+   	      title: '분야 별 도서 비율',
+	   	   width :700,
+	      height: 400,
+	      is3D: true
+   	    };
+   	    var options2 = {
+   	      title: '거래처 분야 비율',
+	   	   width :700,
+	      height: 400,
+	      is3D: true
+   	    };
+   	    
+	   	 var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+	     var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
+		   
+	     
+	     chart.draw(data, options);
+	     chart2.draw(data2, options2);
    }
    
 /*
@@ -503,6 +541,24 @@ function drawLineChart() {
               </div>
             </div>
           </div>
+          <div class="row mt">
+            <div class="col-lg-6">
+              <div class="content-panel">
+                <h4><i class="fa fa-angle-right"></i> 분야 별 도서 현황</h4>
+                <div class="panel-body">
+                   <div id="piechart"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="content-panel">
+                <h4><i class="fa fa-angle-right"></i> 분야 별 거래처 현황</h4>
+                <div class="panel-body">
+               <div id="piechart2"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <input type="hidden" name="cat_cd">
    </form>
@@ -515,41 +571,26 @@ function drawLineChart() {
     <footer class="site-footer">
       <div class="text-center">
         <p>
-          &copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
+			KOSMO 자바&빅데이터 과정 팀프로젝트
         </p>
         <div class="credits">
+        <font style="font-size:12pt;">
+        ⓒ Copyrights <strong>조충래, 김태현, 박현우, 이동하, 임남희, 최민지</strong>
+         </font>
           <!--
             You are NOT allowed to delete the credit link to TemplateMag with free version.
             You can delete the credit link only if you bought the pro version.
             Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
             Licensing information: https://templatemag.com/license/
           -->
-          Created with Dashio template by <a href="https://templatemag.com/">TemplateMag</a>
         </div>
-        <a href="morris.html#" class="go-top">
+        <a href="basic_table.html#" class="go-top">
           <i class="fa fa-angle-up"></i>
           </a>
       </div>
     </footer>
     <!--footer end-->
   </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- js placed at the end of the document so the pages load faster -->
 <script src="${ctRootlib}/jquery/jquery.min.js"></script>
 <script src="${ctRootlib}/bootstrap/js/bootstrap.min.js"></script>

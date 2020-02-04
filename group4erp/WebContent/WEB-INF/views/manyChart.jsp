@@ -452,7 +452,7 @@ function drawMoneyChart() {
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="/group4erp/goMainTest.do" class="logo"><b>BOOK<span>.STREET</span></b></a>
+      <a href="/group4erp/goMainTest.do" class="logo"><b>BOOK<span>STREET</span></b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -769,18 +769,20 @@ function drawMoneyChart() {
     <footer class="site-footer">
       <div class="text-center">
         <p>
-          &copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
+			KOSMO 자바&빅데이터 과정 팀프로젝트
         </p>
         <div class="credits">
+        <font style="font-size:12pt;">
+        ⓒ Copyrights <strong>조충래, 김태현, 박현우, 이동하, 임남희, 최민지</strong>
+         </font>
           <!--
             You are NOT allowed to delete the credit link to TemplateMag with free version.
             You can delete the credit link only if you bought the pro version.
             Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
             Licensing information: https://templatemag.com/license/
           -->
-          Created with Dashio template by <a href="https://templatemag.com/">TemplateMag</a>
         </div>
-        <a href="morris.html#" class="go-top">
+        <a href="basic_table.html#" class="go-top">
           <i class="fa fa-angle-up"></i>
           </a>
       </div>

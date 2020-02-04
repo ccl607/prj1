@@ -154,7 +154,6 @@ function openBestKwdData() {
 
 
 </script>
-<<<<<<< HEAD
 </head>
 <body><%-- <center>
 =======

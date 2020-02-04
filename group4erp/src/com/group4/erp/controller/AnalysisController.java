@@ -145,7 +145,12 @@ public class AnalysisController {
 		
 		String employee_chart_data = "[";
 		employee_chart_data += "['직급', '인원수']";
+		
 		for(int i=0; i<employeeChart.size(); i++) {
+			
+			if(employeeChart.get(i).getJikup()==null) {
+				employeeChart.get(i).setJikup("미승인");
+			}
 			employee_chart_data += ", ['";
 			employee_chart_data += employeeChart.get(i).getJikup();
 			employee_chart_data += "', ";
@@ -211,11 +216,18 @@ public class AnalysisController {
 		
 		catInventory_chart_data += "] ";
 		
+		
 		List<ManyChartDTO> deptEmpCnt = this.manyDAO.getDeptEmpCnt();
 		mav.addObject("deptEmpCnt", deptEmpCnt);
 		
 		ManyChartDTO perLeave = this.manyDAO.getPerLeave();
 		mav.addObject("perLeave", perLeave);
+
+		List<ManyChartDTO> perBookCat = this.manyDAO.getPerBookCat();
+		mav.addObject("perBookCat", perBookCat);
+		
+		List<ManyChartDTO> perCorpArea = this.manyDAO.getPerCorpArea();
+		mav.addObject("perCorpArea", perCorpArea);
 		
 		
 		mav.addObject("bookCategoryList", bookCategoryList);
