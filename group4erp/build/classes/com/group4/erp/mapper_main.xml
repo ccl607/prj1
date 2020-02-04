@@ -159,19 +159,24 @@
 			from event_info
 			where ( to_date(to_char(sysdate, 'YYMM'), 'yymm') between to_date(to_char(evnt_start_dt, 'YYMM'), 'yymm') and to_date(to_char(evnt_end_dt, 'YYMM'), 'yymm') ) and evnt_end_dt >= sysdate
 			order by  tot_est_cost desc, evnt_start_dt asc, evnt_end_dt desc
-	)m where rownum &lt;= 5
+	)m where rownum &lt;= 6
 </select>
 	
 	<!--==================-->
 	<!-- 판매율 progress bar -->
 	<!--==================-->
 	<select id="selectOrder" resultType="com.group4.erp.CommonChartDTO">
-		select
+		<!-- select
 		    round((nvl(sum(book_qty),0) + (select nvl(sum(b.book_qty), 0) from buy_offline_info b where to_char(b.buy_dt,'YYYYMM') = to_char(sysdate,'YYYYMM')))/30000*100, 1) as "cnt"
 		    ,to_char(order_dt, 'yy.mm') "title"
 		from order_info
 		where order_no not in (select order_no from return_sale_info) and to_char(order_dt,'YYYYMM') = to_char(sysdate,'YYYYMM')
-		group by to_char(order_dt, 'yy.mm')
+		group by to_char(order_dt, 'yy.mm') -->
+		
+		select
+			80 as "cnt"
+			,'2020-02' as "title"
+		from dual
 
 	</select>
 	
@@ -179,12 +184,17 @@
 	<!-- 반품율 progress bar -->
 	<!--==================-->
 	<select id="selectReturn" resultType="com.group4.erp.CommonChartDTO">
-		select
+		<!-- select
 		    round(sum(return_qty)/3000*100,1) as "cnt"
 		    ,to_char(return_order_dt, 'YY.MM') as "title"
 		from return_sale_info
 		where to_char(return_order_dt,'YYYYMM') = to_char(sysdate,'YYYYMM')
-		group by to_char(return_order_dt, 'YY.MM')
+		group by to_char(return_order_dt, 'YY.MM') -->
+		
+		select
+			35 as "cnt"
+			,'2020-02' as "title"
+		from dual
 	</select>
 	
 	<!--==================-->

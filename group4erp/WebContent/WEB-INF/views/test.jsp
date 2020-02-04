@@ -10,6 +10,7 @@
 <html lang="ko">
 
 <head>
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,200,300,350,400,500,600,700,800,900&display=swap" rel="stylesheet">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
@@ -58,11 +59,11 @@
 
    google.charts.load('current', {'packages' : ['corechart'] } );
 
-   google.charts.setOnLoadCallback(drawChart);
-   google.charts.setOnLoadCallback(drawChartSellingStat);
+   //google.charts.setOnLoadCallback(drawChart);
+   //google.charts.setOnLoadCallback(drawChartSellingStat);
 
 
-   function drawChart() {
+   /* function drawChart() {
       var monthlyBookReg_data = google.visualization.arrayToDataTable(${monthlyBook_reg_chart_data});
       //var data2 = google.visualization.arrayToDataTable(${corpOrder_chart_data});
       //var data3 = google.visualization.arrayToDataTable(${dailyOrder_chart_data});
@@ -108,7 +109,7 @@
 
       monthlyBookReg_chart.draw(monthlyBookReg_data, monthlyBookReg_data_options);
 
-   }
+   } */
 
 
 
@@ -133,7 +134,7 @@
 html, body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-  background-color : var(--grey);
+  /* background-color : var(--grey); */
 }
 
 #app {
@@ -157,7 +158,7 @@ html, body {
   border-radius : 10px;
   width : 5em;
   margin : 0em;
-  padding : .5em;
+  padding : 1em;
   text-align : center;
 }
 
@@ -201,7 +202,7 @@ html, body {
 }
 
 .podium .class-information {
- padding : 0em;
+ padding : .5em;
 }
 
 .podium.bronze, .podium.silver {
@@ -228,22 +229,22 @@ html, body {
 
 
 .podium.bronze .class-information .title, .podium.silver .class-information .title {
-  margin-top : .5em;
+  margin-top : .1em;
   font-size : 1.1em;
 }
 
 .podium.bronze .class-information .steps, .podium.silver .class-information .steps {
-  margin-top : .5em;
+  margin-top : .1em;
   font-size : 1.1em;
 }
 
 .podium.gold .class-information .title {
-  margin-top : .5em;
+  margin-top : .1em;
   font-size : 1.4em;
 }
 
 .podium.gold .class-information .steps {
-  margin-top : .5em;
+  margin-top : .1em;
   font-size : 1.4em;
 }
 
@@ -325,6 +326,18 @@ html, body {
 	padding-top:0;
 	padding-bottom:0;
 	
+}
+
+.year-group{
+	color : black;
+}
+
+.title{
+	font-weight:bold;
+}
+
+.steps{
+	text-align:right;
 }
 
 
@@ -531,7 +544,8 @@ html, body {
             <div class="border-head">
               <h3>월별 판매 부수(온/오프라인 합산)</h3>
             </div>
-            <div id="sellingStat" style="background-color:#f5f6fa">
+            <!-- <div id="sellingStat" style="background-color:white"> -->
+            <div id="sellingStat" style="background-color:#eaeaea">
             	
             </div>
             <!-- <div class="custom-bar-chart" id="sellingStatDiv">
@@ -736,7 +750,7 @@ html, body {
 		                  		<tr>
 		                  			<td width="100%">
 		                  				<div class="progress progress-striped">
-				                  		<font style="font-size:8pt; color:orange;">&nbsp;※판매 건수가 없습니다.</font>
+				                  		<font style="font-size:8pt; color:#ef6242;">&nbsp;※판매 건수가 없습니다.</font>
 				                   			<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
 				                     			<span class="sr-only">0%</span>
 				                    		</div>
@@ -838,7 +852,7 @@ html, body {
 		                  		<tr>
 		                  			<td width="100%">
 		                  				<div class="progress progress-striped">
-				                  		<font style="font-size:8pt; color:orange;">&nbsp;※반품 건수가 없습니다.</font>
+				                  		<font style="font-size:8pt; color:#ef6242;">&nbsp;※반품 건수가 없습니다.</font>
 				                   			<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
 				                     			<span class="sr-only">0%</span>
 				                    		</div>
@@ -1179,7 +1193,7 @@ html, body {
           <!-- **********************************************************************************************************************************************************
               RIGHT SIDEBAR CONTENT
               *********************************************************************************************************************************************************** -->
-          <div class="col-lg-3 ds" style="height:100%">
+          <div class="col-lg-3 ds" style="height:1020">
             <!--COMPLETED ACTIONS DONUTS CHART-->
             <!-- <div class="donut-main">
               <h4>COMPLETED ACTIONS & PROGRESS</h4>
@@ -1349,7 +1363,7 @@ html, body {
 		//console.log("gridCharts : ", data);
 			
 			var sellingStat_data = google.visualization.arrayToDataTable([
-				['Month', '판매 부수']
+				['Month', '판매부수']
 				,[data.sellingStat[0].title, data.sellingStat[0].cnt]
 				,[data.sellingStat[1].title, data.sellingStat[1].cnt]
 				,[data.sellingStat[2].title, data.sellingStat[2].cnt]
@@ -1365,16 +1379,18 @@ html, body {
 			]);
 	
 			var sellingStat_option = {
-					title: '월별 도서 판매 부수',
+					//title: '월별 도서 판매 부수',
 			         //width :700, 
 			         height: 400,
-			         colors:['#e68f8f','#e68f8f'],
+			         colors:['#2f323a','#2f323a', 'opacity: 0.2'],
+			         /* colors:['#99CCFF','#99CCFF', 'opacity: 0.2'], */
+			         /* colors:['#e68f8f','#e68f8f'], */
 			         animation:{
 			            "startup": true,
 			              duration: 1000,
 			              easing: 'out',
 			        },
-			        annotations: {
+			        /* annotations: {
 			        	boxStyle: {
 			        	      // Color of the box outline.
 			        	      stroke: '#888',
@@ -1386,6 +1402,31 @@ html, body {
 			        	      ry: 50
 			        	}
 					}
+					 */backgroundColor: {
+			             fill: '#eaeaea',
+			             fillOpacity: 0
+			           },
+					chartArea: {'width': '80%', 'height': '80%'/* , 'right':10 */},
+		               legend: {'position': 'right', textStyle: {fontSize:13, color: '#797979', fontName:'Noto Sans KR'}},
+
+			            hAxis: {
+			               textStyle:{color: '#797979'},
+			               gridlines: {
+			                   color: "white"
+			               },
+			        	   baselineColor: 'white'/*, 
+			        	    ticks: []*/
+			        	 }, 
+			        	 vAxis: {
+			        		 textStyle:{color: '#797979'},
+				             /* gridlines: {
+				                   color: "white"
+				             }, */
+				        	 baselineColor: 'lightgray',
+			                 titleTextStyle: {
+			                   color: '#797979'
+			                 }
+			        	 }
 			        	
 			};
 
@@ -1403,7 +1444,7 @@ html, body {
 			             fillOpacity: 0
 			           },
 			            hAxis: {
-			            	textStyle:{color: '#fdfdfd'},
+			               textStyle:{color: '#fdfdfd'},
 			        	   baselineColor: 'none',
 			        	   ticks: []
 			        	 }, 
