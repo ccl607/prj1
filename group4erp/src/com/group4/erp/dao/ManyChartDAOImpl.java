@@ -166,6 +166,5 @@ public List<ManyChartOnlineDTO> getPerOfflineOrderAjax(String month_choice){
 				);
 		
 		return debitTot;
-
 	}
 }

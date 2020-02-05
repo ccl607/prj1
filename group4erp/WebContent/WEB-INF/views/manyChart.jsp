@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ include file = "/WEB-INF/views/common.jsp" %>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -501,7 +501,7 @@ function drawMoneyChart() {
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered">
-            <a href="profile.html"><img src="/group4erp/resources/image/logo_sidebar.png"  width="80"></a>
+            <a href="/group4erp/goMainTest.do"><img src="/group4erp/resources/image/logo_sidebar.png"  width="80"></a>
           </p>
           <h4 class="centered"><b><font style="color:lightgray">${emp_name} ${jikup}님</font></b></h4>
           <li class="mt">
@@ -805,4 +805,3 @@ function drawMoneyChart() {
 </body>
 
 </html>
-

@@ -45,8 +45,8 @@
   <script src="${ctRootlib}/jquery.scrollTo.min.js"></script>
   <script src="${ctRootlib}/jquery.nicescroll.js" type="text/javascript"></script>
   <!--common script for all pages-->
-  <script src="${ctRootlib}/common-scripts.js"></script>
-  <link href="${ctRootcss}/style-responsive.css" rel="stylesheet">
+  <%-- <script src="${ctRootlib}/common-scripts.js"></script>
+  <link href="${ctRootcss}/style-responsive.css" rel="stylesheet">--%>
   
   <!--script for this page-->
   
@@ -486,9 +486,21 @@ html, body {
               <li>
                 <a href="/group4erp/viewEmpList.do"><i class="fa fa-info-circle"></i>직원정보</a>
               </li>
-              <li>
-                <a href="/group4erp/viewSalList.do"><i class="fa fa-file"></i>급여명세서 조회</a>
-              </li>
+              <!-- 인사부장만 급여지급대장 조회 메뉴를 볼 수 있다. -->
+                   <c:if test="${emp_id eq '600001'}">
+                   		<li class="active">
+              				<a href="/group4erp/viewSalList.do"><i class="fa fa-file"></i>급여지급대장 조회</a>
+              			</li>	
+              			<li class="active">
+              				<a href="/group4erp/viewEmpSalInfo.do"><i class="fa fa-file"></i>급여명세서 조회</a>
+              			</li>	
+                   </c:if>
+
+                   <c:if test="${emp_id != '600001'}">
+                   		<li class="active">
+              				<a href="/group4erp/viewEmpSalInfo.do"><i class="fa fa-file"></i>급여명세서 조회</a>
+              			</li>	
+                   </c:if>
               <li>
                 <a href="/group4erp/viewEmpWorkStateList.do"><i class="fa fa-list"></i>직원별 근무현황</a>
               </li>

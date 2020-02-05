@@ -119,7 +119,6 @@ from code_category c
 	      group by to_char(occur_dt, 'yy') || '년 ' || to_char(occur_dt, 'mm')||'월'
 	      order by 2 desc
 	</select>
-
 </mapper>
 
 

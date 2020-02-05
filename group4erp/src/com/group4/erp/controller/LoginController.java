@@ -54,62 +54,48 @@ public class LoginController {
 	) {
 		System.out.println("로그인 컨트롤러 시작");
 		Map<String, String> map = new HashMap<String, String>();
+		map.put("emp_id", emp_id);
+		map.put("emp_pwd", emp_pwd);
+		int emp_idCnt = 0;
 
-		   map.put("emp_id", emp_id);
-		   map.put("emp_pwd", emp_pwd);
-		   int emp_idCnt = 0;
-		   
-		   EmployeeDTO empInfo = this.loginService.getLoginEmpInfo(emp_id);
-		   
-		   try {
-			   	
-			   emp_idCnt = this.loginService.getEmpIdCnt(map);
-			   System.out.println("<접속성공> [접속URL]->/loginProc.do [호출메소드]->LoginController.loginProc(~) \n");
-			   if(emp_idCnt==1) {
-				   
-				   String dep_no = empInfo.getDep_no()+"";
-				   
-				   session.setAttribute("emp_id", emp_id);
-				   session.setAttribute("emp_name", empInfo.getEmp_name());
-				   session.setAttribute("jikup", empInfo.getJikup());
-				   session.setAttribute("jikup_cd", empInfo.getJikup_cd());
-				   session.setAttribute("mgr", empInfo.getMgr());
-				   session.setAttribute("mgr_emp_no", empInfo.getMgr_emp_no());
-				   session.setAttribute("dep_no", dep_no);
-				   session.setAttribute("dep_name", empInfo.getDep_name());
-				   session.setAttribute("ceo_no", empInfo.getCeo_no());
-			   }
-			 
-			     
-		   }catch(Exception e) {
-			   	System.out.println("예외발생 : "+e);
-				System.out.println("<접속실패> [접속URL]->/loginProc.do [호출메소드]->LoginController.loginProc(~) \n");
-				emp_idCnt = -1;
+		EmployeeDTO empInfo = this.loginService.getLoginEmpInfo(emp_id);
 
+		try {
+
+			emp_idCnt = this.loginService.getEmpIdCnt(map);
+			System.out.println("<접속성공> [접속URL]->/loginProc.do [호출메소드]->LoginController.loginProc(~) \n");
+			if (emp_idCnt == 1) {
+
+				String dep_no = empInfo.getDep_no() + "";
+
+				session.setAttribute("emp_id", emp_id);
+				session.setAttribute("emp_name", empInfo.getEmp_name());
+				session.setAttribute("jikup", empInfo.getJikup());
+				session.setAttribute("jikup_cd", empInfo.getJikup_cd());
+				session.setAttribute("mgr", empInfo.getMgr());
+				session.setAttribute("mgr_emp_no", empInfo.getMgr_emp_no());
+				session.setAttribute("dep_no", dep_no);
+				session.setAttribute("ceo_no", empInfo.getCeo_no());
 			}
 
-		
+		} catch (Exception e) {
+			System.out.println("예외발생 : " + e);
+			System.out.println("<접속실패> [접속URL]->/loginProc.do [호출메소드]->LoginController.loginProc(~) \n");
+			emp_idCnt = -1;
+		}
 		// admin 테이블에 존재하는 로그인 아이디의 존재 개수 리턴하기
 		return emp_idCnt;
 	}
 
 	/*
-<<<<<<< HEAD
-	@RequestMapping(value="/loginProc.do")
-	public ModelAndView loginProc(HttpSession session) {
-		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("main.jsp");
-		
-		return mav;
-	}
-<<<<<<< HEAD
-	
-	/*@RequestMapping(value="/joininsert.do")
-	public ModelAndView joinMembership() {
-=======
-	*/
-	 /*@RequestMapping(value="/joininsert.do") public ModelAndView
+	 * @RequestMapping(value="/loginProc.do") public ModelAndView
+	 * loginProc(HttpSession session) {
+	 * 
+	 * ModelAndView mav = new ModelAndView(); mav.setViewName("main.jsp");
+	 * 
+	 * return mav; } <<<<<<< HEAD
+	 * 
+	 * /*@RequestMapping(value="/joininsert.do") public ModelAndView
 	 * joinMembership() { =======
 	 */
 	@RequestMapping(value = "/goMainPage.do")
@@ -201,10 +187,9 @@ public class LoginController {
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("logout.jsp");
-
-		System.out.println("<접속성공> [접속 URI]-> /logout.do [호출 메소드]->LoginController.logout() \n");	
+		System.out.println("<접속성공> [접속 URI]-> /logout.do [호출 메소드]->LoginController.logout() \n");
 
 		return mav;
-	} 
+	}
 
 }

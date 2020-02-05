@@ -9,6 +9,7 @@ import com.group4.erp.ManyChartDTO;
 import com.group4.erp.ManyChartOnlineDTO;
 
 
+
 public interface ManyChartDAO {
 
 	List<ManyChartDTO> getPerBookCat();
@@ -39,7 +40,5 @@ public interface ManyChartDAO {
 	List<ManyChartDTO> getPerReturn();
 	
 	List<ManyChartDTO> getCreditTot();
-	
 	List<ManyChartDTO> getDebitTot();
-
 }

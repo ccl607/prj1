@@ -146,7 +146,6 @@ public class CharController {
 		}catch(Exception e) {
 			System.out.println("<베스트셀러 불러오기 실패>");
 			System.out.println("예외 발생=> "+e);
-
 		}
 		
 		return mav;

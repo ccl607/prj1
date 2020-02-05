@@ -99,7 +99,6 @@ $.fn.zabuto_calendar = function (options) {
                                             }
                                             itemBadge = '<span class="badge ' + badgeClassName + '">' + item.badge + '</span> ';
                                         }
-
                                         //$legendObj.append('<span class="legend-' + item.type + '">' + itemBadge + itemLabel + '</span>');
                                     }
                                     break;
@@ -595,4 +594,3 @@ $.fn.zabuto_calendar_language = function (lang) {
             break;
     }
 
-};

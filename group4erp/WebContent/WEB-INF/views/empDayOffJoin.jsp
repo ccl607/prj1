@@ -85,8 +85,6 @@
 
 <script>
 
-
-
 $(document).ready(function(){
 
 	getMonth();
@@ -94,7 +92,6 @@ $(document).ready(function(){
 
 	startTime();
 	
-
 	$('[name=dayoff_cd]').change(function(){
 		var dayval = $('[name=dayoff_cd]').val();
 
@@ -385,20 +382,19 @@ $(document).ready(function(){
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="/group4erp/goMainTest.do" class="logo"><b>BOOKST<span>.ERP</span></b></a>
+      <a href="/group4erp/goMainTest.do" class="logo"><b>BOOK<span>STREET</span></b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
         <ul class="nav top-menu">
           <!-- settings start -->
-
           <!-- notification dropdown end -->
-          <li>
-     		 <table>
-        		 <tr>
-        		 	<td align="left"> <font style="color:#D8E8E4;"><h5><span id="nowTime" align="right"></span> </h5></font></td>
-         		</tr>
-      		</table>
+          <li><!-- 
+            <table>
+               <tr>
+                  <td align="left"> <font style="color:#D8E8E4;"><h4><span id="nowTime" align="right"></span> </h4></font></td>
+               </tr>
+            </table> -->
           </li>
         </ul>
         <!--  notification end -->
@@ -409,10 +405,21 @@ $(document).ready(function(){
             <a class="goBackss" href="javascript:goBack();">뒤로 가기</a>
           </li> -->
           <li>
-            <a class="logout" href="/group4erp/logout.do">Logout</a>
+             <a class="logout" href="/group4erp/logout.do">Logout</a>
           </li>
         </ul>
       </div>
+      <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+          <!-- <li>
+            <a class="goBackss" href="javascript:goBack();">뒤로 가기</a>
+          </li> -->
+          <li style="margin-top: 10px; margin-right: 20px;">
+             <font style="color:#D8E8E4;"><h4><span id="nowTime" align="right"></span> </h4></font>
+          </li>
+        </ul>
+      </div>
+      
     </header>
     <!--header end-->
     <!-- **********************************************************************************************************************************************************
@@ -424,9 +431,9 @@ $(document).ready(function(){
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered">
-            <a href="profile.html"><img src="${ctRootImg}/ui-sam.jpg" class="img-circle" width="80"></a>
+            <a href="/group4erp/goMainTest.do"><img src="/group4erp/resources/image/logo_sidebar.png"  width="80"></a>
           </p>
-          <h5 class="centered">${emp_name} ${jikup}님</h5>
+          <h4 class="centered"><b><font style="color:lightgray">${emp_name} ${jikup}님</font></b></h4>
           <li class="mt">
             <a href="/group4erp/goMainTest.do">
               <i class="fa fa-dashboard"></i>
@@ -445,9 +452,12 @@ $(document).ready(function(){
               <li>
                 <a href="/group4erp/businessTripList.do"><i class="fa fa-briefcase"></i>출장 신청</a>
               </li>
+              <!-- 
               <li>
                 <a href="/group4erp/goMyWorkTime.do"><i class="fa fa-list"></i>근태 조회</a>
               </li>
+              <li>
+               -->
               <li>
                 <a href="/group4erp/viewApprovalList.do"><i class="fa fa-pencil"></i>문서 결재</a>
               </li>
@@ -499,12 +509,25 @@ $(document).ready(function(){
               <li>
                 <a href="/group4erp/viewEmpList.do"><i class="fa fa-info-circle"></i>직원정보</a>
               </li>
-              <li>
-                <a href="/group4erp/viewSalList.do"><i class="fa fa-file"></i>급여명세서 조회</a>
-              </li>
+             <c:if test="${emp_id eq '600001'}">
+                	<li>
+              			<a href="/group4erp/viewSalList.do"><i class="fa fa-file"></i>급여지급대장 조회</a>
+              		</li>	
+              		<li>
+              			<a href="/group4erp/viewEmpSalInfo.do"><i class="fa fa-file"></i>급여명세서 조회</a>
+              		</li>	
+				</c:if>
+
+                <c:if test="${emp_id != '600001'}">
+                	<li>
+              			<a href="/group4erp/viewEmpSalInfo.do"><i class="fa fa-file"></i>급여명세서 조회</a>
+              		</li>	
+                </c:if>
+              <!-- 
               <li>
                 <a href="/group4erp/viewEmpWorkStateList.do"><i class="fa fa-list"></i>직원별 근무현황</a>
               </li>
+               -->
               <li>
                 <a href="/group4erp/viewEmpDayOffList.do"><i class="fa fa-list"></i>직원별 휴가 현황</a>
               </li>
@@ -564,7 +587,7 @@ $(document).ready(function(){
 						<td width=30%>
 					<tr>
 						<td width=30%>
-						<td width=40%>2. 올해 ${emp_name}님의 남은 연가는 ${remain.remain_dayoff}일 입니다.
+						<td width=40%>2. 올해 ${emp_name}님의 남은 휴가는 ${remain.remain_dayoff}일 입니다.
 						<td width=30%>
 					<tr>
 						<td width=30%>
@@ -572,7 +595,7 @@ $(document).ready(function(){
 						<td width=30%>
 					<tr>
 						<td width=30%>
-						<td width=40%>4. 한달에 나갈수 있는 휴가 일수는 4일이 최대이며 4일 초과시 부서장의 승인이 있어야합니다.
+						<td width=40%>4. 한달에 나갈수 있는 휴가 일수는 최대 4일이며, 4일 초과시 부서장의 승인이 있어야합니다.
 						<td width=30%>
 				</table>
             </div>
@@ -608,7 +631,7 @@ $(document).ready(function(){
 						<td colspan=3 align=center>
 						
 						<!-- <td width=15% align=right> -->
-						<button type="button" class="btn btn-default" onclick="empDayOffJoin();"><i class="fa fa-pencil-square-o"></i>신청</button>
+						<button type="button" class="btn btn-theme02" onclick="empDayOffJoin();"><i class="fa fa-pencil-square-o"></i>신청</button>
 						&nbsp;&nbsp;
 						<!-- <td width=55% align=left> -->
 						<button type="button" class="btn btn-default" onclick="goAllReset();"><input type="image" src="/group4erp/resources/image/reset.png" width="13" height="13">초기화</button>

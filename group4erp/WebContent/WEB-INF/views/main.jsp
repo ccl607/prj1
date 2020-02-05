@@ -4,12 +4,10 @@
 <!DOCTYPE html>
 <html>
 <% 
-
    //String emp_name = (String)session.getAttribute("emp_name"); 
    //String emp_no = (String)session.getAttribute("emp_id");
    //String mgr = (String)session.getAttribute("mgr"); 
    //String dep_no = (String)session.getAttribute("dep_no"); 
-
  %>
 <head>
 <meta charset="UTF-8">
@@ -196,11 +194,6 @@ function showTime() {
 				<%@ include file="/WEB-INF/views/salesReportForm.jsp" %>
 			</c:if>
 			
-
-			<!-- 어음정보 조회 -->
-			<c:if test="${subMenu.equals('viewPromiNoteList') }">
-				<%@ include file="/WEB-INF/views/promiNoteListForm.jsp" %>
-			</c:if>
 
 			<!-- 세금계산서 발급 내역 조회 -->
 			<c:if test="${subMenu.equals('viewTaxInvoiceList') }">

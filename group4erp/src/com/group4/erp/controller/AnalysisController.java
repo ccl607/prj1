@@ -57,9 +57,8 @@ public class AnalysisController {
 			List<BestKwdDTO> bestKwdDTOList = this.analysisService.getBestKwdList(bestKwdSearchDTO);
 			
 			String bestKwd_chart_data = "[";
-
 			bestKwd_chart_data += "['날짜', '횟수']";
-
+			
 			List<BestKwdDTO> bestKeywdInfo = this.analysisService.getKeywdSrchCntChart();
 			
 			for(int i=0; i<bestKeywdInfo.size(); i++) {

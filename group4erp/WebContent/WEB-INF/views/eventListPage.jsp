@@ -597,7 +597,7 @@
 		                  <th style="cursor:pointer" onClick="$('[name=sort]').val('4 asc'); goSearch();  ">타이틀</th>
 		               </c:otherwise>
 		            </c:choose>
-		            
+		             
 		            <c:choose>
 		               <c:when test="${param.sort=='7 desc'}">
 		                  <th style="cursor:pointer" onClick="$('[name=sort]').val(''); goSearch();  "> ▼ 시작일</th>
